@@ -31,3 +31,5 @@ syntax enable
 " コメントの色を水色
 hi Comment ctermfg=3
 
+" jjをescにバインド
+inoremap <silent> jj <ESC>
