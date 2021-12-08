@@ -54,7 +54,7 @@ alias ....="cd ../../.."
 
 alias exp="explorer.exe ."
 alias C="sed 's/\n$//g' | clip.exe"
-alias dotfiles="cd ~/git/dotfiles"
+alias dotfiles="cd ~/dotfiles"
 
 # ディレクトリ移動時の処理
 chpwd() { ls -lah }

@@ -1,10 +1,8 @@
-zshの設定ファイルを移植するためのもの
+# dotfiles
 
-## use
+## install
 
 ```shell
-mkdir -p ~/git/dotfiles
-git clone https://github.com/eycjur/dotfiles.git ~/git/dotfiles
-~/git/dotfiles/install.sh
+git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
+~/dotfiles/install.sh
 ```
-
