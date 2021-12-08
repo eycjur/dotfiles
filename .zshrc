@@ -1,3 +1,4 @@
+# 初期設定
 # Set up the prompt
 
 autoload -Uz promptinit
@@ -18,9 +19,6 @@ HISTFILE=~/.zsh_history
 autoload -Uz compinit
 compinit
 
-# テーマを追加
-ZSH_THEME="refined"
-
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
@@ -39,15 +37,11 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# 環境変数
-export SVN_EDITOR="vim"
-export GIT_EDITOR="vim"
-export DOCKER_CONTENT_TRUST=1
-export PATH="$HOME/.pyenv/bin:$PATH"
-export PATH="$HOME/.pyenv/shims:$PATH"
-export PATH="$HOME/.poetry/bin:$PATH"
+# 以下加筆
+# テーマを追加
+ZSH_THEME="refined"
 
-# custom
+# カスタムエイリアス
 alias ll='ls -lap'
 alias rm='rm -iv'
 alias cp='cp -iv'
@@ -62,27 +56,36 @@ alias exp="explorer.exe ."
 alias C="sed 's/\n$//g' | clip.exe"
 alias dotfiles="cd ~/git/dotfiles"
 
+# ディレクトリ移動時の処理
 chpwd() { ls -lah }
 
-uname_tail=`uname -n | rev | cut -c 1-2 | rev`
+# デバイスごとの設定
+uname_tail="$(uname -n | rev | cut -c 1-2 | rev)"
 
+BASE_DIR=""
+case "${uname_tail}" in
+  "JS") BASE_DIR="/mnt/c/Users/${USER}/wsl";;
+  "HI") BASE_DIR="/mnt/d"
+    alias download="cd /mnt/d/${USER}/download";; 
+  *) echo "this computer is not registered";;
+esac
+
+# 研究関連のディレクトリへのエイリアス
 analysis_dir="sotsuken/redmine/branch_analysis/analysis"
 thesis_dir="sotsuken/redmine/branch_thesis/Thesis"
 
-BASE_DIR=""
-case $uname_tail in
-    "JS") BASE_DIR="/mnt/c/Users/$USER/wsl";;
-    "HI") BASE_DIR="/mnt/d"
-          alias download="cd /mnt/d/$USER/download";; 
-    *) echo "this computer is not registered";;
-esac
-
-if [[ $BASE_DIR != "" ]]; then
-    alias analysis="cd ${BASE_DIR}/${analysis_dir}"
-    alias thesis="cd ${BASE_DIR}/${thesis_dir}"
+if [[ "${BASE_DIR}" != "" ]]; then
+  alias analysis="cd ${BASE_DIR}/${analysis_dir}"
+  alias thesis="cd ${BASE_DIR}/${thesis_dir}"
 else
-    echo "could not put an alias in the graduate research directory"
+  echo "could not put an alias in the graduate research directory"
 fi
 
-export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="$PATH:/home/$USER/go/bin"
+# 環境変数
+export SVN_EDITOR="vim"
+export GIT_EDITOR="vim"
+export DOCKER_CONTENT_TRUST=1
+export PATH="${HOME}/.pyenv/bin:${PATH}"
+export PATH="${HOME}/.pyenv/shims:${PATH}"
+export PATH="${HOME}/.poetry/bin:${PATH}"
+export PATH="${PATH}:/home/${USER}/go/bin"

@@ -1,13 +1,14 @@
 #!/bin/zsh
+# dotfileをシンボリックリンクでホームディレクトリに置いて適用する
 
-DOT_DIR=$(cd $(dirname $0); pwd)
-echo $DOT_DIR
+set -CEeuxo pipefail
 
-dotfiles=(.zshrc .vimrc)
+DOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-for file in "${dotfiles[@]}"; do
-	echo $file
-	ln -sf ${DOT_DIR}/$file ~/$file
+for file in .zshrc .vimrc; do
+  ln -sf "${DOT_DIR}/${file}" ~/"${file}"
 done
-source ~/.zshrc
 
+set +ux
+source "${HOME}"/.zshrc
+set -ux
