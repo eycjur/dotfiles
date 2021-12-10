@@ -42,7 +42,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 ZSH_THEME="refined"
 
 # カスタムエイリアス
-alias ll='ls -lap'
+alias ll='ls -lahp'
 alias rm='rm -iv'
 alias cp='cp -iv'
 alias mv='mv -iv'
@@ -57,7 +57,7 @@ alias C="sed 's/\n$//g' | clip.exe"
 alias dotfiles="cd ~/dotfiles"
 
 # ディレクトリ移動時の処理
-chpwd() { ls -lah }
+chpwd() { ll }
 
 # デバイスごとの設定
 uname_tail="$(uname -n | rev | cut -c 1-2 | rev)"
