@@ -12,34 +12,42 @@ inoremap <silent> jj <ESC>
 
 " インデントをスペース4つ
 set tabstop=4
-set expandtab
 set shiftwidth=4
 
 " クリップボードを共有
 set clipboard+=unnamedplus
 if system('uname -a | grep microsoft') != ''
-    augroup myYank
-        autocmd!
-        autocmd TextYankPost * :call system('clip.exe', @")
-    augroup END
+	augroup myYank
+		autocmd!
+		autocmd TextYankPost * :call system('clip.exe', @")
+	augroup END
 endif
 
-if !has("nvim")
-    " viとの互換性を無効にする(INSERT中にカーソルキーが有効になる)
-    set nocompatible
+if has("nvim")
+	" nvimのみの設定
+	" カラーを変更する
+	set termguicolors
+else
+	" vimのみの設定
+	" viとの互換性を無効にする(INSERT中にカーソルキーが有効になる)
+	set nocompatible
 
-    " 検索時に最後まで行ったら最初に戻る
-    set wrapscan
+	" コメントの色を黄色
+	hi Comment ctermfg=3
 
-    " 検索結果をハイライト表示
-    set hlsearch
+	" 検索時に最後まで行ったら最初に戻る
+	set wrapscan
 
-    "BSで削除できるものを指定する
-    " indent  : 行頭の空白
-    " eol     : 改行
-    " start   : 挿入モード開始位置より手前の文字
-    set backspace=indent,eol,start
+	" 検索結果をハイライト表示
+	set hlsearch
 
-    " シンタックスハイライトの有効化
-    syntax enable
+	"BSで削除できるものを指定する
+	" indent  : 行頭の空白
+	" eol     : 改行
+	" start   : 挿入モード開始位置より手前の文字
+	set backspace=indent,eol,start
+
+	" シンタックスハイライトの有効化
+	syntax enable
 endif
+

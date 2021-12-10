@@ -47,7 +47,10 @@ alias rm='rm -iv'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -p'
-alias vim="nvim"
+# nvimがあれば利用
+if type nvim > /dev/null; then
+	alias vim="nvim"
+fi
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -65,10 +68,10 @@ uname_tail="$(uname -n | rev | cut -c 1-2 | rev)"
 
 BASE_DIR=""
 case "${uname_tail}" in
-    "JS") BASE_DIR="/mnt/c/Users/${USER}/wsl";;
-    "HI") BASE_DIR="/mnt/d"
-        alias download="cd /mnt/d/${USER}/download";;
-    *) echo "this computer is not registered";;
+	"JS") BASE_DIR="/mnt/c/Users/${USER}/wsl";;
+	"HI") BASE_DIR="/mnt/d"
+		alias download="cd /mnt/d/${USER}/download";;
+	*) echo "this computer is not registered";;
 esac
 
 # 研究関連のディレクトリへのエイリアス
@@ -76,10 +79,10 @@ analysis_dir="sotsuken/redmine/branch_analysis/analysis"
 thesis_dir="sotsuken/redmine/branch_thesis/Thesis"
 
 if [[ "${BASE_DIR}" != "" ]]; then
-    alias analysis="cd ${BASE_DIR}/${analysis_dir}"
-    alias thesis="cd ${BASE_DIR}/${thesis_dir}"
+	alias analysis="cd ${BASE_DIR}/${analysis_dir}"
+	alias thesis="cd ${BASE_DIR}/${thesis_dir}"
 else
-    echo "could not put an alias in the graduate research directory"
+	echo "could not put an alias in the graduate research directory"
 fi
 
 # 環境変数
@@ -90,3 +93,4 @@ export PATH="${HOME}/.pyenv/bin:${PATH}"
 export PATH="${HOME}/.pyenv/shims:${PATH}"
 export PATH="${HOME}/.poetry/bin:${PATH}"
 export PATH="${PATH}:/home/${USER}/go/bin"
+
