@@ -47,6 +47,7 @@ alias rm='rm -iv'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -p'
+alias vim="nvim"
 
 alias ..="cd .."
 alias ...="cd ../.."
