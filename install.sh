@@ -9,6 +9,11 @@ for file in .zshrc .vimrc; do
   ln -sf "${DOT_DIR}/${file}" ~/"${file}"
 done
 
+# nvimの設定ファイルは別のディレクトリ
+mkdir -p ~/.config/nvim
+ln -sf "${DOT_DIR}/${file}" ~/.config/nvim/init.vim
+
+
 set +ux
 source "${HOME}"/.zshrc
 set -ux
