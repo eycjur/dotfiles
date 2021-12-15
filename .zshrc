@@ -3,7 +3,10 @@
 
 autoload -Uz promptinit
 promptinit
-prompt adam1
+# 仮想環境下で上書きしてほしくないので 手動で設定
+# prompt adam1
+prompt="%K{blue}%n@%m%k %B%F{green}%97<...<%~
+%}%F{white} %# %b%f%k"
 
 setopt histignorealldups sharehistory
 
@@ -93,4 +96,3 @@ export PATH="${HOME}/.pyenv/bin:${PATH}"
 export PATH="${HOME}/.pyenv/shims:${PATH}"
 export PATH="${HOME}/.poetry/bin:${PATH}"
 export PATH="${PATH}:/home/${USER}/go/bin"
-

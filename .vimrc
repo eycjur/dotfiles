@@ -1,3 +1,6 @@
+" viとの互換性を無効にする(INSERT中のカーソルキーが有効、コントロールコードを無効)
+set nocompatible
+
 " 括弧入力時の対応する括弧を表示
 set showmatch
 
@@ -29,9 +32,6 @@ if has("nvim")
 	set termguicolors
 else
 	" vimのみの設定
-	" viとの互換性を無効にする(INSERT中にカーソルキーが有効になる)
-	set nocompatible
-
 	" コメントの色を黄色
 	hi Comment ctermfg=3
 
