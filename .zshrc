@@ -82,7 +82,7 @@ analysis_dir="sotsuken/redmine/branch_analysis/analysis"
 thesis_dir="sotsuken/redmine/branch_thesis/Thesis"
 
 if [[ "${BASE_DIR}" != "" ]]; then
-	alias analysis="cd ${BASE_DIR}/${analysis_dir}"
+	alias analysis="cd ${BASE_DIR}/${analysis_dir} && poetry shell"
 	alias thesis="cd ${BASE_DIR}/${thesis_dir}"
 else
 	echo "could not put an alias in the graduate research directory"
