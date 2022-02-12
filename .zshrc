@@ -58,13 +58,23 @@ fi
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
-
-alias exp="explorer.exe ."
-alias C="sed 's/\n$//g' | clip.exe"
 alias dotfiles="cd ~/dotfiles"
 
 # ディレクトリ移動時の処理
 chpwd() { ll }
+
+# osごとの設定
+case ${OSTYPE} in
+	darwin*)
+		alias exp="open ."
+		alias C="pbcopy"
+		export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+		;;
+	linux*)
+		alias exp="explorer.exe ."
+		alias C="sed 's/\n$//g' | clip.exe"
+		;;
+esac
 
 # デバイスごとの設定
 uname_tail="$(uname -n | rev | cut -c 1-2 | rev)"
