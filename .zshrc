@@ -1,6 +1,11 @@
 # 初期設定
 # Set up the prompt
 
+# macでdircolorsコマンドがないと言われるのでその対策
+if type brew > /dev/null; then
+	export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+fi
+
 autoload -Uz promptinit
 promptinit
 # 仮想環境下で上書きしてほしくないので 手動で設定
@@ -59,6 +64,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias dotfiles="cd ~/dotfiles"
+alias px="poetry run python -m src"
 
 # ディレクトリ移動時の処理
 chpwd() { ll }
@@ -68,7 +74,9 @@ case ${OSTYPE} in
 	darwin*)
 		alias exp="open ."
 		alias C="pbcopy"
-		export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+		# nvm
+		[ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh" # This loads nvm
+		[ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 		;;
 	linux*)
 		alias exp="explorer.exe ."
@@ -84,6 +92,7 @@ case "${uname_tail}" in
 	"JS") BASE_DIR="/mnt/c/Users/${USER}/wsl";;
 	"HI") BASE_DIR="/mnt/d"
 		alias download="cd /mnt/d/${USER}/download";;
+	"al") BASE_DIR="${HOME}/programing";;
 	*) echo "this computer is not registered";;
 esac
 
@@ -106,3 +115,6 @@ export PATH="${HOME}/.pyenv/bin:${PATH}"
 export PATH="${HOME}/.pyenv/shims:${PATH}"
 export PATH="${HOME}/.poetry/bin:${PATH}"
 export PATH="${PATH}:/home/${USER}/go/bin"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
