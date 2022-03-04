@@ -1,6 +1,11 @@
 # 初期設定
 # Set up the prompt
 
+# macでdircolorsコマンドがないと言われるのでその対策
+if type brew > /dev/null; then
+	export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+fi
+
 autoload -Uz promptinit
 promptinit
 # 仮想環境下で上書きしてほしくないので 手動で設定
@@ -59,13 +64,30 @@ fi
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
-
-alias exp="explorer.exe ."
-alias C="sed 's/\n$//g' | clip.exe"
 alias dotfiles="cd ~/dotfiles"
+alias his="history | grep"
+alias px="poetry run python -m src"
 
 # ディレクトリ移動時の処理
 chpwd() { ll }
+
+# osごとの設定
+case ${OSTYPE} in
+	darwin*)  # mac
+		alias exp="open ."
+		alias C="pbcopy"
+		# nvm
+		[ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
+		[ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
+		export PATH="/usr/local/opt/gnu-sed/libexec/gnubin/:$PATH"
+		export PATH="/usr/local/opt/gawk/bin/:$PATH"
+		test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+		;;
+	linux*)  # linux, windows(wsl)
+		alias exp="explorer.exe ."
+		alias C="sed 's/\n$//g' | clip.exe"
+		;;
+esac
 
 # デバイスごとの設定
 uname_tail="$(uname -n | rev | cut -c 1-2 | rev)"
@@ -75,6 +97,7 @@ case "${uname_tail}" in
 	"JS") BASE_DIR="/mnt/c/Users/${USER}/wsl";;
 	"HI") BASE_DIR="/mnt/d"
 		alias download="cd /mnt/d/${USER}/download";;
+	"al") BASE_DIR="${HOME}/programing";;
 	*) echo "this computer is not registered";;
 esac
 
@@ -92,7 +115,6 @@ fi
 # 環境変数
 export SVN_EDITOR="vim"
 export GIT_EDITOR="vim"
-export DOCKER_CONTENT_TRUST=1
 export PATH="${HOME}/.pyenv/bin:${PATH}"
 export PATH="${HOME}/.pyenv/shims:${PATH}"
 export PATH="${HOME}/.poetry/bin:${PATH}"
