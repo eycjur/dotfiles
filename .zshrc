@@ -118,4 +118,3 @@ export PATH="${HOME}/.pyenv/bin:${PATH}"
 export PATH="${HOME}/.pyenv/shims:${PATH}"
 export PATH="${HOME}/.poetry/bin:${PATH}"
 export PATH="${PATH}:/home/${USER}/go/bin"
-

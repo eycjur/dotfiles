@@ -30,9 +30,8 @@ git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
 
 - docker
 ```Dockerfile
-RUN apt-get update && apt-get install -y git vim zsh neovim sudo
+RUN apt-get update && apt-get install -y sudo vim zsh git neovim
 RUN git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
-ENV SHELL /usr/bin/zsh
 RUN ~/dotfiles/install.sh
 CMD ["/bin/zsh"]
 ```
