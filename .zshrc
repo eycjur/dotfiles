@@ -45,7 +45,8 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 ZSH_THEME="refined"
 
 # カスタムエイリアス
-alias ll='ls -lahp'
+alias ls='ls --color'
+alias ll='ls -lahp --color'
 alias rm='rm -iv'
 alias cp='cp -iv'
 alias mv='mv -iv'
