@@ -13,7 +13,7 @@ promptinit
 prompt="%K{blue}%n@%m%k %B%F{green}%97<...<%~
 %}%F{white} %# %b%f%k"
 
-if [[ "docker" =~ "${USERNAME}" ]]; then
+if [[ "${USERNAME}" =~ "docker" ]]; then
     prompt="(docker)${prompt}"
 fi
 
