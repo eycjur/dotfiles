@@ -13,6 +13,10 @@ promptinit
 prompt="%K{blue}%n@%m%k %B%F{green}%97<...<%~
 %}%F{white} %# %b%f%k"
 
+if [[ "docker" =~ "${USERNAME}" ]]; then
+    prompt="(docker)${prompt}"
+fi
+
 setopt histignorealldups sharehistory
 
 # Use emacs keybindings even if our EDITOR is set to vi
