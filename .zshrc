@@ -10,12 +10,6 @@ autoload -Uz promptinit
 promptinit
 # 仮想環境下で上書きしてほしくないので 手動で設定
 # prompt adam1
-prompt="%K{blue}%n@%m%k %B%F{green}%97<...<%~
-%}%F{white} %# %b%f%k"
-
-if [[ "${USERNAME}" =~ "docker" ]]; then
-    prompt="(docker)${prompt}"
-fi
 
 setopt histignorealldups sharehistory
 
@@ -49,9 +43,35 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+
 # 以下加筆
 # テーマを追加
 ZSH_THEME="refined"
+
+# git関係
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"  # commitされていないファイルがある時
+zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"  # addされていないファイルがある時
+zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"  # %c: !, %u: +
+zstyle ':vcs_info:*' actionformats '[%b|%a]'  # ブランチ|アクション
+precmd () { vcs_info }
+
+# ターミナル画面をカスタマイズ
+prompt='%K{blue}%n@%m%k %F{green}%~%f %F{cyan}$vcs_info_msg_0_%f
+%F{white} %# %f'
+# %n: ユーザー名
+# %m: ホスト名
+# %#: % or #
+# %~: カレントディレクトリ
+# %F{color}%f: 色を変える
+# %K{color}%k: 背景色を変える
+# %B...%b: 太字
+# %97<...<target: targetの長さに最大文字数制限をつける
+if [[ "${USERNAME}" =~ "docker" ]]; then
+    prompt="(docker)${prompt}"
+fi
 
 # カスタムエイリアス
 alias ls='ls --color'
@@ -84,6 +104,7 @@ case ${OSTYPE} in
 		[ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
 		[ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
 		export PATH="/usr/local/opt/gnu-sed/libexec/gnubin/:$PATH"
+		alias sed="gsed"
 		export PATH="/usr/local/opt/gawk/bin/:$PATH"
 		test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 		;;
