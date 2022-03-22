@@ -1,38 +1,38 @@
 [alias]
     st = status
     cm = commit
-	co = checkout
-	sw = switch
-	br = branch
+    co = checkout
+    sw = switch
+    br = branch
 
-	# いい感じのグラフでログを表示
+    # いい感じのグラフでログを表示
     graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
-	gr = graph
+    gr = graph
     graph-all = log --graph --all --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 
-	# Untracked filesを表示
+    # Untracked filesを表示
     st-all = st -uall
 
-	# 行ごとの差分じゃなくて，単語レベルでの差分を色付きで表示する
+    # 行ごとの差分じゃなくて，単語レベルでの差分を色付きで表示する
     diff-word = diff --word-diff
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
 [user]
-	name = eycjur
-	email = eycjur@gmail.com
+    name = eycjur
+    email = eycjur@gmail.com
 
 [core]
-	autocrlf = input
-	quotepath = false
-	quotepath = false
+    autocrlf = input
+    quotepath = false
+    quotepath = false
 
 [pull]
-	rebase = false
+    rebase = false
 
 [push]
-	default = current
+    default = current
 
 [color]
-	ui = true
+    ui = true
