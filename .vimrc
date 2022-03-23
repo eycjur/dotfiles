@@ -14,6 +14,7 @@ set smartindent
 inoremap <silent> jj <ESC>
 
 " インデントをスペース4つ
+set expandtab
 set tabstop=4
 set shiftwidth=4
 

@@ -1,19 +1,19 @@
-# dotfiles
+# Dotfiles
 
-## install
+## Quick Start
 ```shell
 git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
 ~/dotfiles/install.sh
 
 ```
 
-## initial setting
+## Installation
 - mac
 ```shell
 # install brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew update
-brew install vim neovim git
+brew install git neovim vim
 git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
 ~/dotfiles/install.sh
 
@@ -30,7 +30,7 @@ git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
 
 - docker
 ```Dockerfile
-RUN apt-get update && apt-get install -y sudo vim zsh git neovim
+RUN apt-get update && apt-get install -y sudo git neovim vim zsh
 RUN git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
 RUN ~/dotfiles/install.sh
 CMD ["/bin/zsh"]
