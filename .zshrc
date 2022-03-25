@@ -16,9 +16,12 @@ setopt histignorealldups sharehistory
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+# Keep 10000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=10000
+SAVEHIST=10000
+setopt append_history
+setopt share_history
+setopt hist_ignore_all_dups
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
@@ -44,7 +47,6 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 
-# 以下加筆
 # テーマを追加
 ZSH_THEME="refined"
 
@@ -100,42 +102,22 @@ case ${OSTYPE} in
     darwin*)  # mac
         alias exp="open ."
         alias C="pbcopy"
-        # nvm
-        [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
-        [ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
-        export PATH="/usr/local/opt/gnu-sed/libexec/gnubin/:$PATH"
         alias sed="gsed"
+
+        export PATH="/usr/local/opt/gnu-sed/libexec/gnubin/:$PATH"
         export PATH="/usr/local/opt/gawk/bin/:$PATH"
-        test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+        source $(brew --prefix nvm)/nvm.sh
+        source $(brew --prefix nvm)/etc/bash_completion.d/nvm
+        source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+        source "${HOME}/.iterm2_shell_integration.zsh"
         ;;
+
     linux*)  # linux, windows(wsl)
         alias exp="explorer.exe ."
         alias C="sed 's/\n$//g' | clip.exe"
         ;;
 esac
-
-# デバイスごとの設定
-uname_tail="$(uname -n | rev | cut -c 1-2 | rev)"
-
-BASE_DIR=""
-case "${uname_tail}" in
-    "JS") BASE_DIR="/mnt/c/Users/${USER}/wsl";;
-    "HI") BASE_DIR="/mnt/d"
-        alias download="cd /mnt/d/${USER}/download";;
-    "al") BASE_DIR="${HOME}/programing";;
-    *) echo "this computer is not registered";;
-esac
-
-# 研究関連のディレクトリへのエイリアス
-analysis_dir="sotsuken/redmine/branch_analysis/analysis"
-thesis_dir="sotsuken/redmine/branch_thesis/Thesis"
-
-if [[ "${BASE_DIR}" != "" ]]; then
-    alias analysis="cd ${BASE_DIR}/${analysis_dir} && poetry shell"
-    alias thesis="cd ${BASE_DIR}/${thesis_dir}"
-else
-    echo "could not put an alias in the graduate research directory"
-fi
 
 # 環境変数
 export SVN_EDITOR="vim"
