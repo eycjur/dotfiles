@@ -91,7 +91,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias dotfiles="cd ~/dotfiles"
-alias his="history | grep"
+alias his="history 1000 | grep "
 alias px="poetry run python -m src"
 
 # ディレクトリ移動時の処理
