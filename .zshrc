@@ -86,6 +86,7 @@ alias mkdir='mkdir -p'
 if type nvim > /dev/null; then
     alias vim="nvim"
 fi
+alias vi="vim"
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -126,3 +127,4 @@ export PATH="${HOME}/.pyenv/bin:${PATH}"
 export PATH="${HOME}/.pyenv/shims:${PATH}"
 export PATH="${HOME}/.poetry/bin:${PATH}"
 export PATH="${PATH}:/home/${USER}/go/bin"
+

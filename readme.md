@@ -21,7 +21,7 @@ git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
 
 - linux
 ```shell
-apt update && apt install -y git neovim vim zsh
+sudo apt update && sudo apt install -y git neovim vim zsh
 chsh -s /bin/zsh
 git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
 ~/dotfiles/install.sh
