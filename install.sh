@@ -3,7 +3,7 @@
 
 set -CEeuxo pipefail
 
-DOT_FILES=(.zshrc .vimrc .gitconfig)
+DOT_FILES=(.zshrc .vimrc .gitconfig .tmux.conf)
 DOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 for file in ${DOT_FILES[@]}; do

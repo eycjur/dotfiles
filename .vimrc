@@ -4,8 +4,17 @@ set nocompatible
 " 括弧入力時の対応する括弧を表示
 set showmatch
 
+" 行番号の表示
+set number
+
+" 保存し内で終了するときに確認ダイアログ
+set confirm
+
 " Windowsでパスの区切り文字をスラッシュで扱う
 set shellslash
+
+" リアルタイム検索
+set incsearch
 
 " 自動でインデントを整える
 set smartindent
