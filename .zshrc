@@ -6,8 +6,6 @@ if type brew > /dev/null; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 fi
 
-autoload -Uz promptinit
-promptinit
 # 仮想環境下で上書きしてほしくないので 手動で設定
 # prompt adam1
 
@@ -25,8 +23,13 @@ setopt hist_ignore_all_dups
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
-autoload -Uz compinit
-compinit
+# autocompleteと競合するのでbrew以外の環境下で実行
+if type brew > /dev/null; then
+    source ~/.zsh/autocomplete.zsh
+else
+    autoload -Uz compinit
+    compinit
+fi
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -47,33 +50,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 
-# テーマを追加
-ZSH_THEME="refined"
-
-# git関係
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"  # commitされていないファイルがある時
-zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"  # addされていないファイルがある時
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"  # %c: !, %u: +
-zstyle ':vcs_info:*' actionformats '[%b|%a]'  # ブランチ|アクション
-precmd () { vcs_info }
-
-# ターミナル画面をカスタマイズ
-prompt='%K{blue}%n@%m%k %F{green}%~%f %F{cyan}$vcs_info_msg_0_%f
-%F{white} %# %f'
-# %n: ユーザー名
-# %m: ホスト名
-# %#: % or #
-# %~: カレントディレクトリ
-# %F{color}%f: 色を変える
-# %K{color}%k: 背景色を変える
-# %B...%b: 太字
-# %97<...<target: targetの長さに最大文字数制限をつける
-if [[ "${USERNAME}" =~ "docker" ]]; then
-    prompt="(docker)${prompt}"
-fi
+source ~/.zsh/prompt.zsh
 
 # カスタムエイリアス
 alias ls='ls --color'
@@ -91,6 +68,7 @@ alias vi="vim"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+alias g="git"
 alias t="tmux"
 alias e="exit"
 alias d="docker"
@@ -108,14 +86,14 @@ case ${OSTYPE} in
         alias exp="open ."
         alias C="pbcopy"
         alias sed="gsed"
-
-        export PATH="/usr/local/opt/gnu-sed/libexec/gnubin/:$PATH"
-        export PATH="/usr/local/opt/gawk/bin/:$PATH"
-
+        source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
         source $(brew --prefix nvm)/nvm.sh
         source $(brew --prefix nvm)/etc/bash_completion.d/nvm
-        source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
         source "${HOME}/.iterm2_shell_integration.zsh"
+        eval "$(starship init zsh)"
+
+        # .zshフォルダ内の設定を読み込む
+        source ~/.zsh/peco.zsh
         ;;
 
     linux*)  # linux, windows(wsl)
@@ -131,5 +109,6 @@ export PATH="${HOME}/.pyenv/bin:${PATH}"
 export PATH="${HOME}/.pyenv/shims:${PATH}"
 export PATH="${HOME}/.poetry/bin:${PATH}"
 export PATH="${PATH}:/home/${USER}/go/bin"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin/:$PATH"
+export PATH="/usr/local/opt/gawk/bin/:$PATH"
 
-eval "$(starship init zsh)"
