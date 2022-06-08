@@ -1,1 +1,0 @@
-/Users/kmuto/dotfiles/.zsh

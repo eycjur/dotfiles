@@ -7,12 +7,15 @@
 # ctrl+f:過去に異動したディレクトリを選択
 # git switch lb:ブランチの切り替え
 # de:dockerコンテナに入る
-#
+
+echo "$(basename $0)"
+
 # 過去に実行したコマンドを選択
 function peco-select-history() {
-  BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle clear-screen
+    BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+    zle accept-line
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history

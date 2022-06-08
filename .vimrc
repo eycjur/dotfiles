@@ -60,4 +60,3 @@ else
     " シンタックスハイライトの有効化
     syntax enable
 endif
-

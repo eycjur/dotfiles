@@ -1,3 +1,5 @@
+echo "$(basename $0)"
+
 # テーマを追加
 ZSH_THEME="refined"
 
@@ -25,4 +27,3 @@ prompt='%K{blue}%n@%m%k %F{green}%~%f %F{cyan}$vcs_info_msg_0_%f
 if [[ "${USERNAME}" =~ "docker" ]]; then
     prompt="(docker)${prompt}"
 fi
-
