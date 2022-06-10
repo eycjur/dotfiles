@@ -8,8 +8,6 @@
 # git switch lb:ブランチの切り替え
 # de:dockerコンテナに入る
 
-echo "$(basename $0)"
-
 # 過去に実行したコマンドを選択
 function peco-select-history() {
     BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")

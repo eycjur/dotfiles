@@ -108,7 +108,6 @@ export PATH="${HOME}/.poetry/bin:${PATH}"
 export PATH="${PATH}:/home/${USER}/go/bin"
 
 source ~/.zsh/prompt.zsh
-source ~/.zsh/autosuggestions.zsh
 if [[ -e ~/.zsh/custom.zsh ]]; then
     source ~/.zsh/custom.zsh
 fi

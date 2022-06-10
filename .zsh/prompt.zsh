@@ -1,5 +1,3 @@
-echo "$(basename $0)"
-
 # テーマを追加
 ZSH_THEME="refined"
 

@@ -1,5 +1,3 @@
-echo "$(basename $0)"
-
 # ファイルが有れば実行する関数
 # $1: ファイル名
 function run_if_exists() {

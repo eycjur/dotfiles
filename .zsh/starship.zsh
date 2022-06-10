@@ -1,5 +1,3 @@
-echo "$(basename $0)"
-
 if type starships > /dev/null; then
     curl -sS https://starship.rs/install.sh | sh
 
