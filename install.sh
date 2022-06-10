@@ -15,14 +15,14 @@ done
 mkdir -p ~/.zsh
 for file in ${DOT_DIR}/.zsh/*; do
     echo $file
-    ln -sf "${DOT_DIR}/${file}" ~/${file}
+    ln -sf "${file}" ~/${file}
 done
 
 # nvimの設定ファイルは別のディレクトリ
 mkdir -p ~/.config
 for file in ${DOT_DIR}/.config/*; do
     echo $file
-    ln -sf "${DOT_DIR}/${file}" ~/${file}
+    ln -sf "${file}" ~/${file}
 done
 
 set +ux
