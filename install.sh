@@ -13,14 +13,14 @@ done
 
 # .zshディレクトリ内のファイル
 mkdir -p ~/.zsh
-for file in .zsh/*; do
+for file in ${DOT_DIR}/.zsh/*; do
     echo $file
     ln -sf "${DOT_DIR}/${file}" ~/${file}
 done
 
 # nvimの設定ファイルは別のディレクトリ
 mkdir -p ~/.config
-for file in .config/*; do
+for file in ${DOT_DIR}/.config/*; do
     echo $file
     ln -sf "${DOT_DIR}/${file}" ~/${file}
 done
