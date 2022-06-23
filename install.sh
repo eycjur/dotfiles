@@ -1,7 +1,7 @@
 #!/bin/zsh
 # dotfileをシンボリックリンクでホームディレクトリに置いて適用する
 
-set -CEeuxo pipefail
+set -CEueo pipefail
 
 DOT_FILES=(.zshrc .vimrc .gitconfig .gitconfig.local .tmux.conf)
 DOT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -12,24 +12,17 @@ for file in ${DOT_FILES[@]}; do
         exit 0
     fi
 
-    echo "${DOT_DIR}/${file}"
+    echo "create symbolic link: ${DOT_DIR}/${file}"
     ln -sf "${DOT_DIR}/${file}" ~/
 done
 
-# .zshディレクトリ内のファイル
-mkdir -p ~/.zsh
-for file in ${DOT_DIR}/.zsh/*; do
-    echo $file
-    ln -sf "${file}" ~/.zsh/$(basename ${file})
+# .zshディレクトリ内のファイルとnvimの設定ファイル
+mkdir -p ~/.zsh ~/.config
+for file in ${DOT_DIR}/.{zsh,config}/*; do
+    echo "create symbolic link: ${file}"
+    ln -sf "${file}" ~/$(basename $(dirname ${file}))/$(basename ${file})
 done
 
-# nvimの設定ファイルは別のディレクトリ
-mkdir -p ~/.config
-for file in ${DOT_DIR}/.config/*; do
-    echo $file
-    ln -sf "${file}" ~/.config/$(basename ${file})
-done
-
-set +ux
+set +u
 source "${HOME}"/.zshrc
-set -ux
+set -u
