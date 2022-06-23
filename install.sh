@@ -3,10 +3,15 @@
 
 set -CEeuxo pipefail
 
-DOT_FILES=(.zshrc .vimrc .gitconfig .tmux.conf)
+DOT_FILES=(.zshrc .vimrc .gitconfig .gitconfig.local .tmux.conf)
 DOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 for file in ${DOT_FILES[@]}; do
+    if [ ! -e "${DOT_DIR}/${file}" ]; then
+    	echo "${DOT_DIR}/${file}が存在しません"
+        exit 0
+    fi
+
     echo "${DOT_DIR}/${file}"
     ln -sf "${DOT_DIR}/${file}" ~/
 done
