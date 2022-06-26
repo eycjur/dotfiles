@@ -7,7 +7,7 @@ setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"  # commitされていないファイルがある時
 zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"  # addされていないファイルがある時
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"  # %c: !, %u: +
+zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b($(git config user.name))]%f"  # %c: !, %u: +
 zstyle ':vcs_info:*' actionformats '[%b|%a]'  # ブランチ|アクション
 precmd () { vcs_info }
 
