@@ -22,6 +22,10 @@ prompt='%K{blue}%n@%m%k %F{green}%~%f %F{cyan}$vcs_info_msg_0_%f
 # %K{color}%k: 背景色を変える
 # %B...%b: 太字
 # %97<...<target: targetの長さに最大文字数制限をつける
-if [[ "${USERNAME}" =~ "docker" ]]; then
+if [ -n "${SSH_CLIENT}" ]; then
+    prompt="(ssh)${prompt}"
+fi
+
+if [ -n "${CONTAINER_NAME}" ]; then
     prompt="(docker)${prompt}"
 fi
