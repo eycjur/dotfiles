@@ -23,9 +23,9 @@ prompt='%K{blue}%n@%m%k %F{green}%~%f %F{cyan}$vcs_info_msg_0_%f
 # %B...%b: 太字
 # %97<...<target: targetの長さに最大文字数制限をつける
 if [ -n "${SSH_CLIENT}" ]; then
-    prompt="(ssh)${prompt}"
+    prompt="%F{magenta}(ssh)%f${prompt}"
 fi
 
 if [ -n "${CONTAINER_NAME}" ]; then
-    prompt="(docker)${prompt}"
+    prompt="%F{cyan}(docker)%f${prompt}"
 fi
