@@ -31,6 +31,7 @@ git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
 - docker
 ```Dockerfile
 RUN apt-get update && apt-get install -y sudo git neovim vim zsh
+ADD https://api.github.com/repos/eycjur/dotfiles/git/refs/heads/main version.json
 RUN git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
 RUN cp ~/dotfiles/.gitconfig.local.sample ~/dotfiles/.gitconfig.local
 RUN ~/dotfiles/install.sh

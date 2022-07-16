@@ -26,6 +26,6 @@ if [ -n "${SSH_CLIENT}" ]; then
     prompt="%F{magenta}(ssh)%f${prompt}"
 fi
 
-if [ -n "${CONTAINER_NAME}" ]; then
+if [ -n "${CONTAINER_NAME}" ] || [ -n "${IMAGE_NAME}" ]; then
     prompt="%F{cyan}(docker)%f${prompt}"
 fi
