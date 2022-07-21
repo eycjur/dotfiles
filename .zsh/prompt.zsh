@@ -2,12 +2,18 @@
 ZSH_THEME="refined"
 
 # git関係
+if [ -n $(git config user.name) ]; then
+    USER_NAME=$(git config user.name)
+else
+    USER_NAME="%K{red}No User Name%k"
+fi
+
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"  # commitされていないファイルがある時
 zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"  # addされていないファイルがある時
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b($(git config user.name))]%f"  # %c: !, %u: +
+zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b(${USER_NAME})]%f"  # %c: !, %u: +
 zstyle ':vcs_info:*' actionformats '[%b|%a]'  # ブランチ|アクション
 precmd () { vcs_info }
 

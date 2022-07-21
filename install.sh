@@ -9,7 +9,6 @@ DOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 for file in ${DOT_FILES[@]}; do
     if [ ! -e "${DOT_DIR}/${file}" ]; then
     	echo "${DOT_DIR}/${file}が存在しません"
-        exit 0
     fi
 
     echo "create symbolic link: ${DOT_DIR}/${file}"
