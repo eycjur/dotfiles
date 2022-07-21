@@ -2,7 +2,7 @@
 ZSH_THEME="refined"
 
 # git関係
-if [ -n $(git config user.name) ]; then
+if [ "$(git config user.name)" ]; then
     USER_NAME=$(git config user.name)
 else
     USER_NAME="%K{red}No User Name%k"
