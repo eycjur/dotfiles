@@ -28,10 +28,12 @@ prompt='%K{blue}%n@%m%k %F{green}%~%f %F{cyan}$vcs_info_msg_0_%f
 # %K{color}%k: 背景色を変える
 # %B...%b: 太字
 # %97<...<target: targetの長さに最大文字数制限をつける
-if [ -n "${SSH_CLIENT}" ]; then
+
+# ssh中かどうかを判定する
+if [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     prompt="%F{magenta}(ssh)%f${prompt}"
 fi
-
-if [ -n "${CONTAINER_NAME}" ] || [ -n "${IMAGE_NAME}" ]; then
+# dockerコンテナ内かどうかを判定する
+if [ -f /.dockerenv ]; then
     prompt="%F{cyan}(docker)%f${prompt}"
 fi

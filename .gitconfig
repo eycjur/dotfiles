@@ -26,6 +26,7 @@
     autocrlf = input
     quotepath = false
     quotepath = false
+    editor = vim
 
 [pull]
     rebase = false

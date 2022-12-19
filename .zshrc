@@ -1,6 +1,8 @@
 # 初期設定
 # Set up the prompt
 
+source ~/.zsh/functions.zsh
+
 # macでdircolorsコマンドがないと言われるのでその対策
 if [[ ${OSTYPE} == "darwin"* ]]; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
@@ -64,25 +66,24 @@ alias rm='rm -iv'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -p'
-
-# nvimがあれば利用
-if type nvim > /dev/null; then
-    alias vim="nvim"
-fi
-alias vi="vim"
-
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+set_alias_if_success "vim" "nvim"  # nvimがあれば利用
+alias vi="vim"
+
 alias d="docker"
-alias dc="docker compose"
+set_alias_if_success "dc" "docker-compose"
+set_alias_if_success "dc" "docker compose"
 alias e="exit"
 alias g="git"
 alias m="multipass"
 alias t="tmux"
+alias tf="terraform"
 alias dotfiles="cd ~/dotfiles"
 alias his="history 1000 | grep "
 alias px="poetry run python -m src"
+
 
 # ディレクトリ移動時の処理
 chpwd() { ll }
@@ -105,8 +106,6 @@ case ${OSTYPE} in
 esac
 
 # 環境変数
-export SVN_EDITOR="vim"
-export GIT_EDITOR="vim"
 export PATH="${HOME}/.pyenv/bin:${PATH}"
 export PATH="${HOME}/.pyenv/shims:${PATH}"
 export PATH="${HOME}/.poetry/bin:${PATH}"
