@@ -36,3 +36,8 @@ RUN git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
 RUN ~/dotfiles/install.sh
 CMD ["/bin/zsh"]
 ```
+
+## Customization
+There are some files that are not tracked by git. You can customize them as you like.
+- .zsh/custom.zsh
+- .gitconfig.local

@@ -66,6 +66,8 @@ alias rm='rm -iv'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -p'
+alias du="du -bha -d 1 . | sort -hr"
+alias -g G='| grep'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -77,7 +79,6 @@ set_alias_if_success "dc" "docker-compose"
 set_alias_if_success "dc" "docker compose"
 alias e="exit"
 alias g="git"
-alias m="multipass"
 alias t="tmux"
 alias tf="terraform"
 alias dotfiles="cd ~/dotfiles"
