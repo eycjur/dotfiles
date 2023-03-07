@@ -22,6 +22,7 @@ SAVEHIST=10000
 setopt append_history
 setopt share_history
 setopt hist_ignore_all_dups
+setopt AUTO_CD
 HISTFILE=~/.zsh_history
 
 # Use modern completion system

@@ -7,6 +7,10 @@
     co = checkout
     sw = switch
     br = branch
+    df = diff
+    dfc = diff --cached
+    coa = commit --amend
+    ch = cherry-pick
 
     # いい感じのグラフでログを表示
     graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
