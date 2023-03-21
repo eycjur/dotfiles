@@ -86,6 +86,16 @@ alias dotfiles="cd ~/dotfiles"
 alias his="history 1000 | grep "
 alias px="poetry run python -m src"
 
+alias add="git add"
+alias cm="git commit"
+alias coa="git commit --amend"
+alias df="git diff"
+alias dfc="git diff --cached"
+alias st="git status"
+alias br="git branch"
+alias sw="git switch"
+alias log="git log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'"
+alias push="git push origin"
 
 # ディレクトリ移動時の処理
 chpwd() { ll }
