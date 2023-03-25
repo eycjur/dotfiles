@@ -9,7 +9,7 @@
     br = branch
     df = diff
     dfc = diff --cached
-    coa = commit --amend
+    cma = commit --amend
     ch = cherry-pick
     down = restore --staged
     pushf = --force-with-lease --force-if-includes

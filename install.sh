@@ -19,7 +19,7 @@ done
 mkdir -p ~/.zsh ~/.config/nvim
 for file in ${DOT_DIR}/.{zsh,config/nvim}/*; do
     echo "create symbolic link: ${file}"
-    ln -sf "${file}" ~/$(basename $(dirname ${file}))/$(basename ${file})
+    ln -sf "${file}" ~/"${file#${DOT_DIR}/}"
 done
 
 set +u

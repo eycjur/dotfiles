@@ -1,1 +1,1 @@
-../../.vimrc
+/Users/kmuto/dotfiles/.config/nvim/init.vim
