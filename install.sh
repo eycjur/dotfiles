@@ -15,12 +15,16 @@ for file in ${DOT_FILES[@]}; do
     ln -sf "${DOT_DIR}/${file}" ~/
 done
 
-# .zshディレクトリ内のファイルとnvimの設定ファイル
-mkdir -p ~/.zsh ~/.config/nvim
-for file in ${DOT_DIR}/.{zsh,config/nvim}/*; do
+# .zshディレクトリ内のファイル
+mkdir -p ~/.zsh
+for file in ${DOT_DIR}/.zsh/*; do
     echo "create symbolic link: ${file}"
     ln -sf "${file}" ~/"${file#${DOT_DIR}/}"
 done
+
+# nvimの設定ファイル
+mkdir -p ~/.config/nvim
+ln -sf "${DOT_DIR}/.vimrc" ~/.config/nvim/init.vim
 
 set +u
 source "${HOME}"/.zshrc

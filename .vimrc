@@ -20,7 +20,25 @@ set incsearch
 set smartindent
 
 " jjをescにバインド
+" inoremap: insertモードのみ
+" noremap: normal/visualモード
+" noremap!: insert/commandモード
 inoremap <silent> jj <ESC>
+
+" emacsのキーバインド
+noremap <C-p> <Up>
+noremap <C-n> <Down>
+noremap <C-b> <Left>
+noremap <C-f> <Right>
+noremap <C-a> <HOME>
+noremap <C-e> <END>
+
+noremap! <C-p> <Up>
+noremap! <C-n> <Down>
+noremap! <C-b> <Left>
+noremap! <C-f> <Right>
+noremap! <C-a> <HOME>
+noremap! <C-e> <END>
 
 " インデントをスペース4つ
 set expandtab
@@ -28,13 +46,8 @@ set tabstop=4
 set shiftwidth=4
 
 " クリップボードを共有
-set clipboard+=unnamedplus
-if system('uname -a | grep microsoft') != ''
-    augroup myYank
-        autocmd!
-        autocmd TextYankPost * :call system('clip.exe', @")
-    augroup END
-endif
+set clipboard&
+set clipboard^=unnamed
 
 if has("nvim")
     " nvimのみの設定

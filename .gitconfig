@@ -12,7 +12,7 @@
     cma = commit --amend
     ch = cherry-pick
     down = restore --staged
-    pushf = --force-with-lease --force-if-includes
+    pushf = push --force-with-lease --force-if-includes origin
 
     # いい感じのグラフでログを表示
     graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'

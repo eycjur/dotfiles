@@ -1,6 +1,6 @@
 source ~/.zsh/functions.zsh
 
-alias exp="open ."
+alias exp="open"
 alias C="pbcopy"
 set_alias_if_success "sed" "gsed"
 set_alias_if_success "awk" "gawk"
