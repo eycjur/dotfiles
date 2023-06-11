@@ -1,8 +1,6 @@
 # 初期設定
 # Set up the prompt
 
-source ~/.zsh/functions.zsh
-
 # macでdircolorsコマンドがないと言われるのでその対策
 if [[ ${OSTYPE} == "darwin"* ]]; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
@@ -60,46 +58,8 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 
-# コマンドのオプションをデフォルトにする
-alias ls='ls --color'
-alias ll='ls -lahp --color'
-alias rm='rm -iv'
-alias cp='cp -iv'
-alias mv='mv -iv'
-alias mkdir='mkdir -p'
-alias du="du -bha -d 1 . | sort -hr"
-alias -g G='| grep'
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-set_alias_if_success "vim" "nvim"  # nvimがあれば利用
-alias vi="vim"
-
-alias d="docker"
-set_alias_if_success "dc" "docker-compose"
-set_alias_if_success "dc" "docker compose"
-alias e="exit"
-alias g="git"
-alias t="tmux"
-alias tf="terraform"
-alias dotfiles="cd ~/dotfiles"
-alias his="history 1000 | grep "
-alias px="poetry run python -m src"
-
-alias add="git add"
-alias cm="git commit"
-alias commit="git commit"
-alias cma="git commit --amend"
-alias df="git diff"
-alias dfc="git diff --cached"
-alias st="git status"
-alias br="git branch"
-alias sw="git switch"
-alias log="git log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'"
-alias push="git push origin"
-
 # ディレクトリ移動時の処理
-chpwd() { ll }
+chpwd() { ls -lahp --color }
 
 # osごとの設定
 case ${OSTYPE} in
@@ -125,6 +85,7 @@ export PATH="${HOME}/.poetry/bin:${PATH}"
 export PATH="${PATH}:/home/${USER}/go/bin"
 
 source ~/.zsh/prompt.zsh
+source ~/.zsh/alias.zsh
 if [[ -e ~/.zsh/custom.zsh ]]; then
     source ~/.zsh/custom.zsh
 fi

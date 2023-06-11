@@ -10,9 +10,9 @@
     df = diff
     dfc = diff --cached
     cma = commit --amend
-    ch = cherry-pick
+    ch = cherry-pick --no-commit
     down = restore --staged
-    pushf = push --force-with-lease --force-if-includes origin
+    pushf = push --force-with-lease --force-if-includes
 
     # いい感じのグラフでログを表示
     graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
@@ -42,3 +42,6 @@
 
 [color]
     ui = true
+
+[diff "sjis"]
+    textconv = iconv -f sjis
