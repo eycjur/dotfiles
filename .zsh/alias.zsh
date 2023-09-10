@@ -9,6 +9,7 @@ alias mv='mv -iv'
 alias mkdir='mkdir -p'
 alias du="du -bha -d 1 . | sort -hr"
 alias -g G='| grep'
+alias -g L='| less'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -21,11 +22,16 @@ set_alias_if_success "dc" "docker-compose"
 set_alias_if_success "dc" "docker compose"
 alias e="exit"
 alias g="git"
+alias h="history 1"
+alias l="limactl"
 alias t="tmux"
 alias tf="terraform"
 alias dotfiles="cd ~/dotfiles"
-alias his="history 1000 | grep "
+alias his="history 1 | grep "
 alias px="poetry run python -m src"
+alias psa="ps aucr"
+set_alias_if_success "cat" "bat"
+set_alias_if_success "find" "fd"
 
 # gitコマンドをgit不要にする
 alias add="git add"
