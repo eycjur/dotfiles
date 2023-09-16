@@ -62,3 +62,4 @@ alias log="git log --graph --date=short --decorate=short --pretty=format:'%Cgree
 
 # dockerコマンドをdocker不要にする
 alias dprune="docker system prune --volumes -af"
+alias gprune="git fetch -a && git branch --merged | grep 'feature' | grep -v '*' | xargs git branch -d && git gc"
