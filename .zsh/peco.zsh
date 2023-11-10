@@ -52,7 +52,13 @@ zle -N peco-cdr
 bindkey '^f' peco-cdr
 
 # ブランチを切り替え
-alias -g lb='`git branch | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
+alias -g B='`git branch | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
+
+# コミットハッシュを探す
+alias -g H='`git log --all --oneline | peco | cut -d" " -f1`'
+
+# 編集されたファイルを選択
+alias -g F='`git status --short | peco | awk '\''{print $2}'\''`'
 
 # dockerコンテナに入る
 alias de='docker exec -it $(docker ps | peco | cut -d " " -f 1) /bin/bash'

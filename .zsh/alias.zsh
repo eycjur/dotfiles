@@ -2,10 +2,8 @@ source ~/.zsh/functions.zsh
 
 # コマンドを上書きする
 set_alias_if_success "cat" "bat"
-set_alias_if_success "curl" "http"
 set_alias_if_success "du" "dust"
 set_alias_if_success "df" "duf"
-set_alias_if_success "find" "fd"
 set_alias_if_success "grep" "rg"
 set_alias_if_success "top" "btm"
 set_alias_if_success "top" "htop"
@@ -44,17 +42,18 @@ alias psa="ps aucr"
 alias dotfiles="cd ~/dotfiles"
 
 # |の短縮コマンド
-alias -g G='| grep'
-alias -g L='| less'
+alias -g G='grep'
+alias -g L='less'
 
 # gitコマンドをgit不要にする
 alias add="git add"
 alias br="git branch"
 alias ch="git cherry-pick"
-alias cm="git commit"
+alias cm="git commit -v"
 alias cma="git commit --amend"
 alias dff="git diff"
 alias dfc="git diff --cached"
+alias down="git restore --staged"
 alias push="git push"
 alias pusho="git push origin"
 alias pull="git pull"

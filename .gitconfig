@@ -4,7 +4,7 @@
 [alias]
     addp = add -p
     st = status
-    cm = commit
+    cm = commit -v
     co = checkout
     sw = switch
     br = branch
