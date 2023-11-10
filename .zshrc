@@ -83,9 +83,11 @@ export PATH="${HOME}/.pyenv/bin:${PATH}"
 export PATH="${HOME}/.pyenv/shims:${PATH}"
 export PATH="${HOME}/.poetry/bin:${PATH}"
 export PATH="${PATH}:/home/${USER}/go/bin"
+export PATH="${HOME}/.rd/bin:${PATH}"  # rancher desktop
 
 source ~/.zsh/prompt.zsh
 source ~/.zsh/alias.zsh
 if [[ -e ~/.zsh/custom.zsh ]]; then
     source ~/.zsh/custom.zsh
 fi
+

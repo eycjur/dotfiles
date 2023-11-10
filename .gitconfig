@@ -2,19 +2,27 @@
     path = ~/.gitconfig.local
 
 [alias]
+    addp = add -p
     st = status
     cm = commit
     co = checkout
     sw = switch
     br = branch
-    df = diff
+    dff = diff
     dfc = diff --cached
     cma = commit --amend
     ch = cherry-pick
+    cl = clean
+    clf = clean -f
     down = restore --staged
     pushf = push --force-with-lease --force-if-includes
+    pusho = push origin
     rm = rm --cached
+    rs = restore
+    rb = rebase
     fetch = fetch --prune
+    ss = stash
+    sp = stash pop
 
     # いい感じのグラフでログを表示
     graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
