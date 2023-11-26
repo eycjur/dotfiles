@@ -37,14 +37,20 @@ function change-directory () {
 zle -N change-directory
 bindkey '^f' change-directory
 
+# TODO: fzfでキャンセルしたときに、後続のコマンドが実行されてしまうのを防ぐ
 # ブランチを切り替え
-alias -g B='`git branch | fzf +m --query "$LBUFFER" --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
+alias -g B='$(git branch | fzf +m --query "$LBUFFER" --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g")'
 
 # コミットハッシュを探す
-alias -g H='`git log --all --oneline | fzf +m --query "$LBUFFER" --prompt "COMMIT HASH>" | cut -d" " -f1`'
+alias -g H='$(git log --all --oneline | fzf +m --query "$LBUFFER" --prompt "COMMIT HASH>" | cut -d" " -f1)'
 
 # 編集されたファイルを選択
-alias -g F='`git status --short | fzf +m --query "$LBUFFER" --prompt "EDITED FILE>" | awk '\''{print $2}'\''`'
+alias -g F='$(unbuffer git status --short |
+        fzf --ansi --multi --query "$LBUFFER" --prompt "EDITED FILE>" --preview="
+            echo {} |
+            cut -c 3-|
+            xargs git diff --color
+        " | awk '\''{print $2}'\'')'
 
 # dockerコンテナに入る
 alias de='docker exec -it $(docker ps | fzf +m --query "$LBUFFER" --prompt "SELECT CONTAINER>" | cut -d " " -f 1) /bin/bash'
