@@ -39,13 +39,13 @@ bindkey '^f' change-directory
 
 # TODO: fzfでキャンセルしたときに、後続のコマンドが実行されてしまうのを防ぐ
 # ブランチを切り替え
-alias -g B='$(git branch | fzf +m --query "$LBUFFER" --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g")'
+alias swz='git switch $(git branch | fzf +m --query "$LBUFFER" --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g")'
 
 # コミットハッシュを探す
-alias -g H='$(git log --all --oneline | fzf +m --query "$LBUFFER" --prompt "COMMIT HASH>" | cut -d" " -f1)'
+alias chz='git cherry-pick $(git log --all --oneline | fzf +m --query "$LBUFFER" --prompt "COMMIT HASH>" | cut -d" " -f1)'
 
 # 編集されたファイルを選択
-alias -g F='$(unbuffer git status --short |
+alias addz='git add $(unbuffer git status --short |
         fzf --ansi --multi --query "$LBUFFER" --prompt "EDITED FILE>" --preview="
             echo {} |
             cut -c 3-|
