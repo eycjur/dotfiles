@@ -1,4 +1,5 @@
 source ~/.zsh/functions.zsh
+source ~/.zsh/fzf.zsh
 
 alias exp="open"
 alias C="pbcopy"
