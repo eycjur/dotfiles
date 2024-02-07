@@ -3,10 +3,8 @@
 
 [alias]
     addp = add -p
-    st = status
     cm = commit -v
     co = checkout
-    sw = switch
     br = branch
     dff = diff
     dfc = diff --cached
@@ -20,9 +18,10 @@
     rm = rm --cached
     rs = restore
     rb = rebase
-    fetch = fetch --prune
-    ss = stash
-    sp = stash pop
+    ss = stash -u
+    st = status
+    sp = stash -u pop
+    sw = switch
 
     # いい感じのグラフでログを表示
     graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
