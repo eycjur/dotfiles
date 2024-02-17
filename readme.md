@@ -37,6 +37,18 @@ RUN ~/dotfiles/install.sh
 CMD ["/bin/zsh"]
 ```
 
+- devcontainer
+
+ユーザーのsettings.jsonに下記を追加
+
+```json
+{
+    "dotfiles.repository": "https://github.com/eycjur/dotfiles.git",
+    "dotfiles.targetPath": "~/dotfiles",
+    "dotfiles.installCommand": "install.sh",
+}
+```
+
 ## Customization
 There are some files that are not tracked by git. You can customize them as you like.
 - .zsh/custom.zsh
