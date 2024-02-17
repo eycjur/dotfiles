@@ -37,10 +37,8 @@ RUN ~/dotfiles/install.sh
 CMD ["/bin/zsh"]
 ```
 
-- devcontainer
-
-ユーザーのsettings.jsonに下記を追加
-
+- devcontainer  
+  ユーザーのsettings.jsonに下記を追加  
 ```json
 {
     "dotfiles.repository": "https://github.com/eycjur/dotfiles.git",
