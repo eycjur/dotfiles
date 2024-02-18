@@ -8,10 +8,16 @@ function run_if_exists() {
     fi
 }
 
+# コマンドが存在するか確認する
+# $1: コマンド名
+function is_command_exists() {
+    command -v "$1" > /dev/null 2>&1
+}
+
 # コマンドの終了ステータスが0ならエイリアスを設定する（空白を含むコマンドに対応）
 # $1: エイリアス名, $2: コマンド名
 function set_alias_if_success () {
-    if command -v "$2" > /dev/null; then
+    if command -v "$2" > /dev/null 2>&1; then
         alias "$1"="$2"
     fi
 }

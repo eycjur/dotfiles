@@ -1,18 +1,18 @@
 # Dotfiles
 
-## Quick Start
+## Installation
+
+- remote install
+
+This command is only required for zsh and curl.
+
 ```shell
-git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
-~/dotfiles/install.sh
+curl -sSL https://raw.githubusercontent.com/eycjur/dotfiles/main/remote-install.sh | zsh
 
 ```
 
-## Installation
 - mac
 ```shell
-# install brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew update
 brew install git neovim vim
 git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
 ~/dotfiles/install.sh
@@ -32,13 +32,13 @@ git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
 ```Dockerfile
 RUN apt-get update && apt-get install -y sudo git neovim vim zsh
 ADD https://api.github.com/repos/eycjur/dotfiles/git/refs/heads/main version.json
-RUN git clone https://github.com/eycjur/dotfiles.git ~/dotfiles
-RUN ~/dotfiles/install.sh
+RUN git clone https://github.com/eycjur/dotfiles.git ~/dotfiles && \
+    ~/dotfiles/install.sh
 CMD ["/bin/zsh"]
 ```
 
 - devcontainer  
-  ユーザーのsettings.jsonに下記を追加  
+  Add the following to user settings.json  
 ```json
 {
     "dotfiles.repository": "https://github.com/eycjur/dotfiles.git",

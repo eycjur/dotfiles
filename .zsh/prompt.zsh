@@ -1,11 +1,17 @@
+source ~/.zsh/functions.zsh
+
 # テーマを追加
 ZSH_THEME="refined"
 
 # git関係
-if [ "$(git config user.name)" ]; then
-    USER_NAME=$(git config user.name)
+if is_command_exists "git"; then
+    if [ "$(git config user.name)" ]; then
+        USER_NAME=$(git config user.name)
+    else
+        USER_NAME="%K{red}No User Name%k"
+    fi
 else
-    USER_NAME="%K{red}No User Name%k"
+    USER_NAME=""
 fi
 
 autoload -Uz vcs_info

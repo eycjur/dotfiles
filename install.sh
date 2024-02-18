@@ -3,23 +3,23 @@
 
 set -CEueo pipefail
 
-DOT_FILES=(.zshrc .vimrc .gitconfig .gitconfig.local .tmux.conf)
-DOT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$(dirname "$0")"
+DOT_DIR="$(pwd)"
+DOT_FILES=(.zshrc .vimrc .gitconfig .gitconfig.local .tmux.conf .zsh/* .config/git/*)
 
 for file in ${DOT_FILES[@]}; do
     if [ ! -e "${DOT_DIR}/${file}" ]; then
-    	echo "${DOT_DIR}/${file}が存在しません"
+        echo "${file}が存在しません"
+        continue
     fi
 
-    echo "create symbolic link: ${DOT_DIR}/${file}"
-    ln -sf "${DOT_DIR}/${file}" ~/
-done
+    # ディレクトリが含まれる場合はディレクトリを作成
+    if [[ "$(dirname "${file}")" != "." ]]; then
+        mkdir -p ~/"$(dirname "${file}")"
+    fi
 
-# .zshディレクトリ内のファイル
-mkdir -p ~/.zsh
-for file in ${DOT_DIR}/.zsh/*; do
     echo "create symbolic link: ${file}"
-    ln -sf "${file}" ~/"${file#${DOT_DIR}/}"
+    ln -sf "${DOT_DIR}/${file}" ~/"${file}"
 done
 
 # nvimの設定ファイル

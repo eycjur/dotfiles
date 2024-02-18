@@ -38,11 +38,15 @@
 [init]
     defaultBranch = main
 
+[branch]
+    sort = -committerdate
+
 [core]
+    excludesfile = ~/.config/git/ignore
     autocrlf = input
     quotepath = false
     editor = vim
-    pager = "LESSCHARSET=utf-8 less"
+    # pager = "LESSCHARSET=utf-8 less"
     whitespace = cr-at-eol
 
 [pull]
