@@ -9,7 +9,7 @@
 # de: dockerコンテナに入る
 #
 # fzfコマンドのオプション
-#   -m: 複数選択、+m: 単一選択
+#   --multi: 複数選択、--no-multi: 単一選択
 #   --no-sort: ソートしない
 #   --query: 検索文字列を指定
 #   --prompt: プロンプトを指定
@@ -19,10 +19,13 @@
 #   {q}: 検索文字列
 #   {数字}: 現在カーソルのある行の文字列をスペースで区切った時のn番目(1始まり)の文字列
 
+# デフォルトのオプション
+export FZF_DEFAULT_OPTS="--cycle --reverse"
+
 
 # 過去に実行したコマンドを選択
 function select-history() {
-    BUFFER=$(\history -n -r 1 | fzf +m --no-sort --query "$LBUFFER" --prompt="History > ")
+    BUFFER=$(\history -n -r 1 | fzf --no-multi --no-sort --query "$LBUFFER" --prompt="History > ")
     CURSOR=$#BUFFER
     zle clear-screen  # コマンドライン画面をクリア
     zle accept-line  # 現在の入力ラインを実行
@@ -39,7 +42,7 @@ function change-directory () {
     # .から始まるディレクトリをパスに含む行を排除
     local list_dir_filtered="$(echo "$list_dir" | awk '{ if ($1 !~ /[\/~]\./ ){ print  $0 }}')"
     # fzfを使用してディレクトリを選択
-    local selected_dir="$(echo "$list_dir_filtered" | fzf +m --no-sort --query "$LBUFFER" --prompt="cdr >")"
+    local selected_dir="$(echo "$list_dir_filtered" | fzf --no-multi --no-sort --query "$LBUFFER" --prompt="cdr >")"
 
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${selected_dir}"
@@ -51,7 +54,7 @@ bindkey '^f' change-directory
 
 # ブランチを切り替え
 function switch-brach() {
-    local selected_branch=$(git branch | fzf +m --query "$LBUFFER" --prompt "GIT BRANCH>")
+    local selected_branch=$(git branch | fzf --no-multi --query "$LBUFFER" --prompt "GIT BRANCH>")
     if [ -n "$selected_branch" ]; then
         # (*| ) <branch> -> <branch>
         git switch $(echo "$selected_branch" | sed -e "s/^\*\s*//g")
@@ -62,7 +65,7 @@ alias swz=switch-brach
 # コミットハッシュを探す
 function select-chrry-pick() {
     local selected_commit
-    selected_commit=$(git log --all --oneline | fzf +m --query "$LBUFFER" --prompt "COMMIT HASH>")
+    selected_commit=$(git log --all --oneline | fzf --no-multi --query "$LBUFFER" --prompt "COMMIT HASH>")
     if [ -n "$selected_commit" ]; then
         # <hash> <message> -> <hash>
         git cherry-pick $(echo "$selected_commit"  | cut -d " " -f 1)
@@ -73,6 +76,7 @@ alias chz=select-chrry-pick
 # 編集されたファイルを選択
 function select-git-add-with-preview() {
     local selected_files
+    # selected_filesは改行区切りのファイル名
     selected_files=$(git status -uall --short |
         fzf --ansi --multi --query "$LBUFFER" --prompt "EDITED FILE>" --preview='
             if [[ {} =~ "^\?\?" ]]; then
@@ -82,7 +86,8 @@ function select-git-add-with-preview() {
             fi
         ' | awk '{print $2}')
     if [ -n "$selected_files" ]; then
-        git add $selected_files
+        # 改行区切りを引数分割するために、echoでコマンド置換 ($(...)) を利用
+        git add $(echo ${selected_files})
     fi
 }
 alias addz=select-git-add-with-preview
@@ -90,7 +95,7 @@ alias addz=select-git-add-with-preview
 # dockerコンテナに入る
 select-docker-exec() {
     local container_id
-    container_id=$(docker ps | fzf +m --query "$LBUFFER" --prompt "SELECT CONTAINER>")
+    container_id=$(docker ps | fzf --no-multi --query "$LBUFFER" --prompt "SELECT CONTAINER>")
     if [ -n "$container_id" ]; then
         # <container_id> <name> ... -> <container_id>
         docker exec -it $(echo "$container_id" | cut -d " " -f 1) /bin/bash
