@@ -18,6 +18,7 @@
     rm = rm --cached
     rs = restore
     rb = rebase
+    rbi = rebase -i
     ss = stash -u
     st = status
     sp = stash pop
@@ -51,6 +52,7 @@
 
 [pull]
     rebase = false
+    default = current
 
 [fetch]
     prune = true

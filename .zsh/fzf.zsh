@@ -3,9 +3,10 @@
 # 使い方
 # ctrl+r: 過去に実行したコマンドを選択
 # ctrl+f: 過去に移動したディレクトリを選択
-# B: ブランチの切り替え
-# H: コミットハッシュの選択
-# F: 編集済みファイルの選択
+# swz: git switch時のブランチの切り替え
+# rbz: git rebase時のブランチの選択
+# chz: git cherry-pick時のコミットハッシュの選択
+# addz: git add時のファイルの選択
 # de: dockerコンテナに入る
 #
 # fzfコマンドのオプション
@@ -52,15 +53,26 @@ function change-directory () {
 zle -N change-directory
 bindkey '^f' change-directory
 
-# ブランチを切り替え
-function switch-brach() {
+# swz: git switch時のブランチの切り替え
+function select-switch-brach() {
     local selected_branch=$(git branch | fzf --no-multi --query "$LBUFFER" --prompt "GIT BRANCH>")
     if [ -n "$selected_branch" ]; then
         # (*| ) <branch> -> <branch>
         git switch $(echo "$selected_branch" | sed -e "s/^\*\s*//g")
     fi
 }
-alias swz=switch-brach
+alias swz=select-switch-brach
+
+# rbz: git rebase時のブランチの選択
+function select-rebase-branch() {
+    local selected_branch
+    selected_branch=$(git branch | fzf --no-multi --query "$LBUFFER" --prompt "REBASE BRANCH>")
+    if [ -n "$selected_branch" ]; then
+        # (*| ) <branch> -> <branch>
+        git rebase $(echo "$selected_branch" | sed -e "s/^\*\s*//g")
+    fi
+}
+alias rbz=select-rebase-branch
 
 # コミットハッシュを探す
 function select-chrry-pick() {
