@@ -14,10 +14,10 @@ function is_command_exists() {
     command -v "$1" > /dev/null 2>&1
 }
 
-# コマンドの終了ステータスが0ならエイリアスを設定する（空白を含むコマンドに対応）
-# $1: エイリアス名, $2: コマンド名
+# コマンドの終了ステータスが0ならエイリアスを設定する
+# $1: エイリアス名, $2: コマンド名（空白を含むコマンドにも対応）
 function set_alias_if_success () {
-    if command -v "$2" > /dev/null 2>&1; then
+    if command -v "$(echo $2 | cut -d " " -f 1)" > /dev/null 2>&1; then
         alias "$1"="$2"
     fi
 }

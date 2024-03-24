@@ -1,15 +1,5 @@
 source ~/.zsh/functions.zsh
 
-# コマンドを上書きする
-set_alias_if_success "cat" "bat"
-set_alias_if_success "du" "dust"
-set_alias_if_success "df" "duf"
-set_alias_if_success "grep" "rg"
-set_alias_if_success "top" "btm"
-set_alias_if_success "top" "htop"
-set_alias_if_success "vim" "nvim"
-set_alias_if_success "vi" "vim"
-
 # コマンドのオプションをデフォルトにする
 alias ls='ls --color'
 alias rm='rm -iv'
@@ -44,6 +34,18 @@ alias dotfiles="cd ~/dotfiles"
 # |の短縮コマンド
 alias -g G='grep'
 alias -g L='less'
+
+# コマンドを上書きする
+set_alias_if_success "cat" "bat -p"
+set_alias_if_success "du" "dust"
+set_alias_if_success "df" "duf"
+set_alias_if_success "grep" "rg"
+set_alias_if_success "ls" 'eza -hF --git --total-size --time-style "+%Y-%m-%d %H:%M"'
+set_alias_if_success "ll" 'eza -alhF --git --total-size --time-style "+%Y-%m-%d %H:%M"'
+set_alias_if_success "top" "btm"
+set_alias_if_success "top" "htop"
+set_alias_if_success "vim" "nvim"
+set_alias_if_success "vi" "vim"
 
 # gitコマンドをgit不要にする
 alias add="git add"
