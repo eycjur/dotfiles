@@ -63,6 +63,16 @@ function select-switch-brach() {
 }
 alias swz=select-switch-brach
 
+# swz: git rebase時のブランチの選択
+function select-rebase-brach() {
+    local selected_branch=$(git branch | fzf --no-multi --query "$LBUFFER" --prompt "GIT BRANCH>")
+    if [ -n "$selected_branch" ]; then
+        # (*| ) <branch> -> <branch>
+        git rebase $(echo "$selected_branch" | sed -e "s/^\*\s*//g")
+    fi
+}
+alias rbz=select-rebase-brach
+
 # rbz: git rebase時のブランチの選択
 function select-rebase-branch() {
     local selected_branch

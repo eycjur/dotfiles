@@ -1,4 +1,5 @@
 [include]
+    path = ~/dotfiles/.gitconfig.local
     path = ~/.gitconfig.local
 
 [alias]
@@ -49,6 +50,7 @@
     editor = vim
     # pager = "LESSCHARSET=utf-8 less"
     whitespace = cr-at-eol
+    ignorecase = false
 
 [pull]
     rebase = false

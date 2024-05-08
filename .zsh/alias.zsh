@@ -2,9 +2,9 @@ source ~/.zsh/functions.zsh
 
 # コマンドのオプションをデフォルトにする
 alias ls='ls --color'
-alias rm='rm -iv'
-alias cp='cp -iv'
-alias mv='mv -iv'
+alias rm='rm -v'
+alias cp='cp -v'
+alias mv='mv -v'
 alias mkdir='mkdir -p'
 alias du="du -bha -d 1 . | sort -hr"
 
@@ -40,8 +40,8 @@ set_alias_if_success "cat" "bat -p"
 set_alias_if_success "du" "dust"
 set_alias_if_success "df" "duf"
 set_alias_if_success "grep" "rg"
-set_alias_if_success "ls" 'eza -hF --git --total-size --time-style "+%Y-%m-%d %H:%M"'
-set_alias_if_success "ll" 'eza -alhF --git --total-size --time-style "+%Y-%m-%d %H:%M"'
+set_alias_if_success "ls" 'eza -hF --git --time-style "+%Y-%m-%d %H:%M"'
+set_alias_if_success "ll" 'eza -alhF --git --time-style "+%Y-%m-%d %H:%M"'
 set_alias_if_success "top" "btm"
 set_alias_if_success "top" "htop"
 set_alias_if_success "vim" "nvim"
@@ -60,6 +60,8 @@ alias push="git push"
 alias pushf="git pushf"
 alias pusho="git pusho"
 alias pull="git pull"
+alias rb="git rb"
+alias rbi="git rbi"
 alias rs="git rs"
 alias ss="git ss"
 alias sp="git sp"
@@ -69,5 +71,5 @@ alias sw="git sw"
 alias log="git graph"
 
 # dockerコマンドをdocker不要にする
-alias dprune="docker system prune --volumes -af"
+alias dprune='docker stop $(docker ps -q) && docker system prune --volumes -af'
 alias gprune="git fetch -a && git branch --merged | grep 'feature' | grep -v '*' | xargs git branch -d && git gc"

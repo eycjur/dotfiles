@@ -69,7 +69,7 @@ if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]
 fi
 
 # ディレクトリ移動時の処理
-chpwd() { ls -lahp --color }
+chpwd() { ll }
 
 # osごとの設定
 case ${OSTYPE} in
@@ -96,6 +96,7 @@ esac
 export PATH="${HOME}/.pyenv/bin:${PATH}"
 export PATH="${HOME}/.pyenv/shims:${PATH}"
 export PATH="${HOME}/.poetry/bin:${PATH}"
+export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="${PATH}:/home/${USER}/go/bin"
 export PATH="${HOME}/.rd/bin:${PATH}"  # rancher desktop
 
