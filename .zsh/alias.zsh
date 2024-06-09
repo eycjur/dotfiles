@@ -71,5 +71,5 @@ alias sw="git sw"
 alias log="git graph"
 
 # dockerコマンドをdocker不要にする
-alias dprune='docker stop $(docker ps -q) && docker system prune --volumes -af'
+alias dprune='(docker stop $(docker ps -q) || true) && docker system prune --volumes -af'
 alias gprune="git fetch -a && git branch --merged | grep 'feature' | grep -v '*' | xargs git branch -d && git gc"

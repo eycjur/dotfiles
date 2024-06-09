@@ -9,6 +9,7 @@
     br = branch
     dff = diff
     dfc = diff --cached
+    dfw = diff --word-diff
     cma = commit --amend
     ch = cherry-pick
     cl = clean
@@ -20,7 +21,7 @@
     rs = restore
     rb = rebase
     rbi = rebase -i
-    ss = stash -u
+    ss = stash save -u
     st = status
     sp = stash pop
     sw = switch
