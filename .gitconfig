@@ -63,6 +63,9 @@
 [push]
     default = current
 
+[rebase]
+    autostash = true
+
 [color]
     ui = true
 
