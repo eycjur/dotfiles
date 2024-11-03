@@ -69,7 +69,7 @@ if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]
 fi
 
 # ディレクトリ移動時の処理
-chpwd() { ll }
+chpwd() { ls -lahp }
 
 # osごとの設定
 case ${OSTYPE} in

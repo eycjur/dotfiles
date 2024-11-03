@@ -40,8 +40,8 @@ set_alias_if_success "cat" "bat -p"
 set_alias_if_success "du" "dust"
 set_alias_if_success "df" "duf"
 set_alias_if_success "grep" "rg"
-set_alias_if_success "ls" 'eza -hF --git --time-style "+%Y-%m-%d %H:%M"'
-set_alias_if_success "ll" 'eza -alhF --git --time-style "+%Y-%m-%d %H:%M"'
+set_alias_if_success "ls" 'eza -hF --group --git --time-style "+%Y-%m-%d %H:%M"'
+set_alias_if_success "ll" 'eza -alhF --group --git --time-style "+%Y-%m-%d %H:%M"'
 set_alias_if_success "top" "btm"
 set_alias_if_success "top" "htop"
 set_alias_if_success "vim" "nvim"
