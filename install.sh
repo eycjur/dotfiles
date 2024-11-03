@@ -25,6 +25,7 @@ done
 # nvimの設定ファイル
 mkdir -p ~/.config/nvim
 ln -sf "${DOT_DIR}/.vimrc" ~/.config/nvim/init.vim
+echo "create symbolic link: nvim/init.vim"
 
 set +u
 source "${HOME}"/.zshrc

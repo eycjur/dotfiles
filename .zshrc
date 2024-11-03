@@ -99,6 +99,7 @@ export PATH="${HOME}/.poetry/bin:${PATH}"
 export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="${HOME}/go/bin:${PATH}"
 export PATH="${HOME}/.rd/bin:${PATH}"  # rancher desktop
+export PATH="${HOME}/.nodebrew/current/bin:${PATH}"
 
 source ~/.zsh/prompt.zsh
 source ~/.zsh/alias.zsh
