@@ -28,6 +28,7 @@ alias ll='ls -lahp'
 alias tf="terraform"
 alias his="history 1 | grep "
 alias psa="ps aucr"
+alias mkcd='(){mkdir -p "$@" && cd "$1"}'
 
 alias dotfiles="cd ~/dotfiles"
 
