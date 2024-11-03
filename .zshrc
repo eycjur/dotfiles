@@ -68,9 +68,6 @@ if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]
     zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
 fi
 
-# ディレクトリ移動時の処理
-chpwd() { ls -lahp }
-
 # osごとの設定
 case ${OSTYPE} in
     darwin*)  # mac
@@ -106,3 +103,6 @@ source ~/.zsh/alias.zsh
 if [[ -e ~/.zsh/custom.zsh ]]; then
     source ~/.zsh/custom.zsh
 fi
+
+# ディレクトリ移動時の処理
+chpwd() { ll }
