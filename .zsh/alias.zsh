@@ -32,9 +32,13 @@ alias mkcd='(){mkdir -p "$@" && cd "$1"}'
 
 alias dotfiles="cd ~/dotfiles"
 
-# |の短縮コマンド
+# globalのalias
 alias -g G='grep'
 alias -g L='less'
+
+alias -g ssh_config='~/.ssh/config'
+alias -g zshrc='~/.zshrc'
+alias -g vimrc='~/.vimrc'
 
 # コマンドを上書きする
 set_alias_if_success "cat" "bat -p"
