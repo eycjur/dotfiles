@@ -48,7 +48,6 @@ set_alias_if_success "grep" "rg"
 set_alias_if_success "ls" 'eza -hF --group --git --time-style "+%Y-%m-%d %H:%M"'
 set_alias_if_success "ll" 'eza -alhF --group --git --time-style "+%Y-%m-%d %H:%M"'
 set_alias_if_success "top" "btm"
-set_alias_if_success "top" "htop"
 set_alias_if_success "vim" "nvim"
 set_alias_if_success "vi" "vim"
 
