@@ -39,6 +39,10 @@ alias -g L='less'
 alias -g ssh_config='~/.ssh/config'
 alias -g zshrc='~/.zshrc'
 alias -g vimrc='~/.vimrc'
+alias -g gitconfig='~/.gitconfig'
+alias -g gitconfig.local='~/.gitconfig.local'
+alias -g gitignore='~/.config/git/ignore'
+alias -g alias.zsh='~/.zsh/alias.zsh'
 
 # コマンドを上書きする
 set_alias_if_success "cat" "bat -p"
@@ -47,7 +51,6 @@ set_alias_if_success "df" "duf"
 set_alias_if_success "grep" "rg"
 set_alias_if_success "ls" 'eza -hF --group --git --time-style "+%Y-%m-%d %H:%M"'
 set_alias_if_success "ll" 'eza -alhF --group --git --time-style "+%Y-%m-%d %H:%M"'
-set_alias_if_success "top" "btm"
 set_alias_if_success "vim" "nvim"
 set_alias_if_success "vi" "vim"
 
