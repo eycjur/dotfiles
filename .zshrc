@@ -101,6 +101,7 @@ export PATH="${HOME}/.nodebrew/current/bin:${PATH}"
 
 source ~/.zsh/prompt.zsh
 source ~/.zsh/alias.zsh
+source ~/.zsh/plugin.zsh
 if [[ -e ~/.zsh/custom.zsh ]]; then
     source ~/.zsh/custom.zsh
 fi
