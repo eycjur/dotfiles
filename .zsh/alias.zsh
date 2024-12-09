@@ -7,6 +7,7 @@ alias cp='cp -v'
 alias mv='mv -v'
 alias mkdir='mkdir -p'
 alias du="du -bha -d 1 . | sort -hr"
+alias df="df -hT"
 
 # 短縮コマンド
 alias ..="cd .."
@@ -24,7 +25,7 @@ alias pca="pre-commit run --all-files"
 
 set_alias_if_success "dc" "docker-compose"
 set_alias_if_success "dc" "docker compose"
-alias ll='ls -lahp'
+alias ll='ls -lAhF --time-style=long-iso'
 alias tf="terraform"
 alias his="history 1 | grep "
 alias psa="ps aucr"
@@ -45,12 +46,12 @@ alias -g gitignore='~/.config/git/ignore'
 alias -g alias.zsh='~/.zsh/alias.zsh'
 
 # コマンドを上書きする
-set_alias_if_success "cat" "bat -p"
+set_alias_if_success "cat" "bat -pP"
 set_alias_if_success "du" "dust"
 set_alias_if_success "df" "duf"
 set_alias_if_success "grep" "rg"
-set_alias_if_success "ls" 'eza -hF --group --git --time-style "+%Y-%m-%d %H:%M"'
-set_alias_if_success "ll" 'eza -alhF --group --git --time-style "+%Y-%m-%d %H:%M"'
+set_alias_if_success "ls" 'eza -F'
+set_alias_if_success "ll" 'eza -alhH -F=always --group --git --time-style=long-iso --color-scale=age'
 set_alias_if_success "vim" "nvim"
 set_alias_if_success "vi" "vim"
 
