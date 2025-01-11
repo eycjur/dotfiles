@@ -75,3 +75,6 @@
 
 [safe]
     directory = *
+
+[http]
+    postBuffer = 10M

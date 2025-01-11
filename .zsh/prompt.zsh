@@ -24,7 +24,7 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'  # ブランチ|アクション
 precmd () { vcs_info }
 
 # ターミナル画面をカスタマイズ
-prompt='%K{blue}%n@%m%k %F{green}%~%f %F{cyan}$vcs_info_msg_0_%f
+prompt='%F{red}%(?..[%?])%f%K{blue}%n@%m%k %F{green}%~%f %F{cyan}$vcs_info_msg_0_%f
 %F{white} %# %f'
 # %n: ユーザー名
 # %m: ホスト名
