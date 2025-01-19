@@ -1,4 +1,6 @@
 # 初期設定
+source ~/.zsh/functions.zsh
+
 # Set up the prompt
 
 # macでdircolorsコマンドがないと言われるのでその対策
@@ -54,6 +56,11 @@ zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
+
+# taskコマンドがあれば補完を有効にする
+if is_command_exists "task"; then
+    eval "$(task --completion zsh)"
+fi
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
