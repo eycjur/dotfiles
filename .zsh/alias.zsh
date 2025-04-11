@@ -30,6 +30,7 @@ alias tf="terraform"
 alias his="history 1 | grep "
 alias psa="ps aucr"
 alias mkcd='(){mkdir -p "$@" && cd "$1"}'
+alias groot="cd $(git rev-parse --show-toplevel)"
 
 alias dotfiles="cd ~/dotfiles"
 
@@ -37,7 +38,9 @@ alias dotfiles="cd ~/dotfiles"
 alias -g G='grep'
 alias -g L='less'
 
+# 設定ファイルの短縮アクセス
 alias -g ssh_config='~/.ssh/config'
+alias -g zshenv='~/.zshenv'
 alias -g zshrc='~/.zshrc'
 alias -g vimrc='~/.vimrc'
 alias -g gitconfig='~/.gitconfig'
@@ -78,6 +81,6 @@ alias st-detail="GIT_TRACE=1 GIT_TRACE_PERFORMANCE=1 git st"
 alias sw="git sw"
 alias log="git graph"
 
-# dockerコマンドをdocker不要にする
+# 掃除系コマンド
 alias dprune='(docker stop $(docker ps -q) || true) && docker system prune --volumes -af'
 alias gprune="git fetch && git branch --merged | grep 'feature' | grep -v '\*' | xargs git branch -d && git gc"

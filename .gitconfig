@@ -38,6 +38,9 @@
     # 行ごとの差分じゃなくて，単語レベルでの差分を色付きで表示する
     diff-word = diff --word-diff
 
+    # 現在のブランチのリモートブランチを追跡する
+    set-upstream = "!git branch --set-upstream-to=origin/$(git rev-parse --abbrev-ref HEAD)"
+
 [init]
     defaultBranch = main
 
@@ -55,7 +58,7 @@
     ignorecase = false
 
 [pull]
-    rebase = false
+    rebase = true
     default = current
 
 [fetch]

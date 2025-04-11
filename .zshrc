@@ -97,16 +97,6 @@ case ${OSTYPE} in
         ;;
 esac
 
-# 環境変数
-export PATH="${HOME}/.pyenv/bin:${PATH}"
-export PATH="${HOME}/.pyenv/shims:${PATH}"
-export PATH="${HOME}/.poetry/bin:${PATH}"
-export PATH="${HOME}/.local/bin:${PATH}"
-export PATH="${HOME}/go/bin:${PATH}"
-export PATH="${HOME}/local/golang/bin:${PATH}"
-export PATH="${HOME}/.rd/bin:${PATH}"  # rancher desktop
-export PATH="${HOME}/.nodebrew/current/bin:${PATH}"
-
 source ~/.zsh/prompt.zsh
 source ~/.zsh/alias.zsh
 source ~/.zsh/plugin.zsh
