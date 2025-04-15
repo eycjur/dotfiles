@@ -45,6 +45,10 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
+if ! is_command_exists "dircolors"; then
+    # https://qiita.com/y_310/items/101ef023124072b9c73f
+    brew install coreutils
+fi
 eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"

@@ -18,3 +18,10 @@ if [ ! -f "${HOME}/.iterm2_shell_integration.zsh" ]; then
     sudo chmod +x "${HOME}/.iterm2_shell_integration.zsh"
 fi
 source "${HOME}/.iterm2_shell_integration.zsh"
+
+if [ -f "${HOME}/.ssh/id_rsa" ]; then
+    ssh-add --apple-use-keychain ~/.ssh/id_rsa
+fi
+if [ -f "${HOME}/.ssh/id_ed25519" ]; then
+    ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+fi
