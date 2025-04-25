@@ -47,6 +47,8 @@ alias -g gitconfig='~/.gitconfig'
 alias -g gitconfig.local='~/.gitconfig.local'
 alias -g gitignore='~/.config/git/ignore'
 alias -g alias.zsh='~/.zsh/alias.zsh'
+alias -g git_info_exclude="$(git rev-parse --show-toplevel)/.git/info/exclude"
+alias -g git_config="$(git rev-parse --show-toplevel)/.git/config"
 
 # コマンドを上書きする
 set_alias_if_success "cat" "bat -pP"
@@ -82,5 +84,6 @@ alias sw="git sw"
 alias log="git graph"
 
 # 掃除系コマンド
-alias dprune='(docker stop $(docker ps -q) || true) && docker system prune --volumes -af'
+alias dprune='(docker stop $(docker ps -q) || true) && docker system prune --volumes -af && docker volume prune -af'
+alias dcprune='docker compose down --rmi all --volumes --remove-orphans'
 alias gprune="git fetch && git branch --merged | grep 'feature' | grep -v '\*' | xargs git branch -d && git gc"

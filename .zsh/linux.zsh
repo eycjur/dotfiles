@@ -2,6 +2,6 @@ source ~/.zsh/functions.zsh
 
 
 if ! is_command_exists "fzf"; then
-    sudo apt-get install fzf
+    sudo apt update && sudo apt install fzf
 fi
 source ~/.zsh/fzf.zsh

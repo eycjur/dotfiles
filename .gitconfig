@@ -21,6 +21,7 @@
     rs = restore
     rb = rebase
     rbi = rebase -i
+    rbc = rebase --continue
     ss = stash save -u
     st = status
     sp = stash pop
