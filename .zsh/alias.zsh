@@ -86,4 +86,4 @@ alias log="git graph"
 # 掃除系コマンド
 alias dprune='(docker stop $(docker ps -q) || true) && docker system prune --volumes -af && docker volume prune -af'
 alias dcprune='docker compose down --rmi all --volumes --remove-orphans'
-alias gprune="git fetch && git branch --merged | grep 'feature' | grep -v '\*' | xargs git branch -d && git gc"
+alias gprune="git fetch && git branch --merged | grep -v 'main' | grep -v 'develop' | grep -v '\*' | xargs git branch -d && git gc"

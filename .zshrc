@@ -66,6 +66,11 @@ if is_command_exists "task"; then
     eval "$(task --completion zsh)"
 fi
 
+# uvコマンドがあれば補完を有効にする
+if is_command_exists "uv"; then
+    eval "$(uv generate-shell-completion zsh)"
+fi
+
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
