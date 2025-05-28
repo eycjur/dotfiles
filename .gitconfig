@@ -15,6 +15,7 @@
     cl = clean
     clf = clean -f
     down = restore --staged
+    pu = push origin HEAD
     pushf = push --force-with-lease --force-if-includes
     pusho = push origin
     rm = rm --cached
