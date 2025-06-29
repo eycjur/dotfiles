@@ -6,7 +6,6 @@ set showmatch
 
 " 行番号の表示
 set number
-
 " 保存し内で終了するときに確認ダイアログ
 set confirm
 

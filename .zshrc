@@ -28,7 +28,7 @@ HISTFILE=~/.zsh_history
 
 # Use modern completion system
 autoload -Uz compinit
-compinit
+compinit -i
 # autocompleteと競合するのでbrew以外の環境下で実行
 # if [[ ${OSTYPE} == "darwin"* ]]; then
 #     source ~/.zsh/autocomplete.zsh
