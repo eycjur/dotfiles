@@ -17,12 +17,14 @@ setopt interactivecomments
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-# Keep 10000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=10000
-SAVEHIST=10000
+# Keep 100000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=100000
+SAVEHIST=100000
 setopt append_history
 setopt share_history
 setopt hist_ignore_all_dups
+setopt hist_reduce_blanks
+setopt no_beep
 setopt AUTO_CD
 HISTFILE=~/.zsh_history
 

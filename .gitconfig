@@ -44,12 +44,18 @@
     # 現在のブランチのリモートブランチを追跡する
     set-upstream = "!git branch --set-upstream-to=origin/$(git rev-parse --abbrev-ref HEAD)"
 
-[init]
-    defaultBranch = main
-
 [branch]
     sort = -committerdate
     autoSetupMerge = always
+
+[color]
+    ui = true
+
+[column]
+    ui = auto
+
+[commit]
+    verbose = true
 
 [core]
     excludesfile = ~/.config/git/ignore
@@ -60,27 +66,47 @@
     whitespace = cr-at-eol
     ignorecase = false
 
-[pull]
-    rebase = true
-    default = current
-
-[fetch]
-    prune = true
-
-[push]
-	default = current
-
-[rebase]
-    autostash = true
-
-[color]
-    ui = true
+[diff]
+    algorithm = histogram
+    mnemonicPrefix = true
+    colorMoved = plain
+    renames = true
 
 [diff "sjis"]
     textconv = iconv -f sjis
 
-[safe]
-    directory = *
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
 
 [http]
     postBuffer = 10M
+
+[init]
+    defaultBranch = main
+
+[merge]
+    conflictstyle = zdiff3
+
+[pull]
+    rebase = true
+    default = current
+
+[push]
+	default = current
+    autoSetupRemote = true
+
+[rerere]
+    enabled = true
+    autoupdate = true
+
+[rebase]
+    autostash = true
+    updateRefs = true
+
+[safe]
+    directory = *
+
+[tag]
+    sort = version:refname

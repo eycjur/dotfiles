@@ -14,6 +14,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
+alias c="claude"
 alias d="docker"
 alias e="exit"
 alias g="git"
