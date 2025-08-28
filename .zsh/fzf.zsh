@@ -5,8 +5,10 @@
 # ctrl+f: 過去に移動したディレクトリを選択
 # swz: git switch時のブランチの切り替え
 # rbz: git rebase時のブランチの選択
+# rbiz: git rebase -i時のコミットハッシュの選択
 # chz: git cherry-pick時のコミットハッシュの選択
 # addz: git add時のファイルの選択
+# spz: git stash pop時のスタッシュの選択
 # de: dockerコンテナに入る
 #
 # fzfコマンドのオプション
@@ -74,6 +76,17 @@ function select-rebase-branch() {
 }
 alias rbz=select-rebase-branch
 
+# rbiz: git rebase -i時のコミットハッシュの選択
+function select-rebase-interactive-commit() {
+    local selected_commit
+    selected_commit=$(git log --oneline | fzf --no-multi --query "$LBUFFER" --prompt "COMMIT HASH>")
+    if [ -n "$selected_commit" ]; then
+        # <hash> <message> -> <hash>
+        git rebase -i $(echo "$selected_commit"  | cut -d " " -f 1)
+    fi
+}
+alias rbiz=select-rebase-interactive-commit
+
 # コミットハッシュを探す
 function select-chrry-pick() {
     local selected_commit
@@ -103,6 +116,16 @@ function select-git-add-with-preview() {
     fi
 }
 alias addz=select-git-add-with-preview
+
+# spz: git stash pop時のスタッシュの選択
+function select-stash-pop() {
+    local selected_stash
+    selected_stash=$(git stash list | fzf --no-multi --query "$LBUFFER" --prompt "STASH>")
+    if [ -n "$selected_stash" ]; then
+        git stash pop $(echo "$selected_stash" | cut -d ":" -f 1)
+    fi
+}
+alias spz=select-stash-pop
 
 # dockerコンテナに入る
 select-docker-exec() {

@@ -7,9 +7,8 @@
     cm = commit -v
     co = checkout
     br = branch
-    dff = diff
-    dfc = diff --cached
-    dfw = diff --word-diff
+    dff = difftool
+    dfc = difftool --cached
     cma = commit --amend
     ch = cherry-pick
     cl = clean
@@ -27,6 +26,7 @@
     ss = stash save -u
     st = status
     sp = stash pop
+    sp-abort = reset --merge
     sw = switch
     reset-ammend = reset --soft HEAD@{1}
 
@@ -71,9 +71,16 @@
     mnemonicPrefix = true
     colorMoved = plain
     renames = true
+    tool = difftastic
 
 [diff "sjis"]
     textconv = iconv -f sjis
+
+[difftool]
+    prompt = false
+
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
 
 [fetch]
     prune = true
@@ -88,6 +95,9 @@
 
 [merge]
     conflictstyle = zdiff3
+
+[pager]
+    difftool = true
 
 [pull]
     rebase = true

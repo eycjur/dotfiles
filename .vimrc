@@ -18,6 +18,12 @@ set incsearch
 " 自動でインデントを整える
 set smartindent
 
+" 自動補完
+set completeopt=menu,menuone,noselect
+if has('patch-9.1.1590')
+  set autocomplete
+endif
+
 " jjをescにバインド
 " inoremap: insertモードのみ
 " noremap: normal/visualモード
