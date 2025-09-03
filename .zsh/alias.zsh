@@ -61,6 +61,7 @@ set_alias_if_success "ls" 'eza -F'
 set_alias_if_success "ll" 'eza -alhH -F=always --group --git --time-style=long-iso --color-scale=age'
 set_alias_if_success "vim" "nvim"
 set_alias_if_success "vi" "vim"
+set_alias_if_success "diff" "difft"
 
 # gitコマンドをgit不要にする
 alias add="git add"
@@ -71,10 +72,9 @@ alias cma="git cma"
 alias dff="git dff"
 alias dfc="git dfc"
 alias down="git down"
-alias pu="git push --set-upstream origin HEAD"
+alias pu="git pu"
 alias push="git push"
 alias pushf="git pushf"
-alias pusho="git pusho"
 alias pull="git pull"
 alias rb="git rb"
 alias rbi="git rbi"

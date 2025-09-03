@@ -21,3 +21,11 @@ function set_alias_if_success () {
         alias "$1"="$2"
     fi
 }
+
+# コマンドがなければ、fallbackコマンドを設定する
+# $1: コマンド名（空白を含むコマンドにも対応）, $2: フォールバックコマンド
+function set_alias_if_not_exists () {
+    if ! command -v "$(echo $1 | cut -d " " -f 1)" > /dev/null 2>&1; then
+        alias "$1"="$2"
+    fi
+}

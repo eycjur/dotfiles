@@ -7,8 +7,8 @@
     cm = commit -v
     co = checkout
     br = branch
-    dff = difftool
-    dfc = difftool --cached
+    dff = diff
+    dfc = diff --cached
     cma = commit --amend
     ch = cherry-pick
     cl = clean
@@ -16,8 +16,7 @@
     down = restore --staged
     fetcha = fetch --all
     pu = push --set-upstream origin HEAD
-    pushf = push --force-with-lease --force-if-includes
-    pusho = push origin
+    pushf = push --force-with-lease --force-if-includes --set-upstream origin HEAD
     rm = rm --cached
     rs = restore
     rb = rebase
@@ -71,16 +70,9 @@
     mnemonicPrefix = true
     colorMoved = plain
     renames = true
-    tool = difftastic
 
 [diff "sjis"]
     textconv = iconv -f sjis
-
-[difftool]
-    prompt = false
-
-[difftool "difftastic"]
-    cmd = difft "$LOCAL" "$REMOTE"
 
 [fetch]
     prune = true
