@@ -12,11 +12,15 @@
       "Bash(grep:*)",
       "Bash(poetry run python test:*)",
       "Bash(pytest:*)",
+      "Bash(pre-commit run:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
       "Bash(git pull:*)",
       "Bash(git fetch:*)",
       "Bash(git switch:*)",
       "Bash(gh issue view:*)",
       "Bash(gh pr view:*)",
+      "Bash(make:*)",
       "Edit(./src/**)",
       "WebSearch",
       "mcp__serena"
@@ -49,10 +53,6 @@
       {
         "matcher": "",
         "hooks": [
-          // You must set bellow in your vscode settings.json
-          // "accessibility.signals.terminalBell": {
-          //   "sound": "on"
-          // },
           {
             "type": "command",
             "command": "echo -e \"\\a\""
@@ -62,7 +62,8 @@
     ]
   },
   "env": {
-    "MAX_THINKING_TOKENS": "31999"
+    "MAX_THINKING_TOKENS": "31999",
+    "DISABLE_TELEMETRY": "1"
   },
   "mcpServers": {
     "context7": {
@@ -70,7 +71,6 @@
       "args": ["--yes", "@upstash/context7-mcp"],
       "env": {}
     }
-    // If you want to use Serena, you must set it up in your local directory
-    // claude mcp add serena -- uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context ide-assistant --project $(pwd)
-  }
+  },
+  "includeCoAuthoredBy": false
 }
