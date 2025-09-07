@@ -1,0 +1,76 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx husky:*)",
+      "Bash(gemini:*)",
+      "Bash(tree:*)",
+      "Bash(grep:*)",
+      "Bash(poetry run python test:*)",
+      "Bash(pytest:*)",
+      "Bash(git pull:*)",
+      "Bash(git fetch:*)",
+      "Bash(git switch:*)",
+      "Bash(gh issue view:*)",
+      "Bash(gh pr view:*)",
+      "Edit(./src/**)",
+      "WebSearch",
+      "mcp__serena"
+    ],
+    "deny": [
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./credentials/**)",
+      "Read(./secrets/**)",
+      "Bash(gh issue create:*)",
+      "Bash(gh issue delete:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh pr close:*)",
+      "Bash(gh repo delete:*)",
+      "Bash(git push:*)",
+      "Bash(rm:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "npx ccusage@latest statusline"
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          // You must set bellow in your vscode settings.json
+          // "accessibility.signals.terminalBell": {
+          //   "sound": "on"
+          // },
+          {
+            "type": "command",
+            "command": "echo -e \"\\a\""
+          }
+        ]
+      }
+    ]
+  },
+  "env": {
+    "MAX_THINKING_TOKENS": "31999"
+  },
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["--yes", "@upstash/context7-mcp"],
+      "env": {}
+    }
+    // If you want to use Serena, you must set it up in your local directory
+    // claude mcp add serena -- uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context ide-assistant --project $(pwd)
+  }
+}

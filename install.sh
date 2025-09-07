@@ -27,6 +27,20 @@ mkdir -p ~/.config/nvim
 ln -sf "${DOT_DIR}/.vimrc" ~/.config/nvim/init.vim
 echo "create symbolic link: nvim/init.vim"
 
+# claude codeの設定ファイル
+mkdir -p ~/.claude ~/.claude/agents
+ln -sf "${DOT_DIR}/claude_code/settings.json" ~/.claude/settings.json
+CLAUDE_DIRS=(agents commands)
+for dir in ${CLAUDE_DIRS[@]}; do
+    mkdir -p ~/.claude/"${dir}"
+    for file in "${DOT_DIR}"/claude_code/"${dir}"/*; do
+        if [ -f "${file}" ]; then
+            ln -sf "${file}" ~/.claude/"${dir}"/"$(basename "${file}")"
+            echo "create symbolic link: .claude/${dir}/$(basename "${file}")"
+        fi
+    done
+done
+
 set +u
 source "${HOME}"/.zshrc
 set -u
