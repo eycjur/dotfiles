@@ -1,4 +1,9 @@
 {
+  "env": {
+    "MAX_THINKING_TOKENS": "31999",
+    "DISABLE_TELEMETRY": "1"
+  },
+  "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
       "Bash(mkdir:*)",
@@ -44,10 +49,6 @@
     ],
     "defaultMode": "acceptEdits"
   },
-  "statusLine": {
-    "type": "command",
-    "command": "npx ccusage@latest statusline"
-  },
   "hooks": {
     "Stop": [
       {
@@ -61,16 +62,19 @@
       }
     ]
   },
-  "env": {
-    "MAX_THINKING_TOKENS": "31999",
-    "DISABLE_TELEMETRY": "1"
+  "statusLine": {
+    "type": "command",
+    "command": "npx ccusage@latest statusline"
   },
   "mcpServers": {
     "context7": {
       "command": "npx",
-      "args": ["--yes", "@upstash/context7-mcp"],
+      "args": [
+        "--yes",
+        "@upstash/context7-mcp"
+      ],
       "env": {}
     }
   },
-  "includeCoAuthoredBy": false
+  "model": "opus-plan-mode"
 }
