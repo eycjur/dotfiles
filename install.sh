@@ -41,6 +41,15 @@ for dir in ${CLAUDE_DIRS[@]}; do
     done
 done
 
+# codexの設定ファイル
+mkdir -p ~/.codex
+for file in "${DOT_DIR}"/codex/*; do
+    if [ -f "${file}" ]; then
+        ln -sf "${file}" ~/.codex/"$(basename "${file}")"
+        echo "create symbolic link: .codex/$(basename "${file}")"
+    fi
+done
+
 set +u
 source "${HOME}"/.zshrc
 set -u
