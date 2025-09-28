@@ -28,7 +28,8 @@
       "Bash(make:*)",
       "Edit(./src/**)",
       "WebSearch",
-      "mcp__serena"
+      "mcp__serena",
+      "mcp__codex__codex"
     ],
     "deny": [
       "Bash(curl:*)",
@@ -36,6 +37,7 @@
       "Read(./.env)",
       "Read(./.env.*)",
       "Read(./credentials/**)",
+      "Read(./*credentials*)",
       "Read(./secrets/**)",
       "Bash(gh issue create:*)",
       "Bash(gh issue delete:*)",
@@ -72,6 +74,16 @@
       "args": [
         "--yes",
         "@upstash/context7-mcp"
+      ],
+      "env": {}
+    },
+    "chromeDevtools": {
+      "command": "npx",
+      "args": [
+        "--yes",
+        "chrome-devtools-mcp",
+        "--headless=true",
+        "--isolated=true"
       ],
       "env": {}
     }

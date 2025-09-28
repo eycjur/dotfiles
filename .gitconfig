@@ -12,7 +12,7 @@
     cma = commit --amend
     ch = cherry-pick
     cl = clean
-    clf = clean -f
+    clf = clean -df
     down = restore --staged
     fetcha = fetch --all
     pu = push --set-upstream origin HEAD
@@ -43,7 +43,13 @@
     # 現在のブランチのリモートブランチを追跡する
     set-upstream = "!git branch --set-upstream-to=origin/$(git rev-parse --abbrev-ref HEAD)"
 
-    sl = "!sh -c \"git stash list --color=always --format='%gd %Cgreen%h %Creset %Cblue(%as %cr) %C(magenta)%an %Cred%d %Creset %B %N' | while read -r id rest; do echo \\\"== \\$id \\$rest ==\\\"; git stash show --color=always --name-status $id; echo; done\""
+    sl = "!sh -c \"git stash list --color=always --format='%gd %Cgreen%h %Creset %Cblue(%as %cr) %C(magenta)%an %Cred%d %Creset %B %N' \
+        | while read -r id rest; do \
+            echo \\\"== \\$id \\$rest ==\\\"; \
+            git stash show --color=always --name-status \\$id; \
+            echo; \
+            done\" \
+        "
 
 [branch]
     sort = -committerdate
