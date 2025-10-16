@@ -27,7 +27,7 @@
     sp = stash pop
     sp-abort = reset --merge
     sw = switch
-    reset-ammend = reset --soft HEAD@{1}
+    reset-amend = reset --soft HEAD@{1}
 
     # いい感じのグラフでログを表示
     graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'

@@ -25,6 +25,12 @@
 # デフォルトのオプション
 export FZF_DEFAULT_OPTS="--cycle --reverse"
 
+if command -v fd >/dev/null 2>&1; then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+fi
+if command -v bat >/dev/null 2>&1; then
+  export FZF_PREVIEW_COMMAND='bat --style=numbers --line-range=:500'
+fi
 
 # 過去に実行したコマンドを選択
 function select-history() {

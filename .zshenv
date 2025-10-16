@@ -14,9 +14,9 @@ export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:${PATH}"
 # Local auto detect
 if locale -a | grep -q "ja_JP.UTF-8"; then
     export LANG=ja_JP.UTF-8
-    export LC_ALL=ja_JP.UTF-8
+    export LC_CTYPE=ja_JP.UTF-8
 else
     export LANG=en_US.UTF-8
-    export LC_ALL=en_US.UTF-8
+    export LC_CTYPE=en_US.UTF-8
 fi
 export COMPOSE_MENU=0
