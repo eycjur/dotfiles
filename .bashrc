@@ -15,11 +15,11 @@ set_alias_if_success "awk" "gawk"
 set_alias_if_success "date" "gdate"
 set_alias_if_success "grep" "ggrep"
 
-export PATH="${HOME}/.pyenv/bin:${PATH}"
-export PATH="${HOME}/.pyenv/shims:${PATH}"
 export PATH="${HOME}/.poetry/bin:${PATH}"
 export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="${HOME}/go/bin:${PATH}"
 export PATH="${HOME}/local/golang/bin:${PATH}"
 export PATH="${HOME}/.rd/bin:${PATH}"  # rancher desktop
 export PATH="${HOME}/.nodebrew/current/bin:${PATH}"
+export PATH="${HOME}/.pyenv/bin:${PATH}"
+export PATH="${HOME}/.pyenv/shims:${PATH}"
