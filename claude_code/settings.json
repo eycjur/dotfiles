@@ -20,6 +20,7 @@
       "Bash(pre-commit run:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
+      "Bash(git log:*)",
       "Bash(git pull:*)",
       "Bash(git fetch:*)",
       "Bash(git switch:*)",

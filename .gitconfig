@@ -120,3 +120,8 @@
 
 [tag]
     sort = version:refname
+
+[url "git@github.com:"]
+    pushInsteadOf = git://github.com/
+    pushInsteadOf = https://github.com/
+    pushInsteadOf = https://git::@github.com/
