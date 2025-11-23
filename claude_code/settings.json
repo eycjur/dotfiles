@@ -14,7 +14,9 @@
       "Bash(npx husky:*)",
       "Bash(gemini:*)",
       "Bash(tree:*)",
+      "Bash(find:*)",
       "Bash(grep:*)",
+      "Bash(lsof:*)",
       "Bash(poetry run python test:*)",
       "Bash(pytest:*)",
       "Bash(pre-commit run:*)",
@@ -26,9 +28,11 @@
       "Bash(git switch:*)",
       "Bash(gh issue view:*)",
       "Bash(gh pr view:*)",
+      "Bash(gh pr diff:*)",
       "Bash(make:*)",
       "Edit(./src/**)",
       "WebSearch",
+      "WebFetch(domain:github.com)",
       "mcp__serena",
       "mcp__codex__codex"
     ],
@@ -88,5 +92,6 @@
       ],
       "env": {}
     }
-  }
+  },
+  "outputStyle": "Explanatory"
 }

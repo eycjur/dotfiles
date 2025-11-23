@@ -4,8 +4,8 @@ network_access = true
 
 notify = ["bash", "-c", "echo -e \"\\a\""]
 
-[tools]
-web_search = true
+[features]
+web_search_request = true
 
 [mcp_servers.context7]
 command = "npx"

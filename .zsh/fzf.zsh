@@ -37,7 +37,6 @@ function select-history() {
     BUFFER=$(\history -n -r 1 | fzf --no-multi --no-sort --query "$LBUFFER" --prompt="History > ")
     CURSOR=$#BUFFER
     zle clear-screen  # コマンドライン画面をクリア
-    zle accept-line  # 現在の入力ラインを実行
 }
 zle -N select-history  # zleにselect-history関数を追加
 bindkey '^r' select-history  # Ctrl+Rキーをselect-history関数にバインド
