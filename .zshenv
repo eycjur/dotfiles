@@ -6,6 +6,7 @@ export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="${HOME}/.local/go/bin:${PATH}"
 export PATH="${HOME}/go/bin:${PATH}"
 export PATH="${HOME}/local/golang/bin:${PATH}"
+export PATH="${HOME}/local/go/bin:${PATH}"
 export PATH="${HOME}/.rd/bin:${PATH}"  # rancher desktop
 export PATH="${HOME}/.nodebrew/current/bin:${PATH}"
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:${PATH}"
