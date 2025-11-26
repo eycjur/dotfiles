@@ -14,11 +14,23 @@ export PATH="${HOME}/.pyenv/bin:${PATH}"
 export PATH="${HOME}/.pyenv/shims:${PATH}"
 
 # Local auto detect
-if locale -a | grep -q "ja_JP.UTF-8"; then
+if locale -a 2>/dev/null | grep -q "ja_JP.UTF-8"; then
     export LANG=ja_JP.UTF-8
     export LC_CTYPE=ja_JP.UTF-8
-else
+elif locale -a 2>/dev/null | grep -q "ja_JP.utf8"; then
+    export LANG=ja_JP.utf8
+    export LC_CTYPE=ja_JP.utf8
+elif locale -a 2>/dev/null | grep -q "en_US.UTF-8"; then
     export LANG=en_US.UTF-8
     export LC_CTYPE=en_US.UTF-8
+elif locale -a 2>/dev/null | grep -q "en_US.utf8"; then
+    export LANG=en_US.utf8
+    export LC_CTYPE=en_US.utf8
+elif locale -a 2>/dev/null | grep -q "C.utf8"; then
+    export LANG=C.utf8
+    export LC_CTYPE=C.utf8
+else
+    export LANG=C
+    export LC_CTYPE=C
 fi
 export COMPOSE_MENU=0
