@@ -70,6 +70,17 @@ function select-switch-brach() {
 }
 alias swz=select-switch-brach
 
+# bdz: git ブランチ削除時のブランチの選択
+function select-delete-branch() {
+    local selected_branch
+    selected_branch=$(git branch | fzf --no-multi --query "$LBUFFER" --prompt "DELETE BRANCH>")
+    if [ -n "$selected_branch" ]; then
+        # (*| ) <branch> -> <branch>
+        git branch -d $(echo "$selected_branch" | sed -e "s/^\*\s*//g")
+    fi
+}
+alias bdz=select-delete-branch
+
 # rbz: git rebase時のブランチの選択
 function select-rebase-branch() {
     local selected_branch
@@ -102,6 +113,26 @@ function select-chrry-pick() {
     fi
 }
 alias chz=select-chrry-pick
+
+# stashのdropを選択
+function select-stash-drop() {
+    local selected_stash
+    selected_stash=$(git stash list | awk '{print $1}' | cut -d ':' -f1 | fzf --no-multi --query "$LBUFFER" --prompt "STASH>" --preview='git stash show -p --color {1}')
+    if [ -n "$selected_stash" ]; then
+        git stash drop $(echo "$selected_stash" | cut -d ":" -f 1)
+    fi
+}
+alias sdz=select-stash-drop
+
+# stashのpopを選択
+function select-stash-pop() {
+    local selected_stash
+    selected_stash=$(git stash list | awk '{print $1}' | cut -d ':' -f1 | fzf --no-multi --query "$LBUFFER" --prompt "STASH>" --preview='git stash show -p --color {1}')
+    if [ -n "$selected_stash" ]; then
+        git stash pop $(echo "$selected_stash" | cut -d ":" -f 1)
+    fi
+}
+alias spz=select-stash-pop
 
 # 編集されたファイルを選択
 function select-git-add-with-preview() {

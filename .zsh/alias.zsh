@@ -14,8 +14,9 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
-alias c="claude"
-alias cc="claude -c"
+alias c="cursor"
+alias cc="claude"
+alias ccc="claude -c"
 alias d="docker"
 alias e="exit"
 alias g="git"
@@ -33,6 +34,7 @@ alias his="history 1 | grep "
 alias psa="ps aucr"
 alias mkcd='(){mkdir -p "$@" && cd "$1"}'
 alias groot="cd $(git rev-parse --show-toplevel)"
+alias clear="clear && printf '\e[3J'"
 
 alias dotfiles="cd ~/dotfiles"
 

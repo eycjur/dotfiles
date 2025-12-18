@@ -12,7 +12,6 @@
     cma = commit --amend
     ch = cherry-pick
     cl = clean
-    clf = clean -df
     down = restore --staged
     fetcha = fetch --all
     pu = push --set-upstream origin HEAD
@@ -50,6 +49,8 @@
             echo; \
             done\" \
         "
+
+    clf = "!sh -c \"git add . && git restore . && git clean -fd\""
 
 [branch]
     sort = -committerdate

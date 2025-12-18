@@ -49,10 +49,7 @@
       "Bash(gh pr create:*)",
       "Bash(gh pr close:*)",
       "Bash(gh repo delete:*)",
-      "Bash(git push:*)",
-      "Bash(rm:*)",
-      "Bash(python:*)",
-      "Bash(python3:*)"
+      "Bash(git push:*)"
     ],
     "defaultMode": "acceptEdits"
   },

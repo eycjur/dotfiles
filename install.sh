@@ -41,6 +41,15 @@ for dir in ${CLAUDE_DIRS[@]}; do
     done
 done
 
+# cursorの設定ファイル
+mkdir -p ~/.cursor/commands
+for file in "${DOT_DIR}"/cursor/commands/*; do
+    if [ -f "${file}" ]; then
+        ln -sf "${file}" ~/.cursor/commands/"$(basename "${file}")"
+        echo "create symbolic link: .cursor/commands/$(basename "${file}")"
+    fi
+done
+
 # codexの設定ファイル
 mkdir -p ~/.codex
 for file in "${DOT_DIR}"/codex/*; do
