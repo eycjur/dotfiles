@@ -5,6 +5,10 @@ if ! is_command_exists "fzf"; then
 fi
 source ~/.zsh/fzf.zsh
 
+if is_command_exists "mise"; then
+    eval "$(mise activate zsh)"
+fi
+
 alias exp="open"
 alias C="pbcopy"
 set_alias_if_success "sed" "gsed"

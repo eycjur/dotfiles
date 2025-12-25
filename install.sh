@@ -40,6 +40,15 @@ for dir in ${CLAUDE_DIRS[@]}; do
         fi
     done
 done
+# skills/<skill_name>/SKILL.mdを~/.claude/skills/<skill_name>/SKILL.mdにシンボリックリンクする
+for file in "${DOT_DIR}"/claude_code/skills/*/SKILL.md; do
+    if [ -f "${file}" ]; then
+        skill_name="$(basename "$(dirname "${file}")")"
+        mkdir -p ~/.claude/skills/"${skill_name}"
+        ln -sf "${file}" ~/.claude/skills/"${skill_name}"/SKILL.md
+        echo "create symbolic link: .claude/skills/${skill_name}/SKILL.md"
+    fi
+done
 
 # cursorの設定ファイル
 mkdir -p ~/.cursor/commands
