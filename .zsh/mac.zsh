@@ -1,6 +1,5 @@
 source ~/.zsh/functions.zsh
 
-
 if ! is_command_exists "fzf"; then
     brew install fzf
 fi

@@ -20,6 +20,3 @@ export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="${HOME}/go/bin:${PATH}"
 export PATH="${HOME}/local/golang/bin:${PATH}"
 export PATH="${HOME}/.rd/bin:${PATH}"  # rancher desktop
-export PATH="${HOME}/.nodebrew/current/bin:${PATH}"
-export PATH="${HOME}/.pyenv/bin:${PATH}"
-export PATH="${HOME}/.pyenv/shims:${PATH}"
