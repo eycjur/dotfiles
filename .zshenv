@@ -1,7 +1,6 @@
 # zshenvはどんな場合（シェルスクリプト等の実行）でも読み込まれる
 # https://qiita.com/muran001/items/7b104d33f5ea3f75353f
 
-echo "PATH: ${PATH}"
 export PATH="${HOME}/.poetry/bin:${PATH}"
 export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="${HOME}/.local/go/bin:${PATH}"
@@ -10,8 +9,6 @@ export PATH="${HOME}/local/golang/bin:${PATH}"
 export PATH="${HOME}/local/go/bin:${PATH}"
 export PATH="${HOME}/.rd/bin:${PATH}"  # rancher desktop
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:${PATH}"
-
-echo "PATH: ${PATH}"
 
 
 # Local auto detect
