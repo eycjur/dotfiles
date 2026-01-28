@@ -119,3 +119,5 @@ fi
 
 # ディレクトリ移動時の処理
 chpwd() { ll }
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
