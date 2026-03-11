@@ -3,9 +3,9 @@ hide_agent_reasoning = true
 network_access = true
 
 notify = ["bash", "-c", "echo -e \"\\a\""]
-
-[features]
-web_search_request = true
+project_doc_fallback_filenames = ["CLAUDE .md"]
+personality = "pragmatic"
+sandbox_mode = "workspace-write"
 
 [mcp_servers.context7]
 command = "npx"
@@ -14,3 +14,6 @@ args = ["-y", "@upstash/context7-mcp@latest"]
 [mcp_servers.serena]
 command = "uvx"
 args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex"]
+
+[projects."/Users/kmuto"]
+trust_level = "trusted"

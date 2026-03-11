@@ -73,10 +73,12 @@ alias swz=select-switch-brach
 # bdz: git ブランチ削除時のブランチの選択
 function select-delete-branch() {
     local selected_branch
-    selected_branch=$(git branch | fzf --no-multi --query "$LBUFFER" --prompt "DELETE BRANCH>")
+    # selected_branchは改行区切りのブランチ名
+    selected_branch=$(git branch | fzf --multi --query "$LBUFFER" --prompt "DELETE BRANCH>")
     if [ -n "$selected_branch" ]; then
         # (*| ) <branch> -> <branch>
-        git branch -d $(echo "$selected_branch" | sed -e "s/^\*\s*//g")
+        # 改行区切りを引数分割するために、echoでコマンド置換 ($(...)) を利用
+        git branch -d $(echo ${selected_branch} | sed -e "s/^\*\s*//g")
     fi
 }
 alias bdz=select-delete-branch

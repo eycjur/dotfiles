@@ -6,20 +6,29 @@
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
+      "Bash(make:*)",
       "Bash(mkdir:*)",
       "Bash(mv:*)",
+      "Bash(gemini:*)",
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "Bash(lsof:*)",
+      "Bash(cat:*)",
+      "Bash(ls:*)",
+      "Bash(wc:*)",
+      "Bash(test:*)",
+      "Bash(du:*)",
+      "Bash(grep:*)",
+      "Bash(/usr/bin/du:*)",
+      "Bash(/usr/bin/grep:*)",
       "Bash(npm install:*)",
       "Bash(npm run:*)",
       "Bash(npm uninstall:*)",
       "Bash(npx husky:*)",
-      "Bash(gemini:*)",
-      "Bash(tree:*)",
-      "Bash(find:*)",
-      "Bash(grep:*)",
-      "Bash(lsof:*)",
       "Bash(poetry run python test:*)",
       "Bash(pytest:*)",
       "Bash(pre-commit run:*)",
+      "Bash(git checkout:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
@@ -29,11 +38,17 @@
       "Bash(gh issue view:*)",
       "Bash(gh pr view:*)",
       "Bash(gh pr diff:*)",
-      "Bash(make:*)",
       "Bash(ipconfig getifaddr:*)",
+      "Bash(mise list:*)",
+      "Bash(flutter run:*)",
+      "Bash(flutter pub get:*)",
+      "Bash(flutter build:*)",
+      "Bash(codex exec:*)",
       "Edit(./src/**)",
+      "Skill(codex)",
       "WebSearch",
       "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
       "mcp__serena",
       "mcp__codex__codex",
       "mcp__chrome-devtools",
@@ -45,14 +60,7 @@
       "mcp__chrome-devtools__take_screenshot",
       "mcp__chrome-devtools__fill",
       "mcp__chrome-devtools__wait_for",
-      "mcp__chrome-devtools__evaluate_script",
-      "Skill(codex)",
-      "Bash(codex exec:*)",
-      "Bash(cat:*)",
-      "Bash(ls:*)",
-      "Bash(wc:*)",
-      "Bash(test:*)",
-      "Bash(git checkout:*)"
+      "mcp__chrome-devtools__evaluate_script"
     ],
     "deny": [
       "Bash(curl:*)",
@@ -94,6 +102,7 @@
   },
   "outputStyle": "Explanatory",
   "alwaysThinkingEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
   "mcpServers": {
     "context7": {
       "command": "npx",
@@ -113,5 +122,9 @@
       ],
       "env": {}
     }
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
   }
 }

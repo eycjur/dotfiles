@@ -126,3 +126,8 @@
     pushInsteadOf = git://github.com/
     pushInsteadOf = https://github.com/
     pushInsteadOf = https://git::@github.com/
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

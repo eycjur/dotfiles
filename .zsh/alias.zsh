@@ -35,6 +35,7 @@ alias psa="ps aucr"
 alias mkcd='(){mkdir -p "$@" && cd "$1"}'
 alias groot="cd $(git rev-parse --show-toplevel)"
 alias clear="clear && printf '\e[3J'"
+alias drmia='docker rmi $(docker images -q)'
 
 alias dotfiles="cd ~/dotfiles"
 
@@ -70,6 +71,8 @@ alias add="git add"
 alias br="git br"
 alias ch="git ch"
 alias cm="git cm"
+alias cmj='copilot -p "次の差分をもとにコミットを行うコマンドを生成し実行してください。\n\n $(git diff --staged)" --allow-all-tools'
+alias cme='copilot -p "次の差分をもとにコミットを行うコマンドを生成し実行してください。ただし、コミットメッセージは英語で生成してください。\n\n $(git diff --staged)" --allow-all-tools'
 alias cma="git cma"
 alias dff="git dff"
 alias dfc="git dfc"
