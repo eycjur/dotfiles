@@ -6,6 +6,7 @@ notify = ["bash", "-c", "echo -e \"\\a\""]
 project_doc_fallback_filenames = ["CLAUDE .md"]
 personality = "pragmatic"
 sandbox_mode = "workspace-write"
+model = "gpt-5.4"
 
 [mcp_servers.context7]
 command = "npx"
