@@ -50,7 +50,7 @@
             done\" \
         "
 
-    clf = "!sh -c \"git add . && git restore . && git clean -fd\""
+    clf = clean -fd
 
 [branch]
     sort = -committerdate
