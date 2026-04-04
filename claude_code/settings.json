@@ -1,7 +1,8 @@
 {
   "env": {
     "MAX_THINKING_TOKENS": "31999",
-    "DISABLE_TELEMETRY": "1"
+    "DISABLE_TELEMETRY": "1",
+    "CLAUDE_CODE_NO_FLICKER": "1"
   },
   "includeCoAuthoredBy": false,
   "permissions": {
