@@ -5,7 +5,7 @@ set -CEueo pipefail
 
 cd "$(dirname "$0")"
 DOT_DIR="$(pwd)"
-DOT_FILES=(.bashrc .zshrc .zshenv .vimrc .gitconfig .gitconfig.local .tmux.conf .npmrc .zsh/* .config/git/*)
+DOT_FILES=(.bashrc .zshrc .zshenv .vimrc .gitconfig .gitconfig.local .tmux.conf .npmrc .zsh/* .config/git/* .config/uv/*)
 
 for file in ${DOT_FILES[@]}; do
     if [ ! -e "${DOT_DIR}/${file}" ]; then
