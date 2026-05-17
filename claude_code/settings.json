@@ -107,8 +107,13 @@
     "example-skills@anthropic-agent-skills": true
   },
   "outputStyle": "Explanatory",
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
+  },
   "alwaysThinkingEnabled": true,
   "skipDangerousModePermissionPrompt": true,
+  "theme": "dark",
   "mcpServers": {
     "context7": {
       "command": "npx",
@@ -129,8 +134,5 @@
       "env": {}
     }
   },
-  "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true
-  }
+  "effortLevel": "xhigh"
 }
