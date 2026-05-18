@@ -22,3 +22,8 @@ export PATH="${HOME}/local/golang/bin:${PATH}"
 export PATH="${HOME}/.rd/bin:${PATH}"  # rancher desktop
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/kmuto/.lmstudio/bin"
+# End of LM Studio CLI section
+

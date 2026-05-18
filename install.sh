@@ -68,6 +68,22 @@ for file in "${DOT_DIR}"/codex/*; do
     fi
 done
 
+# skillsはgh skill管理で、シンボリックリンクのみ設定する
+mkdir -p ~/.claude/skills
+if [ -L "${HOME}/.codex/skills" ]; then
+    unlink "${HOME}/.codex/skills"
+fi
+if [ -L "${HOME}/.cursor/skills" ]; then
+    unlink "${HOME}/.cursor/skills"
+fi
+ln -sf "${HOME}/.claude/skills" "${HOME}/.codex/skills"
+ln -sf "${HOME}/.claude/skills" "${HOME}/.cursor/skills"
+
+unlink "${HOME}/.codex/skills"
+unlink "${HOME}/.cursor/skills"
+ln -sf "${HOME}/.claude/skills" "${HOME}/.codex/skills"
+ln -sf "${HOME}/.claude/skills" "${HOME}/.cursor/skills"
+
 set +u
 source "${HOME}"/.zshrc
 set -u
