@@ -21,3 +21,5 @@ case ${OSTYPE} in
         esac
         ;;
 esac
+
+source ~/shell/bash/prompt.sh

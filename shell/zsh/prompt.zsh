@@ -1,5 +1,19 @@
 source ~/shell/functions.sh
 
+__prompt_prefix() {
+    local prefix=""
+    if [ -n "${CODESPACE_NAME:-}" ]; then
+        prefix+="%F{yellow}(codespace)%f"
+    fi
+    if [ -n "${SSH_CONNECTION:-}" ] || [ -n "${SSH_CLIENT:-}" ] || [ -n "${SSH_TTY:-}" ]; then
+        prefix+="%F{magenta}(ssh)%f"
+    fi
+    if [ -f /.dockerenv ]; then
+        prefix+="%F{cyan}(docker)%f"
+    fi
+    printf '%s' "$prefix"
+}
+
 # テーマを追加
 ZSH_THEME="refined"
 
@@ -24,7 +38,7 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'  # ブランチ|アクション
 precmd () { vcs_info }
 
 # ターミナル画面をカスタマイズ
-prompt='%F{red}%(?..[%?])%f%K{blue}%n@%m%k %F{green}%~%f %F{cyan}$vcs_info_msg_0_%f
+prompt='$(__prompt_prefix)%F{red}%(?..[%?])%f%K{blue}%n@%m%k %F{green}%~%f %F{cyan}$vcs_info_msg_0_%f
 %F{white} %# %f'
 # %n: ユーザー名
 # %m: ホスト名
@@ -34,16 +48,3 @@ prompt='%F{red}%(?..[%?])%f%K{blue}%n@%m%k %F{green}%~%f %F{cyan}$vcs_info_msg_0
 # %K{color}%k: 背景色を変える
 # %B...%b: 太字
 # %97<...<target: targetの長さに最大文字数制限をつける
-
-# codespaceかどうかを判定する
-if [ -n "$CODESPACE_NAME" ]; then
-    prompt="%F{yellow}(codespace)%f${prompt}"
-fi
-# ssh中かどうかを判定する
-if [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    prompt="%F{magenta}(ssh)%f${prompt}"
-fi
-# dockerコンテナ内かどうかを判定する
-if [ -f /.dockerenv ]; then
-    prompt="%F{cyan}(docker)%f${prompt}"
-fi
