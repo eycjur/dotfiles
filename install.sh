@@ -1,7 +1,15 @@
-#!/bin/zsh
+#!/bin/sh
 # dotfileをシンボリックリンクでホームディレクトリに置いて適用する
+# zsh があれば zsh、なければ bash で実行する
+if [ -z "${ZSH_VERSION:-}" ]; then
+    if command -v zsh >/dev/null 2>&1; then
+        exec zsh "$0" "$@"
+    elif [ -z "${BASH_VERSION:-}" ] && command -v bash >/dev/null 2>&1; then
+        exec bash "$0" "$@"
+    fi
+fi
 
-set -CEueo pipefail
+set -euo pipefail
 
 cd "$(dirname "$0")"
 DOT_DIR="$(pwd)"
@@ -76,6 +84,13 @@ mkdir -p ~/.claude/skills
 ln -sfn "${HOME}/.claude/skills" "${HOME}/.codex/skills"
 ln -sfn "${HOME}/.claude/skills" "${HOME}/.cursor/skills"
 
+# 設定を読み込んで適用する
 set +u
-source "${HOME}"/.zshrc
+if [ -n "${ZSH_VERSION:-}" ]; then
+    # shellcheck disable=SC1091
+    source "${HOME}/.zshrc"
+elif [ -f "${HOME}/.bashrc" ]; then
+    # shellcheck disable=SC1091
+    source "${HOME}/.bashrc"
+fi
 set -u
