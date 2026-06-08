@@ -1,4 +1,6 @@
 [include]
+    path = ~/dotfiles/.gitconfig.local.sample
+    path = ~/.gitconfig.local.sample
     path = ~/dotfiles/.gitconfig.local
     path = ~/.gitconfig.local
 

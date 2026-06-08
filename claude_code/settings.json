@@ -104,14 +104,17 @@
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true,
     "clangd-lsp@claude-plugins-official": true,
-    "example-skills@anthropic-agent-skills": true
+    "example-skills@anthropic-agent-skills": true,
+    "security-guidance@claude-plugins-official": true
   },
   "outputStyle": "Explanatory",
+  "language": "japanese",
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true
   },
   "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
   "mcpServers": {
@@ -133,6 +136,5 @@
       ],
       "env": {}
     }
-  },
-  "effortLevel": "xhigh"
+  }
 }
