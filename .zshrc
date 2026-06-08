@@ -1,12 +1,7 @@
 # 初期設定
-source ~/.zsh/functions.zsh
+source ~/shell/functions.sh
 
 # Set up the prompt
-
-# macでdircolorsコマンドがないと言われるのでその対策
-if [[ ${OSTYPE} == "darwin"* ]]; then
-    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-fi
 
 # 仮想環境下で上書きしてほしくないので 手動で設定
 # prompt adam1
@@ -96,15 +91,15 @@ fi
 # osごとの設定
 case ${OSTYPE} in
     darwin*)  # mac
-        source ~/.zsh/mac.zsh
+        source ~/shell/platform/mac.sh
         ;;
     linux*)
         case ${WSL_DISTRO_NAME} in
             Ubuntu)  # windows(wsl)
-                source ~/.zsh/wsl.zsh
+                source ~/shell/platform/wsl.sh
                 ;;
             *)  # linux
-                source ~/.zsh/linux.zsh
+                source ~/shell/platform/linux.sh
                 ;;
         esac
         ;;
@@ -114,24 +109,12 @@ case ${OSTYPE} in
         ;;
 esac
 
-source ~/.zsh/prompt.zsh
-source ~/.zsh/alias.zsh
-source ~/.zsh/plugin.zsh
+source ~/shell/zsh/prompt.zsh
+source ~/shell/alias.sh
+source ~/shell/zsh/plugin.zsh
 if [[ -e ~/.zsh/custom.zsh ]]; then
     source ~/.zsh/custom.zsh
 fi
 
 # ディレクトリ移動時の処理
 chpwd() { ll }
-
-[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/kmuto/.lmstudio/bin"
-# End of LM Studio CLI section
-
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/kmuto/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions

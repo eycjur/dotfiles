@@ -1,4 +1,4 @@
-source ~/.zsh/functions.zsh
+source ~/shell/functions.sh
 
 # コマンドのオプションをデフォルトにする
 alias ls='ls --color'
@@ -33,28 +33,12 @@ alias ll='ls -lAhF --time-style=long-iso'
 alias tf="terraform"
 alias his="history 1 | grep "
 alias psa="ps aucr"
-alias mkcd='(){mkdir -p "$@" && cd "$1"}'
+mkcd() { mkdir -p "$@" && cd "$1"; }
 alias groot="cd $(git rev-parse --show-toplevel)"
 alias clear="clear && printf '\e[3J'"
 alias drmia='docker rmi $(docker images -q)'
 
 alias dotfiles="cd ~/dotfiles"
-
-# globalのalias
-alias -g G='grep'
-alias -g L='less'
-
-# 設定ファイルの短縮アクセス
-alias -g ssh_config='~/.ssh/config'
-alias -g zshenv='~/.zshenv'
-alias -g zshrc='~/.zshrc'
-alias -g vimrc='~/.vimrc'
-alias -g gitconfig='~/.gitconfig'
-alias -g gitconfig.local='~/.gitconfig.local'
-alias -g gitignore='~/.config/git/ignore'
-alias -g alias.zsh='~/.zsh/alias.zsh'
-alias -g git_info_exclude="$(git rev-parse --show-toplevel)/.git/info/exclude"
-alias -g git_config="$(git rev-parse --show-toplevel)/.git/config"
 
 # コマンドを上書きする
 set_alias_if_success "cat" "bat -pP"
@@ -98,3 +82,21 @@ alias log="git graph"
 alias dprune='(docker stop $(docker ps -q) || true) && docker system prune --volumes -af && docker volume prune -af'
 alias dcprune='docker compose down --rmi all --volumes --remove-orphans'
 alias gprune="git fetch && git branch --merged | grep -v 'main' | grep -v 'develop' | grep -v '\*' | xargs git branch -d && git gc"
+
+if [ -n "${ZSH_VERSION:-}" ]; then
+    # globalのalias (zsh only)
+    alias -g G='grep'
+    alias -g L='less'
+
+    # 設定ファイルの短縮アクセス
+    alias -g ssh_config='~/.ssh/config'
+    alias -g zshenv='~/.zshenv'
+    alias -g zshrc='~/.zshrc'
+    alias -g vimrc='~/.vimrc'
+    alias -g gitconfig='~/.gitconfig'
+    alias -g gitconfig.local='~/.gitconfig.local'
+    alias -g gitignore='~/.config/git/ignore'
+    alias -g alias.sh='~/shell/alias.sh'
+    alias -g git_info_exclude="$(git rev-parse --show-toplevel)/.git/info/exclude"
+    alias -g git_config="$(git rev-parse --show-toplevel)/.git/config"
+fi

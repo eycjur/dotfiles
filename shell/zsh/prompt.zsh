@@ -1,4 +1,4 @@
-source ~/.zsh/functions.zsh
+source ~/shell/functions.sh
 
 # テーマを追加
 ZSH_THEME="refined"
