@@ -34,7 +34,7 @@ alias tf="terraform"
 alias his="history 1 | grep "
 alias psa="ps aucr"
 mkcd() { mkdir -p "$@" && cd "$1"; }
-alias groot="cd $(git rev-parse --show-toplevel)"
+groot() { cd "$(git rev-parse --show-toplevel)"; }
 alias clear="clear && printf '\e[3J'"
 alias drmia='docker rmi $(docker images -q)'
 
@@ -97,6 +97,6 @@ if [ -n "${ZSH_VERSION:-}" ]; then
     alias -g gitconfig.local='~/.gitconfig.local'
     alias -g gitignore='~/.config/git/ignore'
     alias -g alias.sh='~/shell/alias.sh'
-    alias -g git_info_exclude="$(git rev-parse --show-toplevel)/.git/info/exclude"
-    alias -g git_config="$(git rev-parse --show-toplevel)/.git/config"
+    alias -g git_info_exclude='$(git rev-parse --show-toplevel 2>/dev/null)/.git/info/exclude'
+    alias -g git_config='$(git rev-parse --show-toplevel 2>/dev/null)/.git/config'
 fi
