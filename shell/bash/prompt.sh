@@ -11,6 +11,9 @@ __prompt_prefix() {
     if [ -f /.dockerenv ]; then
         prefix+=$'\[\033[36m\](docker)\[\033[0m\]'
     fi
+    if [ -n "${SANDBOX_VM_ID:-}" ]; then
+        prefix+=$'\[\033[38;5;208m\](sandbox)\[\033[0m\]'
+    fi
     printf '%s' "$prefix"
 }
 

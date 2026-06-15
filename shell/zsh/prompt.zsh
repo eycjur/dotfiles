@@ -11,6 +11,9 @@ __prompt_prefix() {
     if [ -f /.dockerenv ]; then
         prefix+="%F{cyan}(docker)%f"
     fi
+    if [ -n "${SANDBOX_VM_ID:-}" ]; then
+        prefix+="%F{208}(sandbox)%f"
+    fi
     printf '%s' "$prefix"
 }
 
