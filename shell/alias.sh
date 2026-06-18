@@ -42,6 +42,7 @@ alias clear="clear && printf '\e[3J'"
 alias drmia='docker rmi $(docker images -q)'
 
 alias dotfiles="cd ~/dotfiles"
+alias cdw="cd $WORKSPACE_DIR"
 
 # コマンドを上書きする
 set_alias_if_success "cat" "bat -pP"
