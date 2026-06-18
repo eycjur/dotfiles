@@ -112,8 +112,8 @@ esac
 source ~/shell/zsh/prompt.zsh
 source ~/shell/alias.sh
 source ~/shell/zsh/plugin.zsh
-if [[ -e ~/.zsh/custom.zsh ]]; then
-    source ~/.zsh/custom.zsh
+if [[ -e ~/shell/custom.sh ]]; then
+    source ~/shell/custom.sh
 fi
 
 # ディレクトリ移動時の処理
