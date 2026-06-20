@@ -39,8 +39,15 @@ echo "create symbolic link: nvim/init.vim"
 source "${DOT_DIR}/shell/vim_plugin.sh"
 
 # claude codeの設定ファイル
+# sandbox環境(SANDBOX_VM_ID)ではsandbox用の設定を使う(判定はshell/bash/prompt.shを参照)
 mkdir -p ~/.claude ~/.claude/agents
-ln -sf "${DOT_DIR}/claude_code/settings.json" ~/.claude/settings.json
+if [ -n "${SANDBOX_VM_ID:-}" ]; then
+    CLAUDE_SETTINGS="claude_code/settings.sandbox.json"
+else
+    CLAUDE_SETTINGS="claude_code/settings.json"
+fi
+ln -sf "${DOT_DIR}/${CLAUDE_SETTINGS}" ~/.claude/settings.json
+echo "create symbolic link: .claude/settings.json (${CLAUDE_SETTINGS})"
 CLAUDE_DIRS=(agents commands)
 for dir in ${CLAUDE_DIRS[@]}; do
     mkdir -p ~/.claude/"${dir}"

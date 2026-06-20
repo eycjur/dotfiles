@@ -1,0 +1,52 @@
+{
+  "env": {
+    "MAX_THINKING_TOKENS": "31999",
+    "DISABLE_TELEMETRY": "1",
+    "CLAUDE_CODE_NO_FLICKER": "1"
+  },
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./credentials/**)",
+      "Read(./*credentials*)",
+      "Read(./secrets/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '\\a' > /dev/tty 2>/dev/null || printf '\\a'"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "npx ccusage@latest statusline"
+  },
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": true,
+    "example-skills@anthropic-agent-skills": true,
+    "security-guidance@claude-plugins-official": true
+  },
+  "outputStyle": "Explanatory",
+  "language": "japanese",
+  "sandbox": {
+    "enabled": false
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark",
+  "mcpServers": {}
+}
