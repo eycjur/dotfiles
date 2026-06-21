@@ -28,6 +28,7 @@
       "Bash(npx husky:*)",
       "Bash(poetry run python test:*)",
       "Bash(pytest:*)",
+      "Bash(uv run pytest:*)",
       "Bash(pre-commit run:*)",
       "Bash(git checkout:*)",
       "Bash(git status:*)",
@@ -99,7 +100,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "npx ccusage@latest statusline"
+    "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true,
@@ -136,5 +137,6 @@
       ],
       "env": {}
     }
-  }
+  },
+  "model": "sonnet"
 }

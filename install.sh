@@ -48,6 +48,8 @@ else
 fi
 ln -sf "${DOT_DIR}/${CLAUDE_SETTINGS}" ~/.claude/settings.json
 echo "create symbolic link: .claude/settings.json (${CLAUDE_SETTINGS})"
+ln -sf "${DOT_DIR}/claude_code/statusline.sh" ~/.claude/statusline.sh
+echo "create symbolic link: .claude/statusline.sh"
 CLAUDE_DIRS=(agents commands)
 for dir in ${CLAUDE_DIRS[@]}; do
     mkdir -p ~/.claude/"${dir}"
