@@ -2,7 +2,6 @@
 description: Install a skill by name or owner/repo path. Use when the user says "install skill X", "add skill X", "スキルをインストールして", "スキルを追加して", or provides a skill package path like "owner/repo skill-name".
 metadata:
     argument-hint: <skill-name or owner/repo skill-name>
-    author: kmuto
     version: 1.0.0
 name: add-skill
 ---

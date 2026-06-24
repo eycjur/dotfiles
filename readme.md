@@ -56,5 +56,12 @@ Add the following to user settings.json
 
 There are some files that are not tracked by git. You can customize them as you like.
 
+> [!WARNING]
+> `.gitconfig.local` is not tracked. Copy the sample file and set your own `name` and `email`:
+>
+> ```shell
+> cp ~/dotfiles/.gitconfig.local.sample ~/dotfiles/.gitconfig.local
+> ```
+
 - ~/dotfiles/.zsh/custom.zsh
 - ~/dotfiles/.gitconfig.local
