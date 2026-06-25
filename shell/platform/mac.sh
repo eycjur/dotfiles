@@ -1,7 +1,12 @@
 source ~/shell/functions.sh
 
+export PATH="/opt/homebrew/bin:${PATH}"
+
 if ! is_command_exists "fzf"; then
     brew install fzf
+fi
+if ! is_command_exists "betterleaks"; then
+    brew install betterleaks
 fi
 source ~/shell/fzf.sh
 

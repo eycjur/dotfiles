@@ -133,3 +133,9 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+# Git 2.54+ config-based hooks
+# https://github.blog/open-source/git/highlights-from-git-2-54/
+[hook "betterleaks"]
+    event = pre-commit
+    command = betterleaks git --pre-commit --redact --staged --verbose
