@@ -12,13 +12,14 @@ __prompt_prefix() {
         prefix+="%F{cyan}(docker)%f"
     fi
     if is_apple_container; then
-        prefix+="%F{red}🍎(apple/container)%f"
+        prefix+="%F{red}(apple/container)%f"
     fi
     if [ -n "${SANDBOX_VM_ID:-}" ]; then
         prefix+="%F{208}(sandbox)%f"
     fi
     if [ -n "${IS_SANDBOX:-}" ]; then
-        prefix+="%F{208}🛡️%f"
+        # 🛡️(U+FE0F付き)はzshの幅計算が1になり次の文字と重なる。🍎と同様に単一コードポイント+スペース
+        prefix="%F{208}🛡 %f${prefix}"
     fi
     printf '%s' "$prefix"
 }
