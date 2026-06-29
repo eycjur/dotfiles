@@ -12,10 +12,13 @@ __prompt_prefix() {
         prefix+="%F{cyan}(docker)%f"
     fi
     if is_apple_container; then
-        prefix+="%F{red}(apple/container)%f"
+        prefix+="%F{red}🍎(apple/container)%f"
     fi
     if [ -n "${SANDBOX_VM_ID:-}" ]; then
         prefix+="%F{208}(sandbox)%f"
+    fi
+    if [ -n "${IS_SANDBOX:-}" ]; then
+        prefix+="%F{208}🛡️%f"
     fi
     printf '%s' "$prefix"
 }
