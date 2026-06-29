@@ -1,6 +1,7 @@
 source ~/shell/functions.sh
 
 export PATH="/opt/homebrew/bin:${PATH}"
+export CONTAINER_DEFAULT_PLATFORM=linux/arm64
 
 if ! is_command_exists "fzf"; then
     brew install fzf

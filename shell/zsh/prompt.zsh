@@ -11,6 +11,9 @@ __prompt_prefix() {
     if [ -f /.dockerenv ]; then
         prefix+="%F{cyan}(docker)%f"
     fi
+    if is_apple_container; then
+        prefix+="%F{red}(apple/container)%f"
+    fi
     if [ -n "${SANDBOX_VM_ID:-}" ]; then
         prefix+="%F{208}(sandbox)%f"
     fi

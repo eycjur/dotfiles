@@ -29,3 +29,17 @@ function set_alias_if_not_exists () {
         alias "$1"="$2"
     fi
 }
+
+# Apple container VM 内か（/proc/cmdline の init=/sbin/vminitd — 非公式ヒューリスティック）
+function is_apple_container() {
+    case "${__APPLE_CONTAINER_CACHED:-}" in
+        1) return 0 ;;
+        0) return 1 ;;
+    esac
+    if [ -r /proc/cmdline ] && grep -q 'init=/sbin/vminitd' /proc/cmdline 2>/dev/null; then
+        __APPLE_CONTAINER_CACHED=1
+        return 0
+    fi
+    __APPLE_CONTAINER_CACHED=0
+    return 1
+}
