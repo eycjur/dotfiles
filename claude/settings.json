@@ -2,7 +2,8 @@
   "env": {
     "MAX_THINKING_TOKENS": "31999",
     "DISABLE_TELEMETRY": "1",
-    "CLAUDE_CODE_NO_FLICKER": "1"
+    "CLAUDE_CODE_NO_FLICKER": "1",
+    "CLAUDE_CODE_SCROLL_SPEED": "5"
   },
   "includeCoAuthoredBy": false,
   "permissions": {
@@ -85,6 +86,7 @@
     ],
     "defaultMode": "acceptEdits"
   },
+  "model": "sonnet",
   "hooks": {
     "Stop": [
       {
@@ -92,7 +94,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo -e \"\\a\""
+            "command": "printf '\\a' > $TTY"
           }
         ]
       }
@@ -118,6 +120,7 @@
   "effortLevel": "high",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
+  "preferredNotifChannel": "terminal_bell",
   "mcpServers": {
     "context7": {
       "command": "npx",
@@ -137,6 +140,5 @@
       ],
       "env": {}
     }
-  },
-  "model": "sonnet"
+  }
 }

@@ -23,7 +23,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "printf '\\a' > /dev/tty 2>/dev/null || printf '\\a'"
+            "command": "printf '\\a' > $TTY"
           }
         ]
       }

@@ -42,18 +42,18 @@ source "${DOT_DIR}/shell/vim_plugin.sh"
 # sandbox環境(IS_SANDBOX)ではsandbox用の設定を使う(判定はshell/bash/prompt.shを参照)
 mkdir -p ~/.claude ~/.claude/agents
 if [ -n "${IS_SANDBOX:-}" ]; then
-    CLAUDE_SETTINGS="claude_code/settings.sandbox.json"
+    CLAUDE_SETTINGS="claude/settings.sandbox.json"
 else
-    CLAUDE_SETTINGS="claude_code/settings.json"
+    CLAUDE_SETTINGS="claude/settings.json"
 fi
 ln -sf "${DOT_DIR}/${CLAUDE_SETTINGS}" ~/.claude/settings.json
 echo "create symbolic link: .claude/settings.json (${CLAUDE_SETTINGS})"
-ln -sf "${DOT_DIR}/claude_code/statusline.sh" ~/.claude/statusline.sh
+ln -sf "${DOT_DIR}/claude/statusline.sh" ~/.claude/statusline.sh
 echo "create symbolic link: .claude/statusline.sh"
 CLAUDE_DIRS=(agents commands)
 for dir in ${CLAUDE_DIRS[@]}; do
     mkdir -p ~/.claude/"${dir}"
-    for file in "${DOT_DIR}"/claude_code/"${dir}"/*; do
+    for file in "${DOT_DIR}"/claude/"${dir}"/*; do
         if [ -f "${file}" ]; then
             ln -sf "${file}" ~/.claude/"${dir}"/"$(basename "${file}")"
             echo "create symbolic link: .claude/${dir}/$(basename "${file}")"
@@ -61,7 +61,7 @@ for dir in ${CLAUDE_DIRS[@]}; do
     done
 done
 # skills/<skill_name>/SKILL.mdを~/.claude/skills/<skill_name>/SKILL.mdにシンボリックリンクする
-for file in "${DOT_DIR}"/claude_code/skills/*/SKILL.md; do
+for file in "${DOT_DIR}"/claude/skills/*/SKILL.md; do
     if [ -f "${file}" ]; then
         skill_name="$(basename "$(dirname "${file}")")"
         mkdir -p ~/.claude/skills/"${skill_name}"
