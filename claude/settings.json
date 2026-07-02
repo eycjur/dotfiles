@@ -1,11 +1,14 @@
 {
   "env": {
-    "MAX_THINKING_TOKENS": "31999",
     "DISABLE_TELEMETRY": "1",
-    "CLAUDE_CODE_NO_FLICKER": "1",
+    "DISABLE_ERROR_REPORTING": "1",
     "CLAUDE_CODE_SCROLL_SPEED": "5"
   },
-  "includeCoAuthoredBy": false,
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
   "permissions": {
     "allow": [
       "Bash(make:*)",
@@ -114,13 +117,69 @@
   "language": "japanese",
   "sandbox": {
     "enabled": true,
-    "autoAllowBashIfSandboxed": true
+    "failIfUnavailable": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "filesystem": {
+      "denyRead": [
+        "./.env",
+        "./credentials/**",
+        "./*credentials*",
+        "./secrets/**",
+        "**/*.pem",
+        "**/*.key",
+        "~/.ssh",
+        "~/.aws"
+      ]
+    },
+    "credentials": {
+      "files": [
+        {
+          "path": "~/.ssh",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.aws/credentials",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.config/gcloud",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.kube/config",
+          "mode": "deny"
+        }
+      ],
+      "envVars": [
+        {
+          "name": "GITHUB_TOKEN",
+          "mode": "deny"
+        },
+        {
+          "name": "OPENAI_API_KEY",
+          "mode": "deny"
+        },
+        {
+          "name": "GEMINI_API_KEY",
+          "mode": "deny"
+        },
+        {
+          "name": "ANTHROPIC_API_KEY",
+          "mode": "deny"
+        },
+        {
+          "name": "CLAUDE_CODE_OAUTH_TOKEN",
+          "mode": "deny"
+        }
+      ]
+    }
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
-  "preferredNotifChannel": "terminal_bell",
   "mcpServers": {
     "context7": {
       "command": "npx",
