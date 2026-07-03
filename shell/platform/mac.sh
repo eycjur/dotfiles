@@ -11,6 +11,10 @@ if ! is_command_exists "betterleaks"; then
 fi
 source ~/shell/fzf.sh
 
+if is_file_exists "~/.config/op/plugins.sh"; then
+    source ~/.config/op/plugins.sh
+fi
+
 alias exp="open"
 alias C="pbcopy"
 set_alias_if_success "sed" "gsed"

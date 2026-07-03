@@ -97,7 +97,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "printf '\\a' > $TTY"
+            "command": "printf '\\a' > $TTY || true"
           }
         ]
       }

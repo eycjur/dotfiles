@@ -8,6 +8,12 @@ function run_if_exists() {
     fi
 }
 
+# ファイルが存在するか確認する
+# $1: ファイル名
+function is_file_exists() {
+    [[ -f "$1" ]]
+}
+
 # コマンドが存在するか確認する
 # $1: コマンド名
 function is_command_exists() {

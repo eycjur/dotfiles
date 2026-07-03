@@ -55,3 +55,5 @@ memo.md
 # AI Coding Tool
 **/.claude/settings.local.json
 .serena/
+
+**/.claude/.cc-writes/
