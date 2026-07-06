@@ -60,3 +60,6 @@ notification_condition = "always"
 
 [projects."/Users/kmuto/dotfiles"]
 trust_level = "trusted"
+
+[features]
+hooks = true

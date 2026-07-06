@@ -1,15 +1,51 @@
 {
-  "env": {
-    "DISABLE_TELEMETRY": "1",
-    "DISABLE_ERROR_REPORTING": "1",
-    "CLAUDE_CODE_SCROLL_SPEED": "5",
-    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "75"
-  },
+  "alwaysThinkingEnabled": true,
   "attribution": {
     "commit": "",
     "pr": "",
     "sessionUrl": false
   },
+  "effortLevel": "high",
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true,
+    "example-skills@anthropic-agent-skills": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true
+  },
+  "env": {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "75",
+    "CLAUDE_CODE_SCROLL_SPEED": "5",
+    "DISABLE_ERROR_REPORTING": "1",
+    "DISABLE_TELEMETRY": "1"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bash '~/.claude/hooks/herdr-agent-state.sh' session || true",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "*"
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "command": "printf '\\a' > $TTY || true",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      }
+    ]
+  },
+  "language": "japanese",
+  "model": "sonnet",
+  "outputStyle": "Explanatory",
   "permissions": {
     "allow": [
       "Bash(make:*)",
@@ -72,6 +108,7 @@
       "mcp__chrome-devtools__wait_for",
       "mcp__chrome-devtools__evaluate_script"
     ],
+    "defaultMode": "acceptEdits",
     "deny": [
       "Bash(curl:*)",
       "Bash(wget:*)",
@@ -87,40 +124,55 @@
       "Bash(gh pr close:*)",
       "Bash(gh repo delete:*)",
       "Bash(git push:*)"
-    ],
-    "defaultMode": "acceptEdits"
-  },
-  "model": "sonnet",
-  "hooks": {
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "printf '\\a' > $TTY || true"
-          }
-        ]
-      }
     ]
   },
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  },
-  "enabledPlugins": {
-    "pyright-lsp@claude-plugins-official": true,
-    "clangd-lsp@claude-plugins-official": true,
-    "example-skills@anthropic-agent-skills": true,
-    "security-guidance@claude-plugins-official": true
-  },
-  "outputStyle": "Explanatory",
-  "language": "japanese",
   "sandbox": {
+    "allowUnsandboxedCommands": false,
+    "autoAllowBashIfSandboxed": true,
+    "credentials": {
+      "envVars": [
+        {
+          "mode": "deny",
+          "name": "GITHUB_TOKEN"
+        },
+        {
+          "mode": "deny",
+          "name": "OPENAI_API_KEY"
+        },
+        {
+          "mode": "deny",
+          "name": "GEMINI_API_KEY"
+        },
+        {
+          "mode": "deny",
+          "name": "ANTHROPIC_API_KEY"
+        },
+        {
+          "mode": "deny",
+          "name": "CLAUDE_CODE_OAUTH_TOKEN"
+        }
+      ],
+      "files": [
+        {
+          "mode": "deny",
+          "path": "~/.ssh"
+        },
+        {
+          "mode": "deny",
+          "path": "~/.aws/credentials"
+        },
+        {
+          "mode": "deny",
+          "path": "~/.config/gcloud"
+        },
+        {
+          "mode": "deny",
+          "path": "~/.kube/config"
+        }
+      ]
+    },
     "enabled": true,
     "failIfUnavailable": true,
-    "autoAllowBashIfSandboxed": true,
-    "allowUnsandboxedCommands": false,
     "filesystem": {
       "denyRead": [
         "./.env",
@@ -132,53 +184,13 @@
         "~/.ssh",
         "~/.aws"
       ]
-    },
-    "credentials": {
-      "files": [
-        {
-          "path": "~/.ssh",
-          "mode": "deny"
-        },
-        {
-          "path": "~/.aws/credentials",
-          "mode": "deny"
-        },
-        {
-          "path": "~/.config/gcloud",
-          "mode": "deny"
-        },
-        {
-          "path": "~/.kube/config",
-          "mode": "deny"
-        }
-      ],
-      "envVars": [
-        {
-          "name": "GITHUB_TOKEN",
-          "mode": "deny"
-        },
-        {
-          "name": "OPENAI_API_KEY",
-          "mode": "deny"
-        },
-        {
-          "name": "GEMINI_API_KEY",
-          "mode": "deny"
-        },
-        {
-          "name": "ANTHROPIC_API_KEY",
-          "mode": "deny"
-        },
-        {
-          "name": "CLAUDE_CODE_OAUTH_TOKEN",
-          "mode": "deny"
-        }
-      ]
     }
   },
-  "alwaysThinkingEnabled": true,
-  "effortLevel": "high",
-  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "dark"
+  "statusLine": {
+    "command": "~/.claude/statusline.sh",
+    "type": "command"
+  },
+  "theme": "dark",
+  "tui": "fullscreen"
 }
