@@ -1,17 +1,62 @@
-# model_reasoning_effort = "high"
-hide_agent_reasoning = true
-network_access = true
-
-notify = ["bash", "-c", "echo -e \"\\a\""]
-project_doc_fallback_filenames = ["CLAUDE .md"]
+model = "gpt-5.5"
+model_reasoning_effort = "medium"
 personality = "pragmatic"
+hide_agent_reasoning = false
+developer_instructions = "日本語で簡潔かつ丁寧に回答する。"
+
 sandbox_mode = "workspace-write"
-model = "gpt-5.4"
+approval_policy = "on-request"
+default_permissions = "workspace-sandbox"
 
-[mcp_servers.context7]
-command = "npx"
-args = ["-y", "@upstash/context7-mcp@latest"]
+project_doc_fallback_filenames = ["CLAUDE.md"]
+web_search = "cached"
+commit_attribution = ""
 
-[mcp_servers.serena]
-command = "uvx"
-args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex"]
+notify = ["bash", "-c", "printf '\\a' > $TTY || true"]
+
+[analytics]
+enabled = false
+
+[feedback]
+enabled = false
+
+[permissions.workspace-sandbox]
+description = "Workspace read/write under sandbox; deny sensitive paths."
+extends = ":workspace"
+
+[permissions.workspace-sandbox.filesystem]
+glob_scan_max_depth = 5
+"~/.ssh" = "deny"
+"~/.aws" = "deny"
+"~/.config/gcloud" = "deny"
+"~/.kube/config" = "deny"
+
+[permissions.workspace-sandbox.filesystem.":workspace_roots"]
+"." = "write"
+"**/*.env" = "deny"
+"credentials/**" = "deny"
+"**/*credentials*" = "deny"
+"secrets/**" = "deny"
+"**/*.pem" = "deny"
+"**/*.key" = "deny"
+
+[permissions.workspace-sandbox.network]
+enabled = true
+
+[shell_environment_policy]
+inherit = "core"
+exclude = [
+  "GITHUB_TOKEN",
+  "OPENAI_API_KEY",
+  "GEMINI_API_KEY",
+  "ANTHROPIC_API_KEY",
+  "CLAUDE_CODE_OAUTH_TOKEN",
+]
+
+[tui]
+alternate_screen = "always"
+notification_method = "bel"
+notification_condition = "always"
+
+[projects."/Users/kmuto/dotfiles"]
+trust_level = "trusted"

@@ -68,6 +68,7 @@ for file in "${DOT_DIR}"/codex/*; do
 done
 
 # codex/cursorのskillsは~/.claude/skillsを参照する(gh skill管理)
+mkdir -p ~/.cursor
 ln -sfn "${HOME}/.claude/skills" "${HOME}/.codex/skills"
 ln -sfn "${HOME}/.claude/skills" "${HOME}/.cursor/skills"
 

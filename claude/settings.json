@@ -2,7 +2,8 @@
   "env": {
     "DISABLE_TELEMETRY": "1",
     "DISABLE_ERROR_REPORTING": "1",
-    "CLAUDE_CODE_SCROLL_SPEED": "5"
+    "CLAUDE_CODE_SCROLL_SPEED": "5",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "75"
   },
   "attribution": {
     "commit": "",
@@ -89,7 +90,7 @@
     ],
     "defaultMode": "acceptEdits"
   },
-  "model": "claude-fable-5[1m]",
+  "model": "sonnet",
   "hooks": {
     "Stop": [
       {
@@ -179,25 +180,5 @@
   "effortLevel": "high",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "dark",
-  "mcpServers": {
-    "context7": {
-      "command": "npx",
-      "args": [
-        "--yes",
-        "@upstash/context7-mcp"
-      ],
-      "env": {}
-    },
-    "chromeDevtools": {
-      "command": "npx",
-      "args": [
-        "--yes",
-        "chrome-devtools-mcp",
-        "--headless=true",
-        "--isolated=true"
-      ],
-      "env": {}
-    }
-  }
+  "theme": "dark"
 }
