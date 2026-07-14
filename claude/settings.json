@@ -191,6 +191,5 @@
     "command": "~/.claude/statusline.sh",
     "type": "command"
   },
-  "theme": "dark",
-  "tui": "fullscreen"
+  "theme": "dark"
 }

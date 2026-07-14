@@ -37,7 +37,6 @@ ln -sf "${DOT_DIR}/shell" ~/shell
 source "${DOT_DIR}/shell/vim_plugin.sh"
 
 # claude codeの設定ファイル
-# sandbox環境(IS_SANDBOX)ではsandbox用の設定を使う(判定はshell/bash/prompt.shを参照)
 mkdir -p ~/.claude
 for file in "${DOT_DIR}"/claude/*; do
     if [ -f "${file}" ]; then
@@ -45,7 +44,8 @@ for file in "${DOT_DIR}"/claude/*; do
         echo "create symbolic link: .claude/$(basename "${file}")"
     fi
 done
-if [ -n "${IS_SANDBOX:-}" ]; then
+# sandbox or docker環境ではsandbox用の設定を使う
+if [ -n "${IS_SANDBOX:-}" ] || [ -f /.dockerenv ]; then
     ln -sf "${DOT_DIR}/claude/settings.sandbox.json" ~/.claude/settings.json
     echo "create symbolic link: .claude/settings.json (claude/settings.sandbox.json)"
 fi

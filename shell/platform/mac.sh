@@ -17,6 +17,9 @@ fi
 
 alias exp="open"
 alias C="pbcopy"
+alias nosleep="caffeinate -dimsu"
+alias disablesleep="sudo pmset -c disablesleep 1"
+alias enablesleep="sudo pmset -c disablesleep 0"
 set_alias_if_success "sed" "gsed"
 set_alias_if_success "awk" "gawk"
 set_alias_if_success "date" "gdate"

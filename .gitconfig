@@ -97,7 +97,7 @@
     defaultBranch = main
 
 [merge]
-    conflictstyle = zdiff3
+    conflictstyle = diff3
 
 [pager]
     difftool = true

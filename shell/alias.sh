@@ -82,6 +82,7 @@ alias st="git st"
 alias st-detail="GIT_TRACE=1 GIT_TRACE_PERFORMANCE=1 git st"
 alias sw="git sw"
 alias log="git graph"
+alias gopen='open $(git config --get remote.origin.url)'
 
 # 掃除系コマンド
 alias dprune='(docker stop $(docker ps -q) || true) && docker system prune --volumes -af && docker volume prune -af'
