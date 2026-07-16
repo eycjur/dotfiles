@@ -3,11 +3,11 @@ sort_dir_first = true
 sort_by = "natural"
 
 [[plugin.prepend_fetchers]]
-group = "git"
 url = "*"
+group = "git"
 run  = "git"
 
 [[plugin.prepend_fetchers]]
-group = "git"
 url = "*/"
+group = "git"
 run  = "git"

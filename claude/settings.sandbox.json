@@ -47,8 +47,7 @@
     "chrome-devtools-mcp@claude-plugins-official": true,
     "playground@claude-plugins-official": true,
     "remember@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true
+    "skill-creator@claude-plugins-official": true
   },
   "outputStyle": "Explanatory",
   "language": "japanese",

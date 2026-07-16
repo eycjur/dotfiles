@@ -3,6 +3,7 @@
 # 使い方
 # ctrl+r: 過去に実行したコマンドを選択
 # ctrl+f: 過去に移動したディレクトリを選択
+# vimz: カレント以下からファイルを選んで vim で開く
 # swz: git switch時のブランチの切り替え
 # rbz: git rebase時のブランチの選択
 # rbiz: git rebase -i時のコミットハッシュの選択
@@ -35,6 +36,16 @@ fi
 if command -v bat >/dev/null 2>&1; then
   export FZF_PREVIEW_COMMAND='bat --style=numbers --line-range=:500'
 fi
+
+# vimz: カレント以下からファイルを選んで vim で開く
+function select-vim-file() {
+    local selected_file
+    selected_file=$(fzf --no-multi --query "$(_fzf_query)" --prompt "FILE>" --preview 'cat {}')
+    if [ -n "$selected_file" ]; then
+        vim "$selected_file"
+    fi
+}
+alias vimz=select-vim-file
 
 if [ -n "${ZSH_VERSION:-}" ]; then
     # 過去に実行したコマンドを選択

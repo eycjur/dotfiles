@@ -1,7 +1,7 @@
 onboarding = false
 
 [terminal]
-default_shell = "/bin/zsh"
+default_shell = "zsh"
 
 [keys]
 prefix = "ctrl+g"
@@ -20,3 +20,17 @@ switch_ascii_input_source_in_prefix = true
 
 [ui]
 agent_panel_sort = "spaces"
+prompt_new_tab_name = false
+
+[ui.sidebar.agents]
+# 1行目: エージェント種別と状態
+# 2行目: Claude Codeなどが設定したターミナルタイトル
+# 3行目: workspaceとtab
+rows = [
+  ["state_icon", "agent", "state_text"],
+  ["terminal_title_stripped"],
+  ["workspace", "tab"],
+]
+
+[ui.toast]
+delivery = "herdr"
