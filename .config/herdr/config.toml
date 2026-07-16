@@ -8,7 +8,7 @@ prefix = "ctrl+g"
 detach = "prefix+d"
 help = "prefix+/"
 
-split_vertical = "prefix+¥"
+split_vertical = "prefix+\\"
 # split-window: prefix+minus(default)
 
 [theme]
@@ -17,3 +17,6 @@ name = "terminal"
 [experimental]
 # macOS + IME 利用時、prefix 中だけ ASCII 入力源に切り替える
 switch_ascii_input_source_in_prefix = true
+
+[ui]
+agent_panel_sort = "spaces"

@@ -13,7 +13,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 DOT_DIR="$(pwd)"
-DOT_FILES=(.bashrc .zshrc .zshenv .vimrc .gitconfig .gitconfig.local .tmux.conf .npmrc .config/git/* .config/uv/* .config/nvim/* .config/herdr/* .config/agentsb/*)
+DOT_FILES=(.bashrc .zshrc .zshenv .vimrc .gitconfig .gitconfig.local .tmux.conf .npmrc .config/git/* .config/uv/* .config/nvim/* .config/herdr/* .config/agentsb/* .config/yazi/*)
 
 for file in ${DOT_FILES[@]}; do
     if [ ! -e "${DOT_DIR}/${file}" ]; then
