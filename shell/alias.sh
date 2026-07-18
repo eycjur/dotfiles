@@ -42,6 +42,7 @@ alias his="history 1 | grep "
 alias psa="ps aucr"
 mkcd() { mkdir -p "$@" && cd "$1"; }
 groot() { cd "$(git rev-parse --show-toplevel)"; }
+secret-shell() { op run --env-file="$PWD/.env" -- zsh; }
 alias clear="clear && printf '\e[3J'"
 alias drmia='docker rmi $(docker images -q)'
 

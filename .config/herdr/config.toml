@@ -6,10 +6,28 @@ default_shell = "zsh"
 [keys]
 prefix = "ctrl+g"
 detach = "prefix+d"
-help = "prefix+/"
+new_tab = "prefix+t"
 
 split_vertical = "prefix+\\"
 # split-window: prefix+minus(default)
+
+# [[keys.command]]
+# key = "prefix+ctrl+g"
+# type = "pane"
+# command = "lazygit"
+# description = "open lazygit"
+
+[[keys.command]]
+key = "prefix+ctrl+y"
+type = "pane"
+command = "yazi"
+description = "open yazi"
+
+[[keys.command]]
+key = "prefix+ctrl+h"
+type = "pane"
+command = "hunk"
+description = "open hunk"
 
 [theme]
 name = "terminal"
@@ -28,8 +46,7 @@ prompt_new_tab_name = false
 # 3行目: workspaceとtab
 rows = [
   ["state_icon", "agent", "state_text"],
-  ["terminal_title_stripped"],
-  ["workspace", "tab"],
+  ["tab", "terminal_title_stripped"]
 ]
 
 [ui.toast]

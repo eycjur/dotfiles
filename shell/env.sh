@@ -8,6 +8,7 @@ export PATH="${HOME}/.rd/bin:${PATH}"  # rancher desktop
 export PATH="${HOME}/.lmstudio/bin:${PATH}"
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:${PATH}"
 export TTY=$(tty)
+export UV_MALWARE_CHECK=1
 
 # Local auto detect
 if locale -a 2>/dev/null | grep -q "ja_JP.UTF-8"; then

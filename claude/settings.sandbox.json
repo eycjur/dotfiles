@@ -16,7 +16,14 @@
       "Read(./*credentials*)",
       "Read(./secrets/**)",
       "Read(**/*.pem)",
-      "Read(**/*.key)"
+      "Read(**/*.key)",
+      "Bash(gh issue create:*)",
+      "Bash(gh issue delete:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh pr close:*)",
+      "Bash(gh repo delete:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "defaultMode": "bypassPermissions"
   },
