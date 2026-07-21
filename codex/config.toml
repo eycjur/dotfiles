@@ -61,5 +61,13 @@ notification_condition = "always"
 [projects."/Users/kmuto/dotfiles"]
 trust_level = "trusted"
 
+[projects."/Users/kmuto/programing/git/airas"]
+trust_level = "trusted"
+
 [features]
 hooks = true
+
+[hooks.state]
+
+[hooks.state."/Users/kmuto/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:0523ae1e29b703d1b64ae20f664f4198d7254024fd226c29f962b7e394876430"

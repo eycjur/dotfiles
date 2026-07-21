@@ -128,6 +128,9 @@
       "Bash(gh issue delete:*)",
       "Bash(gh pr create:*)",
       "Bash(gh pr close:*)",
+      "Bash(gh pr comment:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(gh pr review:*)",
       "Bash(gh repo delete:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)"
