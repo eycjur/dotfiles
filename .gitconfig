@@ -75,6 +75,7 @@
     pager = "LESSCHARSET=utf-8 less"
     whitespace = cr-at-eol
     ignorecase = false
+    checkStat = minimal
 
 [diff]
     algorithm = histogram
@@ -128,6 +129,7 @@
     pushInsteadOf = git://github.com/
     pushInsteadOf = https://github.com/
     pushInsteadOf = https://git::@github.com/
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
