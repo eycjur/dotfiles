@@ -31,10 +31,14 @@ for file in ${DOT_FILES[@]}; do
 done
 
 echo "create symbolic link: shell"
-ln -sf "${DOT_DIR}/shell" ~/shell
+ln -sfn "${DOT_DIR}/shell" ~/shell
 
 # vim plugin
 source "${DOT_DIR}/shell/vim_plugin.sh"
+
+# yazi plugin
+source "${DOT_DIR}/shell/yazi_plugin.sh"
+
 
 # claude codeの設定ファイル
 mkdir -p ~/.claude

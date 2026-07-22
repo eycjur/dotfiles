@@ -1,7 +1,3 @@
-[container]
-cpus   = 4
-memory = "4g"
-
 [dotfiles]
 repository      = "https://github.com/eycjur/dotfiles.git"
 target_path     = "~/dotfiles"
