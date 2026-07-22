@@ -11,11 +11,11 @@ __prompt_prefix() {
     if [ -f /.dockerenv ]; then
         prefix+="%F{cyan}(docker)%f"
     fi
-    if is_apple_container; then
-        prefix+="%F{red}(apple/container)%f"
-    fi
     if [ -n "${SANDBOX_VM_ID:-}" ]; then
-        prefix+="%F{208}(sandbox)%f"
+        prefix+="%F{208}(docker sandbox)%f"
+    # apple/container は docker sandbox と重複するので、docker sandbox を先にチェックする
+    elif is_apple_container; then
+        prefix+="%F{red}(apple/container)%f"
     fi
     if [ -n "${IS_SANDBOX:-}" ]; then
         # 🛡️(U+FE0F付き)はzshの幅計算が1になり次の文字と重なる。🍎と同様に単一コードポイント+スペース

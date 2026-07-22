@@ -2,3 +2,4 @@
 shell/custom.sh
 .gitconfig.local
 .serena
+secrets.*

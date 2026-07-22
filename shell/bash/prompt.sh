@@ -11,11 +11,14 @@ __prompt_prefix() {
     if [ -f /.dockerenv ]; then
         prefix+=$'\[\033[36m\](docker)\[\033[0m\]'
     fi
-    if is_apple_container; then
+    if [ -n "${SANDBOX_VM_ID:-}" ]; then
+        prefix+=$'\[\033[38;5;208m\](docker sandbox)\[\033[0m\]'
+    # apple/container は docker sandbox と重複するので、docker sandbox を先にチェックする
+    elif is_apple_container; then
         prefix+=$'\[\033[31m\](apple/container)\[\033[0m\]'
     fi
-    if [ -n "${SANDBOX_VM_ID:-}" ]; then
-        prefix+=$'\[\033[38;5;208m\](sandbox)\[\033[0m\]'
+    if [ -n "${IS_SANDBOX:-}" ]; then
+        prefix=$'\[\033[38;5;208m\]🛡 \[\033[0m\]'"${prefix}"
     fi
     printf '%s' "$prefix"
 }
