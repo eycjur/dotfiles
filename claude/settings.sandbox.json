@@ -37,7 +37,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "printf '\\a' > $TTY || true"
+            "command": "[ -n \"$TTY\" ] && [ -c \"$TTY\" ] && printf '\\a' > \"$TTY\" || true"
           }
         ]
       }

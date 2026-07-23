@@ -111,4 +111,5 @@ if [ -n "${ZSH_VERSION:-}" ]; then
     alias -g alias.sh='~/shell/alias.sh'
     alias -g git_info_exclude='$(git rev-parse --show-toplevel 2>/dev/null)/.git/info/exclude'
     alias -g git_config='$(git rev-parse --show-toplevel 2>/dev/null)/.git/config'
+    alias -g secrets.toml='~/.config/agentsb/secrets.toml'
 fi

@@ -7,7 +7,11 @@ export PATH="${HOME}/local/go/bin:${PATH}"
 export PATH="${HOME}/.rd/bin:${PATH}"  # rancher desktop
 export PATH="${HOME}/.lmstudio/bin:${PATH}"
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:${PATH}"
-export TTY=$(tty)
+if TTY=$(tty) && [ -c "$TTY" ]; then
+    export TTY
+else
+    unset TTY
+fi
 export UV_MALWARE_CHECK=1
 
 # Local auto detect

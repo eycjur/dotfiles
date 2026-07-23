@@ -2,3 +2,7 @@
 repository      = "https://github.com/eycjur/dotfiles.git"
 target_path     = "~/dotfiles"
 install_command = "install.sh"
+
+[secrets]
+source = "1password"
+ref    = "op://Personal/secrets.toml/notesPlain"

@@ -12,7 +12,7 @@ project_doc_fallback_filenames = ["CLAUDE.md"]
 web_search = "cached"
 commit_attribution = ""
 
-notify = ["bash", "-c", "printf '\\a' > $TTY || true"]
+notify = ["bash", "-c", "[ -n \"$TTY\" ] && [ -c \"$TTY\" ] && printf '\\a' > \"$TTY\" || true"]
 
 [analytics]
 enabled = false
