@@ -59,7 +59,7 @@ __prompt_git_info() {
 }
 
 __set_prompt() {
-    local exit_code=$?
+    local exit_code=${1:-$?}
     local exit_part="" prefix="" git_part="" prompt_char='$' pwd_part
 
     [ "$(id -u)" -eq 0 ] && prompt_char='#'
@@ -80,8 +80,22 @@ __set_prompt() {
     PS1+=$'\n\[\033[37m\]'"${prompt_char} "$'\[\033[0m\]'
 }
 
+# ディレクトリ移動時に ll（zsh の chpwd 相当）
+__LAST_PWD=$PWD
+__bash_prompt_command() {
+    local exit_code=$?
+    if [ "$__LAST_PWD" != "$PWD" ]; then
+        if command -v __recent_dirs_add >/dev/null 2>&1; then
+            __recent_dirs_add "$PWD"
+        fi
+        ll
+        __LAST_PWD=$PWD
+    fi
+    __set_prompt "$exit_code"
+}
+
 case $- in
     *i*)
-        PROMPT_COMMAND=__set_prompt
+        PROMPT_COMMAND=__bash_prompt_command
         ;;
 esac

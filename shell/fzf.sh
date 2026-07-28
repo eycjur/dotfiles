@@ -24,7 +24,38 @@
 #   {数字}: 現在カーソルのある行の文字列をスペースで区切った時のn番目(1始まり)の文字列
 
 _fzf_query() {
-    echo "${LBUFFER:-}"
+    if [ -n "${ZSH_VERSION:-}" ]; then
+        echo "${LBUFFER:-}"
+    else
+        echo "${READLINE_LINE:-}"
+    fi
+}
+
+# zsh cdr / bash 共通のディレクトリ履歴（~/.cache/chpwd-recent-dirs）
+__recent_dirs_file="${HOME}/.cache/chpwd-recent-dirs"
+
+__recent_dirs_list() {
+    local file="${__recent_dirs_file}"
+    [ -f "$file" ] || return 0
+    sed -e "s/^\$'//" -e "s/'$//" "$file" | awk '{ if ($0 !~ /[\/~]\./ ){ print $0 }}'
+}
+
+__recent_dirs_add() {
+    local dir="${1:-$PWD}"
+    local file="${__recent_dirs_file}"
+    local escaped line tmp
+    mkdir -p "${HOME}/.cache"
+    escaped=${dir//\\/\\\\}
+    escaped=${escaped//\'/\\\'}
+    line="\$'${escaped}'"
+    tmp=$(mktemp "${file}.XXXXXX") || return
+    {
+        printf '%s\n' "$line"
+        if [ -f "$file" ]; then
+            grep -Fvx -- "$line" "$file" || true
+        fi
+    } | head -n 1000 >"$tmp"
+    mv "$tmp" "$file"
 }
 
 # デフォルトのオプション
@@ -75,6 +106,32 @@ if [ -n "${ZSH_VERSION:-}" ]; then
     }
     zle -N change-directory
     bindkey '^f' change-directory
+elif [ -n "${BASH_VERSION:-}" ]; then
+    case $- in
+    *i*)
+        select-history() {
+            local selected
+            selected=$(HISTTIMEFORMAT= history | sed 's/^ *[0-9]* *//' | tac | fzf --no-multi --no-sort --query "$(_fzf_query)" --prompt="History > ")
+            if [ -n "$selected" ]; then
+                READLINE_LINE=$selected
+                READLINE_POINT=${#READLINE_LINE}
+            fi
+        }
+
+        change-directory() {
+            local selected_dir
+            selected_dir=$(__recent_dirs_list | fzf --no-multi --no-sort --query "$(_fzf_query)" --prompt="cdr >")
+            if [ -n "$selected_dir" ]; then
+                cd -- "$selected_dir" || return
+                READLINE_LINE=
+                READLINE_POINT=0
+            fi
+        }
+
+        bind -x '"\C-r": select-history'
+        bind -x '"\C-f": change-directory'
+        ;;
+    esac
 fi
 
 # swz: git switch時のブランチの切り替え
