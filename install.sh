@@ -54,11 +54,12 @@ if [ -n "${IS_SANDBOX:-}" ] || [ -f /.dockerenv ]; then
     echo "create symbolic link: .claude/settings.json (claude/settings.sandbox.json)"
 fi
 # skillsはgh skillと共存するため、skillディレクトリ単位でリンクする
+# -n: 既存がディレクトリへの symlink でも中に作らず置き換える
 mkdir -p ~/.claude/skills
 for dir in "${DOT_DIR}"/claude/skills/*/; do
     [ -d "${dir}" ] || continue
     skill_name="$(basename "${dir%/}")"
-    ln -sf "${dir%/}" ~/.claude/skills/"${skill_name}"
+    ln -sfn "${dir%/}" ~/.claude/skills/"${skill_name}"
     echo "create symbolic link: .claude/skills/${skill_name}"
 done
 

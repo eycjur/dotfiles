@@ -3,7 +3,7 @@
 # 使い方
 # ctrl+r: 過去に実行したコマンドを選択
 # ctrl+f: 過去に移動したディレクトリを選択
-# vimz: カレント以下からファイルを選んで vim で開く
+# ctrl+t: カレント以下のファイルを選んでコマンドラインに挿入
 # swz: git switch時のブランチの切り替え
 # rbz: git rebase時のブランチの選択
 # rbiz: git rebase -i時のコミットハッシュの選択
@@ -68,15 +68,14 @@ if command -v bat >/dev/null 2>&1; then
   export FZF_PREVIEW_COMMAND='bat --style=numbers --line-range=:500'
 fi
 
-# vimz: カレント以下からファイルを選んで vim で開く
-function select-vim-file() {
-    local selected_file
-    selected_file=$(fzf --no-multi --query "$(_fzf_query)" --prompt "FILE>" --preview 'cat {}')
-    if [ -n "$selected_file" ]; then
-        vim "$selected_file"
+# $(fzf) は stdin が非TTYのため FZF_DEFAULT_COMMAND が効かないので、一覧を明示的に渡す
+__fzf_list_files() {
+    if [ -n "${FZF_DEFAULT_COMMAND:-}" ]; then
+        eval "${FZF_DEFAULT_COMMAND}"
+    else
+        find . -type f ! -path '*/.git/*' 2>/dev/null | sed 's|^\./||'
     fi
 }
-alias vimz=select-vim-file
 
 if [ -n "${ZSH_VERSION:-}" ]; then
     # 過去に実行したコマンドを選択
@@ -106,6 +105,31 @@ if [ -n "${ZSH_VERSION:-}" ]; then
     }
     zle -N change-directory
     bindkey '^f' change-directory
+
+    # カレント以下のファイルを選んでコマンドラインに挿入（末尾トークンを補完）
+    function select-file() {
+        local selected query prefix preview_cmd
+        if [[ "$LBUFFER" =~ [[:space:]]$ ]]; then
+            query=""
+            prefix="$LBUFFER"
+        elif [[ "$LBUFFER" == *" "* ]]; then
+            query="${LBUFFER##* }"
+            prefix="${LBUFFER% *} "
+        else
+            query="$LBUFFER"
+            prefix=""
+        fi
+        preview_cmd="${FZF_PREVIEW_COMMAND:-cat} {}"
+        selected=$(__fzf_list_files | fzf --multi --query "$query" --prompt "FILE>" --preview "$preview_cmd")
+        if [ -n "$selected" ]; then
+            local -a files
+            files=("${(@f)selected}")
+            LBUFFER="${prefix}${(j: :)${(q)files}}"
+        fi
+        zle reset-prompt
+    }
+    zle -N select-file
+    bindkey '^t' select-file
 elif [ -n "${BASH_VERSION:-}" ]; then
     case $- in
     *i*)
@@ -128,8 +152,37 @@ elif [ -n "${BASH_VERSION:-}" ]; then
             fi
         }
 
+        # カレント以下のファイルを選んでコマンドラインに挿入（末尾トークンを補完）
+        select-file() {
+            local selected query prefix before after preview_cmd quoted line
+            before="${READLINE_LINE:0:${READLINE_POINT}}"
+            after="${READLINE_LINE:${READLINE_POINT}}"
+            if [[ "$before" =~ [[:space:]]$ ]] || [ -z "$before" ]; then
+                query=""
+                prefix="$before"
+            elif [[ "$before" == *" "* ]]; then
+                query="${before##* }"
+                prefix="${before% *} "
+            else
+                query="$before"
+                prefix=""
+            fi
+            preview_cmd="${FZF_PREVIEW_COMMAND:-cat} {}"
+            selected=$(__fzf_list_files | fzf --multi --query "$query" --prompt "FILE>" --preview "$preview_cmd")
+            if [ -n "$selected" ]; then
+                quoted=""
+                while IFS= read -r line; do
+                    [ -n "$line" ] || continue
+                    quoted+=$(printf '%q ' "$line")
+                done <<< "$selected"
+                READLINE_LINE="${prefix}${quoted% }$after"
+                READLINE_POINT=$((${#READLINE_LINE} - ${#after}))
+            fi
+        }
+
         bind -x '"\C-r": select-history'
         bind -x '"\C-f": change-directory'
+        bind -x '"\C-t": select-file'
         ;;
     esac
 fi
