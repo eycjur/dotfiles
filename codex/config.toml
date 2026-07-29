@@ -57,11 +57,16 @@ exclude = [
 alternate_screen = "always"
 notification_method = "bel"
 notification_condition = "always"
+status_line = ["model-with-reasoning", "current-dir", "reasoning", "run-state", "approval-mode", "context-used", "five-hour-limit", "weekly-limit", "task-progress"]
+status_line_use_colors = true
 
 [projects."/Users/kmuto/dotfiles"]
 trust_level = "trusted"
 
 [projects."/Users/kmuto/programing/git/airas"]
+trust_level = "trusted"
+
+[projects."/Users/kmuto"]
 trust_level = "trusted"
 
 [features]

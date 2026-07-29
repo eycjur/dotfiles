@@ -6,6 +6,9 @@ export CONTAINER_DEFAULT_PLATFORM=linux/arm64
 if ! is_command_exists "fzf"; then
     brew install fzf
 fi
+if ! is_command_exists "jq"; then
+    brew install jq
+fi
 if ! is_command_exists "betterleaks"; then
     brew install betterleaks
 fi

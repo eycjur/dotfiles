@@ -2,8 +2,8 @@ source ~/shell/functions.sh
 
 # TTYなし（非対話）またはSLURM（非sudo）環境ではインストールを避ける
 if [ -t 0 ] && [ -z "${SLURM_CONF_SERVER:-}" ]; then
-    if ! is_command_exists "fzf" || ! is_command_exists "vim" || ! is_command_exists "gh" ; then
-        sudo apt update && sudo apt install -y fzf vim gh
+    if ! is_command_exists "fzf" || ! is_command_exists "vim" || ! is_command_exists "gh" || ! is_command_exists "jq" ; then
+        sudo apt update && sudo apt install -y fzf vim gh jq
     fi
     if ! is_command_exists "npx" ; then
         sudo apt install -y npm
@@ -12,6 +12,7 @@ fi
 
 UV_VERSION="0.11.21"
 FZF_VERSION="0.74.0"
+JQ_VERSION="1.8.2"
 
 if ! is_command_exists "uvx" ; then
     curl -LsSf "https://astral.sh/uv/${UV_VERSION}/install.sh" | sh
