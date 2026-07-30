@@ -101,15 +101,17 @@ if [ -n "${ZSH_VERSION:-}" ]; then
     alias -g L='less'
 
     # 設定ファイルの短縮アクセス
-    alias -g ssh_config='~/.ssh/config'
+    alias -g sshconfig='~/.ssh/config'
     alias -g zshenv='~/.zshenv'
     alias -g zshrc='~/.zshrc'
     alias -g vimrc='~/.vimrc'
     alias -g gitconfig='~/.gitconfig'
     alias -g gitconfig.local='~/.gitconfig.local'
     alias -g gitignore='~/.config/git/ignore'
-    alias -g alias.sh='~/shell/alias.sh'
-    alias -g git_info_exclude='$(git rev-parse --show-toplevel 2>/dev/null)/.git/info/exclude'
-    alias -g git_config='$(git rev-parse --show-toplevel 2>/dev/null)/.git/config'
+    alias -g aliassh='~/shell/alias.sh'
+    alias -g claudemd='~/.claude/CLAUDE.md'
+    alias -g agentsmd='~/.codex/AGENTS.md'
+    alias -g gitinfoexclude='$(git rev-parse --show-toplevel 2>/dev/null)/.git/info/exclude'
+    alias -g gitconfiglocal='$(git rev-parse --show-toplevel 2>/dev/null)/.git/config'
     alias -g secrets.toml='~/.config/agentsb/secrets.toml'
 fi

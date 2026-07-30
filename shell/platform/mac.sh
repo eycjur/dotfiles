@@ -2,6 +2,7 @@ source ~/shell/functions.sh
 
 export PATH="/opt/homebrew/bin:${PATH}"
 export CONTAINER_DEFAULT_PLATFORM=linux/arm64
+export SSH_AUTH_SOCK="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
 if ! is_command_exists "fzf"; then
     brew install fzf

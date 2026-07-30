@@ -6,3 +6,6 @@ install_command = "install.sh"
 [secrets]
 source = "1password"
 ref    = "op://Personal/secrets.toml/notesPlain"
+
+[ssh]
+identity_agent  = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
