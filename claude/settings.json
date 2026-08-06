@@ -94,7 +94,7 @@
     ],
     "defaultMode": "acceptEdits"
   },
-  "model": "sonnet",
+  "model": "fable",
   "hooks": {
     "SessionStart": [
       {

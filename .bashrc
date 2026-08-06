@@ -23,3 +23,7 @@ case ${OSTYPE} in
 esac
 
 source ~/shell/bash/prompt.sh
+
+if [[ -e ~/shell/custom.sh ]]; then
+    source ~/shell/custom.sh
+fi
