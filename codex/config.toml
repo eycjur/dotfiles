@@ -60,10 +60,10 @@ notification_condition = "always"
 status_line = ["model-with-reasoning", "current-dir", "reasoning", "run-state", "approval-mode", "context-used", "five-hour-limit", "weekly-limit", "task-progress"]
 status_line_use_colors = true
 
-[projects."/Users/kmuto/dotfiles"]
-trust_level = "trusted"
+[tui.model_availability_nux]
+"gpt-5.6-sol" = 4
 
-[projects."/Users/kmuto/programing/git/airas"]
+[projects."/Users/kmuto/dotfiles"]
 trust_level = "trusted"
 
 [projects."/Users/kmuto"]

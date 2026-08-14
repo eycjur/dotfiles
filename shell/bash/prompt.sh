@@ -5,12 +5,12 @@ source ~/shell/functions.sh
 
 __bash_prompt_prefix() {
     # zsh と見分けるため常に表示
-    local prefix=$'\[\033[43;30m\](bash)\[\033[0m\]'
+    local prefix=$'\[\033[33m\](bash)\[\033[0m\]'
     if [ -n "${CODESPACE_NAME:-}" ]; then
         prefix+=$'\[\033[33m\](codespace)\[\033[0m\]'
     fi
     if [ -n "${SLURM_NODEID:-}" ]; then
-        prefix+=$'\[\033[33m\](node:'"${SLURM_NODEID}"$')\[\033[0m\]'
+        prefix+=$'\[\033[43;30m\](job:'"${SLURM_JOBID}"$', gpu:'"${SLURM_GPUS}"$')\[\033[0m\]'
     fi
     if [ -n "${SSH_CONNECTION:-}" ] || [ -n "${SSH_CLIENT:-}" ] || [ -n "${SSH_TTY:-}" ]; then
         prefix+=$'\[\033[35m\](ssh)\[\033[0m\]'

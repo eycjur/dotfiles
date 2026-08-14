@@ -135,7 +135,8 @@
     "playground@claude-plugins-official": true,
     "remember@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
-    "cloudflare@claude-plugins-official": true
+    "cloudflare@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true
   },
   "outputStyle": "Explanatory",
   "language": "japanese",

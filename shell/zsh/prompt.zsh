@@ -6,7 +6,7 @@ __zsh_prompt_prefix() {
         prefix+="%F{yellow}(codespace)%f"
     fi
     if [ -n "${SLURM_NODEID:-}" ]; then
-        prefix+="%F{yellow}(node:${SLURM_NODEID})%f"
+        prefix+="%K{yellow}%F{black}(job:${SLURM_JOBID}, gpu:${SLURM_GPUS})%f%k"
     fi
     if [ -n "${SSH_CONNECTION:-}" ] || [ -n "${SSH_CLIENT:-}" ] || [ -n "${SSH_TTY:-}" ]; then
         prefix+="%F{magenta}(ssh)%f"
