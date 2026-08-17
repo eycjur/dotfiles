@@ -4,31 +4,7 @@
 source ~/shell/functions.sh
 
 __bash_prompt_prefix() {
-    # zsh と見分けるため常に表示
-    local prefix=$'\[\033[33m\](bash)\[\033[0m\]'
-    if [ -n "${CODESPACE_NAME:-}" ]; then
-        prefix+=$'\[\033[33m\](codespace)\[\033[0m\]'
-    fi
-    if [ -n "${SLURM_NODEID:-}" ]; then
-        prefix+=$'\[\033[43;30m\](job:'"${SLURM_JOBID}"$', gpu:'"${SLURM_GPUS}"$')\[\033[0m\]'
-    fi
-    if [ -n "${SSH_CONNECTION:-}" ] || [ -n "${SSH_CLIENT:-}" ] || [ -n "${SSH_TTY:-}" ]; then
-        prefix+=$'\[\033[35m\](ssh)\[\033[0m\]'
-    fi
-    if [ -f /.dockerenv ]; then
-        prefix+=$'\[\033[36m\](docker)\[\033[0m\]'
-    fi
-    if [ -n "${SANDBOX_VM_ID:-}" ]; then
-        prefix+=$'\[\033[38;5;208m\](docker sandbox)\[\033[0m\]'
-    # apple/container は docker sandbox と重複するので、docker sandbox を先にチェックする
-    elif is_apple_container; then
-        prefix+=$'\[\033[31m\](apple/container)\[\033[0m\]'
-    fi
-    if [ -n "${IS_SANDBOX:-}" ]; then
-        # zsh と同様、幅が安定する単一コードポイント+スペース
-        prefix=$'\[\033[38;5;208m\]🛡 \[\033[0m\]'"${prefix}"
-    fi
-    printf '%s' "$prefix"
+    __prompt_env_prefix bash
 }
 
 __prompt_pwd() {

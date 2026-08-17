@@ -1,30 +1,7 @@
 source ~/shell/functions.sh
 
 __zsh_prompt_prefix() {
-    local prefix=""
-    if [ -n "${CODESPACE_NAME:-}" ]; then
-        prefix+="%F{yellow}(codespace)%f"
-    fi
-    if [ -n "${SLURM_NODEID:-}" ]; then
-        prefix+="%K{yellow}%F{black}(job:${SLURM_JOBID}, gpu:${SLURM_GPUS})%f%k"
-    fi
-    if [ -n "${SSH_CONNECTION:-}" ] || [ -n "${SSH_CLIENT:-}" ] || [ -n "${SSH_TTY:-}" ]; then
-        prefix+="%F{magenta}(ssh)%f"
-    fi
-    if [ -f /.dockerenv ]; then
-        prefix+="%F{cyan}(docker)%f"
-    fi
-    if [ -n "${SANDBOX_VM_ID:-}" ]; then
-        prefix+="%F{208}(docker sandbox)%f"
-    # apple/container は docker sandbox と重複するので、docker sandbox を先にチェックする
-    elif is_apple_container; then
-        prefix+="%F{red}(apple/container)%f"
-    fi
-    if [ -n "${IS_SANDBOX:-}" ]; then
-        # 🛡️(U+FE0F付き)はzshの幅計算が1になり次の文字と重なる。🍎と同様に単一コードポイント+スペース
-        prefix="%F{208}🛡 %f${prefix}"
-    fi
-    printf '%s' "$prefix"
+    __prompt_env_prefix zsh
 }
 
 # テーマを追加
