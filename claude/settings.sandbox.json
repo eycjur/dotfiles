@@ -2,7 +2,7 @@
   "env": {
     "DISABLE_TELEMETRY": "1",
     "DISABLE_ERROR_REPORTING": "1",
-    "CLAUDE_CODE_SCROLL_SPEED": "5"
+    "CLAUDE_CODE_SCROLL_SPEED": "3"
   },
   "attribution": {
     "commit": "",

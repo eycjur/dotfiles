@@ -103,6 +103,7 @@ iTunes Lookup API で公開中バージョンを取得し、現行より新し�
 
 - **サポートページとプライバシーポリシーはApp Store提出に必須**。本体リポジトリがprivateでも、公開用リポジトリ＋GitHub Pagesで無料公開できる（本体リポジトリからはsubmoduleとして参照すると管理しやすい）
 - 公開用リポジトリはGitHubの `eycjur` アカウントに `<アプリ名>-pages` の命名で作り、`https://eycjur.github.io/<アプリ名>-pages/` で公開する。ページの構成・内容は https://github.com/eycjur/infinite-alarm-pages を参考にする
+- ブランチ運用: GitHub Pagesは `main` から公開されるため、**`main` は常にApp Storeで公開中のアプリの状態と一致させる**。未リリース版に向けたページ更新は `develop` ブランチで進め、アプリのアップデートが公開されたタイミングで `main` にマージする（審査中の機能説明が先にページへ出てしまうのを防ぐ）
 - アプリの対応言語（「9. ローカライズ」参照）に合わせ、日本語＋英語の場合は `/ja/support.html` `/en/support.html` のようにディレクトリを分け、アプリからは `Bundle.main.preferredLocalizations.first` で振り分ける
 - 問い合わせ窓口は公開リポジトリのGitHub Issuesで足りる。Issueテンプレート（`bug_report.yml` / `feature_request.yml`）を用意し、アプリからはクエリパラメータで環境情報をプリセットしたURLを開く:
 
