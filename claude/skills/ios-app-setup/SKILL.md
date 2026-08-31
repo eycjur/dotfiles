@@ -12,17 +12,10 @@ description: iOSアプリ開発時に必要な標準設定・仕組みのチェ�
 `.xcodeproj` はgit管理せず、`project.yml` から XcodeGen で生成する運用にする。
 差分レビューが容易になり、pbxprojのコンフリクトがなくなる。
 
-- `.gitignore` に `*.xcodeproj` / `xcuserdata/` / `DerivedData/` / `.build/` を追加
-- Makefile に定型コマンドをまとめる:
-  - `make setup` — xcodegen未インストール時のみ `brew install xcodegen`
-  - `make generate` — `xcodegen generate`
-  - `make open` — generate してから `open -a /Applications/Xcode.app <project>`
-  - `make run` — 実機向けにビルドし、インストールして起動する単一コマンド: `xcodebuild -project ... -scheme ... -destination 'platform=iOS,id=$(DEVICE_ID)' -derivedDataPath build build` → `xcrun devicectl device install app --device $(DEVICE_ID) build/Build/Products/Debug-iphoneos/<App>.app` → `xcrun devicectl device process launch --terminate-existing --device $(DEVICE_ID) <Bundle ID>`（`.app` のパスを固定するため `-derivedDataPath build` を指定する。`build/` はgitignoreに追加）
-  - `make run-sim` — シミュレータ向けにビルドし、インストールして起動する単一コマンド: `xcodebuild ... -destination 'platform=iOS Simulator,name=$(SIMULATOR)' -derivedDataPath build build` → `xcrun simctl boot "$(SIMULATOR)"` → `open -a Simulator` → `xcrun simctl install booted build/Build/Products/Debug-iphonesimulator/<App>.app` → `xcrun simctl launch booted <Bundle ID>`（`SIMULATOR ?= iPhone Air` を既定にする（App Storeスクリーンショット撮影用）。`make run-sim SIMULATOR="iPhone 17 Pro"` で一時変更可）。ビルドのみの`build`/`build-sim`ターゲットは分けず`run`/`run-sim`に統合し、コマンド数を絞る
-  - `make test` / `make test-spm` / `make clean`（cleanでは `-derivedDataPath` の出力先も削除する）
-  - `open` / `run` / `run-sim` / `test` は `generate` に依存させる（`run: generate` のように書く）。`project.yml` の変更が常に反映され、`xcodegen generate` は冪等で速いため毎回実行してよい
-- Makefile冒頭の変数:
-  - `DEVICE_ID ?= 00008140-00126D091A82801C` — ユーザー（kmuto）のiPhoneのUDID。新規アプリでもこの値をそのまま使う
+- `.gitignore` に `*.xcodeproj` / `xcuserdata/` / `DerivedData/` / `.build/` / `build/` を追加
+- 定型コマンドは [templates/Makefile](templates/Makefile) をコピーし、`MyApp` と `BUNDLE_ID` を置き換える
+- 必須ターゲット: `setup` / `generate` / `open` / `run` / `run-sim` / `test` / `test-spm` / `clean`
+- `open` / `run` / `run-sim` / `test` は `generate` に依存させる。`xcodegen generate` は冪等で速いため毎回実行してよい
 - 複数Xcodeがある環境向けに `export DEVELOPER_DIR = $(XCODE_APP)/Contents/Developer` をMakefileで固定
 - Xcode Cloud利用時は `ci_scripts/ci_post_clone.sh` でクローン直後に生成:
 
