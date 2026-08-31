@@ -79,6 +79,7 @@
       "Read(./credentials/**)",
       "Read(./*credentials*)",
       "Read(./secrets/**)",
+      "Read(./.dev.vars)",
       "Read(**/*.pem)",
       "Read(**/*.key)",
       "Bash(gh issue create:*)",
