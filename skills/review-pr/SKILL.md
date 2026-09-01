@@ -1,6 +1,6 @@
 ---
 name: review-pr
-description: GitHub PRをレビューします。PRの差分を取得し、コードの品質、セキュリティ、保守性の観点からレビューを行います。使用方法: /review-pr <PR番号>
+description: GitHub PRをレビューします。PRの差分を取得し、コードの品質、セキュリティ、保守性の観点からレビューを行います。使用方法： /review-pr <PR番号>
 ---
 
 # PR Review Skill

@@ -1,0 +1,124 @@
+{
+  "version": 3,
+  "skills": {
+    "drawio-skill": {
+      "source": "agents365-ai/drawio-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/agents365-ai/drawio-skill.git",
+      "skillPath": "skills/drawio-skill/SKILL.md",
+      "skillFolderHash": "aa3d99171c949c15d00c986c8127c60a15bade56",
+      "installedAt": "2026-05-18T12:26:15Z",
+      "updatedAt": "2026-09-01T00:37:01.852Z"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/anthropics/skills.git",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "skillFolderHash": "0d5b74a14bdf3ebcd64f352d06376a2ef05ed296",
+      "pluginName": "example-skills",
+      "installedAt": "2026-05-18T12:04:04Z",
+      "updatedAt": "2026-08-31T23:59:30.660Z"
+    },
+    "natural-japanese": {
+      "source": "coji/natural-japanese",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/coji/natural-japanese.git",
+      "skillPath": "skills/natural-japanese/SKILL.md",
+      "skillFolderHash": "db9b5cbe66bf94f670c4df7473513b45b328f52d",
+      "installedAt": "2026-08-20T20:06:04Z",
+      "updatedAt": "2026-08-31T23:59:41.994Z"
+    },
+    "visual-explainer": {
+      "source": "nicobailon/visual-explainer",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/nicobailon/visual-explainer.git",
+      "skillPath": "plugins/visual-explainer/SKILL.md",
+      "skillFolderHash": "898ebc2b3509af8664b48922e4abc40d71233c4c",
+      "installedAt": "2026-08-20T20:07:44Z",
+      "updatedAt": "2026-08-31T23:59:45.107Z"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "skillFolderHash": "3116f3e62dbd02b44a598b1aa690d2a8938e8f89",
+      "installedAt": "2026-05-18T12:09:05Z",
+      "updatedAt": "2026-08-31T23:59:47.726Z"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
+      "installedAt": "2026-08-31T23:59:28.123Z",
+      "updatedAt": "2026-08-31T23:59:28.123Z"
+    },
+    "pptx": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/anthropics/skills.git",
+      "skillPath": "skills/pptx/SKILL.md",
+      "skillFolderHash": "64529c8b3f35fe632b7256bd2f6d46e4b40160ce",
+      "pluginName": "document-skills",
+      "installedAt": "2026-08-31T23:59:30.661Z",
+      "updatedAt": "2026-08-31T23:59:30.661Z"
+    },
+    "remotion-best-practices": {
+      "source": "remotion-dev/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/remotion-dev/skills.git",
+      "skillPath": "skills/remotion-best-practices/SKILL.md",
+      "skillFolderHash": "27d836c735a779d50ed8b273839d9b03fef94816",
+      "installedAt": "2026-09-01T00:00:36.162Z",
+      "updatedAt": "2026-09-01T00:00:36.162Z"
+    },
+    "cloudflare": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/cloudflare/SKILL.md",
+      "skillFolderHash": "a92bec38b7b5ff5e634b509c7ff3c289d9d61290",
+      "installedAt": "2026-09-01T00:23:42.764Z",
+      "updatedAt": "2026-09-01T00:23:42.764Z"
+    },
+    "durable-objects": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/durable-objects/SKILL.md",
+      "skillFolderHash": "72810f48414f2e68d0aa65a8895f749c959dea91",
+      "installedAt": "2026-09-01T00:23:42.765Z",
+      "updatedAt": "2026-09-01T00:23:42.765Z"
+    },
+    "wrangler": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/wrangler/SKILL.md",
+      "skillFolderHash": "45cc198b2aad3f06e8abf91333f55fbe7579f659",
+      "installedAt": "2026-09-01T00:23:42.767Z",
+      "updatedAt": "2026-09-01T00:23:42.767Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "antigravity",
+    "antigravity-cli",
+    "cline",
+    "codex",
+    "cursor",
+    "deepagents",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-code-cli",
+    "opencode",
+    "warp",
+    "zed"
+  ]
+}

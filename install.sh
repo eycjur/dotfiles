@@ -53,15 +53,6 @@ if [ -n "${IS_SANDBOX:-}" ] || [ -f /.dockerenv ]; then
     ln -sf "${DOT_DIR}/claude/settings.sandbox.json" ~/.claude/settings.json
     echo "create symbolic link: .claude/settings.json (claude/settings.sandbox.json)"
 fi
-# skillsはgh skillと共存するため、skillディレクトリ単位でリンクする
-# -n: 既存がディレクトリへの symlink でも中に作らず置き換える
-mkdir -p ~/.claude/skills
-for dir in "${DOT_DIR}"/claude/skills/*/; do
-    [ -d "${dir}" ] || continue
-    skill_name="$(basename "${dir%/}")"
-    ln -sfn "${dir%/}" ~/.claude/skills/"${skill_name}"
-    echo "create symbolic link: .claude/skills/${skill_name}"
-done
 
 # codexの設定ファイル
 mkdir -p ~/.codex
@@ -72,10 +63,11 @@ for file in "${DOT_DIR}"/codex/*; do
     fi
 done
 
-# codex/cursorのskillsは~/.claude/skillsを参照する(gh skill管理)
-mkdir -p ~/.cursor
-ln -sfn "${HOME}/.claude/skills" "${HOME}/.codex/skills"
-ln -sfn "${HOME}/.claude/skills" "${HOME}/.cursor/skills"
+# skill-lock.jsonを読み込んでskillsを追加する
+# Hack: lockファイルの更新端末のみdotfiles/.skill-lock.jsonを~/.agentsにsymlinkしている
+jq -r '.skills|to_entries[]|"npx skills add \(.value.source) -g -s \(.key) -a claude-code -a codex -a cursor -y"' "${DOT_DIR}/.skill-lock.json" | sh
+# ローカルのskillsを追加する
+npx skills add ./skills -g -s '*' -a claude-code -a codex -a cursor -y
 
 # 設定を読み込んで適用する
 set +u
