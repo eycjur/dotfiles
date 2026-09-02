@@ -202,8 +202,11 @@
     }
   },
   "alwaysThinkingEnabled": true,
-  "effortLevel": "high",
-  "skipDangerousModePermissionPrompt": true,
+  "tui": "fullscreen",
   "theme": "dark",
-  "tui": "fullscreen"
+  "modelSettings": {
+    "claude-fable-5-1": {
+      "effortLevel": "medium"
+    }
+  }
 }
