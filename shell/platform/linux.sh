@@ -1,7 +1,7 @@
 source ~/shell/functions.sh
 
-# TTYなし（非対話）・SLURM・sudo権限なしでは apt インストールを避ける
-if [ -t 0 ] && [ -z "${SLURM_CONF_SERVER:-}" ] && command -v sudo >/dev/null 2>&1 && sudo -n true 2>/dev/null; then
+# SLURM・sudo権限なしでは apt インストールを避ける
+if [ -z "${SLURM_CONF_SERVER:-}" ] && command -v sudo >/dev/null 2>&1 && sudo -n true 2>/dev/null; then
     if ! is_command_exists "fzf" || ! is_command_exists "vim" || ! is_command_exists "gh" || ! is_command_exists "jq" ; then
         sudo apt update && sudo apt install -y fzf vim gh jq
     fi
