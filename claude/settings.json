@@ -95,7 +95,6 @@
     ],
     "defaultMode": "acceptEdits"
   },
-  "model": "fable",
   "hooks": {
     "SessionStart": [
       {
@@ -201,12 +200,13 @@
       ]
     }
   },
+  "model": "claude-fable-5-1[1m]",
   "alwaysThinkingEnabled": true,
-  "tui": "fullscreen",
-  "theme": "dark",
   "modelSettings": {
     "claude-fable-5-1": {
       "effortLevel": "medium"
     }
-  }
+  },
+  "tui": "fullscreen",
+  "theme": "dark"
 }

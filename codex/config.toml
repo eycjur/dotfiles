@@ -1,5 +1,5 @@
-model = "gpt-5.6-sol"
-model_reasoning_effort = "medium"
+model = "gpt-6-astra"
+model_reasoning_effort = "low"
 personality = "pragmatic"
 hide_agent_reasoning = false
 developer_instructions = "日本語で簡潔かつ丁寧に回答する。"
@@ -58,16 +58,20 @@ exclude = [
 alternate_screen = "always"
 notification_method = "bel"
 notification_condition = "always"
-status_line = ["model-with-reasoning", "current-dir", "reasoning", "run-state", "approval-mode", "context-used", "five-hour-limit", "weekly-limit", "task-progress"]
+status_line = ["model-with-reasoning", "approval-mode", "context-used", "five-hour-limit", "weekly-limit", "task-progress", "current-dir"]
 status_line_use_colors = true
 
 [tui.model_availability_nux]
 "gpt-5.6-sol" = 4
+gpt-6-astra = 3
 
 [projects."/Users/kmuto/dotfiles"]
 trust_level = "trusted"
 
 [projects."/Users/kmuto"]
+trust_level = "trusted"
+
+[projects."/Users/kmuto/programing/git/bp_isucon"]
 trust_level = "trusted"
 
 [features]

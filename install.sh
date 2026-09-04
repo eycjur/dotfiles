@@ -65,10 +65,12 @@ done
 
 # skill-lock.jsonを読み込んでskillsを追加する
 # Hack: lockファイルの更新端末のみdotfiles/.skill-lock.jsonを~/.agentsにsymlinkしている
+mkdir -p ~/.agents/skills ~/.claude/skills ~/.codex/skills
+
 if command -v jq >/dev/null 2>&1 && command -v npx >/dev/null 2>&1 && npx -y -- skills --help >/dev/null 2>&1; then
-    jq -r '.skills|to_entries[]|"npx skills add \(.value.source) -g -s \(.key) -a claude-code -a codex -a cursor -y"' "${DOT_DIR}/.skill-lock.json" | sh
+    jq -r '.skills|to_entries[]|"npx skills add \(.value.source) -g -s \(.key) -a codex -a cursor -a claude-code -y"' "${DOT_DIR}/.skill-lock.json" | sh
     # ローカルのskillsを追加する
-    npx skills add ./skills -g -s '*' -a claude-code -a codex -a cursor -y
+    npx skills add ./skills -g -s '*' -a codex -a cursor -a claude-code -y
 fi
 
 # 設定を読み込んで適用する

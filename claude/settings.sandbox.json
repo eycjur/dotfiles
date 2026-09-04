@@ -67,13 +67,14 @@
   "sandbox": {
     "enabled": false
   },
+  "model": "claude-fable-5-1[1m]",
   "alwaysThinkingEnabled": true,
-  "skipDangerousModePermissionPrompt": true,
-  "theme": "dark",
-  "tui": "fullscreen",
   "modelSettings": {
     "claude-fable-5-1": {
       "effortLevel": "medium"
     }
-  }
+  },
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark"
 }
