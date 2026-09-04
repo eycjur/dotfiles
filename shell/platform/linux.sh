@@ -10,6 +10,14 @@ if [ -t 0 ] && [ -z "${SLURM_CONF_SERVER:-}" ] && command -v sudo >/dev/null 2>&
     fi
 fi
 
+if is_command_exists "mise"; then
+    if [ -n "${ZSH_VERSION:-}" ]; then
+        eval "$(mise activate zsh)"
+    elif [ -n "${BASH_VERSION:-}" ]; then
+        eval "$(mise activate bash)"
+    fi
+fi
+
 UV_VERSION="0.11.21"
 FZF_VERSION="0.74.0"
 JQ_VERSION="1.8.2"
