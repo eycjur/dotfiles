@@ -16,6 +16,8 @@ alias ....="cd ../../.."
 
 alias a="agentsb"
 alias c="cursor"
+alias ca="cursor-agent"
+alias cad="cursor-agent --yolo"
 alias ct="container"
 alias cc="claude"
 alias ccc="claude -c"

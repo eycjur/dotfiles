@@ -8,6 +8,8 @@ export PATH="${HOME}/local/go/bin:${PATH}"
 export PATH="${HOME}/.rd/bin:${PATH}"  # rancher desktop
 export PATH="${HOME}/.lmstudio/bin:${PATH}"
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:${PATH}"
+export PATH="/home/agent/.local/bin:${PATH}"
+
 if TTY=$(tty) && [ -c "$TTY" ]; then
     export TTY
 else
