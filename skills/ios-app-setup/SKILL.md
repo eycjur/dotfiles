@@ -1,6 +1,6 @@
 ---
 name: ios-app-setup
-description: iOSアプリ開発時に必要な標準設定・仕組みのチェックリストとテンプレート集。新規iOSアプリの立ち上げ、署名・Team ID設定、バージョン番号運用、デバッガなし実機実行、起動時のアップデート確認、サポート窓口・不具合報告、ログ・診断情報、App Store提出準備のいずれかに取り組むときに使用する。
+description: iOSアプリ開発時に必要な標準設定・仕組みのチェックリストとテンプレート集。新規iOSアプリの立ち上げ、署名・Team ID設定、バージョン番号運用、デバッガなし実機実行、権限ダイアログを未回答に戻す再インストール、起動時のアップデート確認、サポート窓口・不具合報告、ログ・診断情報、App Store提出準備のいずれかに取り組むときに使用する。
 ---
 
 # iOSアプリ開発 標準設定チェックリスト
@@ -14,9 +14,10 @@ description: iOSアプリ開発時に必要な標準設定・仕組みのチェ�
 
 - `.gitignore` に `*.xcodeproj` / `xcuserdata/` / `DerivedData/` / `.build/` / `build/` を追加
 - 定型コマンドは [templates/Makefile](templates/Makefile) をコピーし、`MyApp` と `BUNDLE_ID` を置き換える
-- 必須ターゲット: `setup` / `generate` / `open` / `run` / `run-sim` / `test` / `test-spm` / `clean`
-- `open` / `run` / `run-sim` / `test` は `generate` に依存させる。`xcodegen generate` は冪等で速いため毎回実行してよい
+- 必須ターゲット: `setup` / `generate` / `open` / `run` / `reinstall` / `run-sim` / `test` / `clean`
+- `open` / `run` / `reinstall` / `run-sim` は `generate` に依存させる。`xcodegen generate` は冪等で速いため毎回実行してよい
 - 複数Xcodeがある環境向けに `export DEVELOPER_DIR = $(XCODE_APP)/Contents/Developer` をMakefileで固定
+- **権限ダイアログを初回起動時の状態に戻す**にはアプリ削除しかない。`make reinstall` でデータコンテナ（`Library` / `Documents`）を退避→アンインストール→ビルド＆インストール→復元→起動する。アプリデータ（SwiftData等）と設定（UserDefaults）はコンテナ内なので残り、権限の記録はコンテナ外のため次回起動で再びダイアログが出る。通知許可はOSがしばらく記憶することがあるので、出ないときは端末を再起動する
 - Xcode Cloud利用時は `ci_scripts/ci_post_clone.sh` でクローン直後に生成:
 
 ```sh
@@ -143,5 +144,5 @@ components.queryItems = [
 
 ## 10. テスト構成
 
-- 発火時刻計算・バージョン比較などの**純粋ロジックはFoundationのみに依存するファイルに分離**し、`Package.swift` を併設して SwiftPM（`swift test`）でも実行可能にする — Xcodeがない環境（Linux CI含む）でテストが回る
-- Xcode側のユニットテストは `make test`（`xcodebuild ... test`）で実行
+- 発火時刻計算・バージョン比較などの**純粋ロジックはFoundationのみに依存するファイルに分離**し、`Package.swift` を併設する
+- テストは `make test`（`swift test`）で実行する — Xcodeがない環境（Linux CI含む）でも回る

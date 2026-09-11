@@ -12,8 +12,12 @@ export DEVELOPER_DIR = $(XCODE_APP)/Contents/Developer
 BUILD_DIR    = build
 APP          = $(BUILD_DIR)/Build/Products/Debug-iphoneos/$(SCHEME).app
 SIM_APP      = $(BUILD_DIR)/Build/Products/Debug-iphonesimulator/$(SCHEME).app
+# make reinstall で退避するアプリのデータコンテナ（SwiftData・UserDefaults等）
+APPDATA_DIR  = $(BUILD_DIR)/appdata
+DEVICECTL_COPY = xcrun devicectl device copy $(1) --device $(DEVICE_ID) \
+	--domain-type appDataContainer --domain-identifier $(BUNDLE_ID)
 
-.PHONY: help setup generate open run run-sim test test-spm clean
+.PHONY: help setup generate open run reinstall run-sim test clean
 
 help: ## コマンド一覧を表示
 	@grep -E '^[a-z-]+:.*##' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  make %-10s %s\n", $$1, $$2}'
@@ -37,6 +41,22 @@ run: generate ## 実機へビルド・インストール・起動
 	xcrun devicectl device process launch --terminate-existing \
 		--device $(DEVICE_ID) $(BUNDLE_ID)
 
+# ストア申請用にデータを残したまま、権限情報を初期化する
+reinstall: generate ## 実機のアプリをデータ・設定を保ったまま削除・再インストールし、権限を未回答に戻す
+	rm -rf $(APPDATA_DIR)
+	mkdir -p $(APPDATA_DIR)
+	$(call DEVICECTL_COPY,from) --source Library --destination $(APPDATA_DIR)/Library
+	$(call DEVICECTL_COPY,from) --source Documents --destination $(APPDATA_DIR)/Documents
+	xcrun devicectl device uninstall app --device $(DEVICE_ID) $(BUNDLE_ID)
+	xcodebuild -project $(PROJECT) -scheme $(SCHEME) \
+		-destination 'platform=iOS,id=$(DEVICE_ID)' \
+		-derivedDataPath $(BUILD_DIR) \
+		-allowProvisioningUpdates build
+	xcrun devicectl device install app --device $(DEVICE_ID) $(APP)
+	$(call DEVICECTL_COPY,to) --source $(APPDATA_DIR)/Library --destination Library
+	$(call DEVICECTL_COPY,to) --source $(APPDATA_DIR)/Documents --destination Documents
+	xcrun devicectl device process launch --device $(DEVICE_ID) $(BUNDLE_ID)
+
 run-sim: generate ## シミュレータでビルド・インストール・起動（SIMULATOR="名前"で変更可）
 	xcodebuild -project $(PROJECT) -scheme $(SCHEME) \
 		-destination '$(DESTINATION)' -derivedDataPath $(BUILD_DIR) build
@@ -45,10 +65,7 @@ run-sim: generate ## シミュレータでビルド・インストール・起�
 	xcrun simctl install booted $(SIM_APP)
 	xcrun simctl launch booted $(BUNDLE_ID)
 
-test: generate ## ユニットテストを実行（シミュレータ）
-	xcodebuild -project $(PROJECT) -scheme $(SCHEME) -destination '$(DESTINATION)' test
-
-test-spm: ## コアロジックのみSwiftPMでテスト（Xcode不要。Linuxでも動く）
+test: ## コアロジックのみSwiftPMでテスト（Xcode不要。Linuxでも動く）
 	swift test
 
 clean: ## 生成物を削除
