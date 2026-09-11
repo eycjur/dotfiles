@@ -62,6 +62,11 @@ for file in "${DOT_DIR}"/codex/*; do
         echo "create symbolic link: .codex/$(basename "${file}")"
     fi
 done
+# sandbox or docker環境ではsandbox用の設定を使う
+if [ -n "${IS_SANDBOX:-}" ] || [ -f /.dockerenv ]; then
+    ln -sf "${DOT_DIR}/codex/config.sandbox.toml" ~/.codex/config.toml
+    echo "create symbolic link: .codex/config.toml (codex/config.sandbox.toml)"
+fi
 
 # skill-lock.jsonを読み込んでskillsを追加する
 # Hack: lockファイルの更新端末のみdotfiles/.skill-lock.jsonを~/.agentsにsymlinkしている

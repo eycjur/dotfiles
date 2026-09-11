@@ -1,0 +1,61 @@
+model = "gpt-6-astra"
+model_reasoning_effort = "medium"
+personality = "pragmatic"
+hide_agent_reasoning = false
+developer_instructions = "日本語で簡潔かつ丁寧に回答する。"
+
+# 外部サンドボックス（IS_SANDBOX / Docker）向けの yolo 設定。
+# Claude settings.sandbox.json の bypassPermissions + sandbox.enabled=false に相当。
+sandbox_mode = "danger-full-access"
+approval_policy = "never"
+default_permissions = ":danger-full-access"
+
+project_doc_fallback_filenames = ["CLAUDE.md"]
+web_search = "cached"
+commit_attribution = ""
+
+notify = ["bash", "-c", "[ -n \"$TTY\" ] && [ -c \"$TTY\" ] && printf '\\a' > \"$TTY\" || true"]
+
+[analytics]
+enabled = false
+
+[feedback]
+enabled = false
+
+[shell_environment_policy]
+inherit = "core"
+exclude = [
+  "GITHUB_TOKEN",
+  "OPENAI_API_KEY",
+  "GEMINI_API_KEY",
+  "ANTHROPIC_API_KEY",
+  "CLAUDE_CODE_OAUTH_TOKEN",
+]
+
+[tui]
+alternate_screen = "always"
+notification_method = "bel"
+notification_condition = "always"
+status_line = ["model-with-reasoning", "approval-mode", "context-used", "five-hour-limit", "weekly-limit", "task-progress", "current-dir"]
+status_line_use_colors = true
+
+[tui.model_availability_nux]
+"gpt-5.6-sol" = 4
+gpt-6-astra = 4
+
+[projects."/Users/kmuto/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/kmuto"]
+trust_level = "trusted"
+
+[projects."/Users/kmuto/programing/git/bp_isucon"]
+trust_level = "trusted"
+
+[features]
+hooks = true
+
+[hooks.state]
+
+[hooks.state."/Users/kmuto/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:0523ae1e29b703d1b64ae20f664f4198d7254024fd226c29f962b7e394876430"
