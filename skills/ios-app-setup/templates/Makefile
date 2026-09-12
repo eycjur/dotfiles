@@ -42,7 +42,7 @@ run: generate ## 実機へビルド・インストール・起動
 		--device $(DEVICE_ID) $(BUNDLE_ID)
 
 # ストア申請用にデータを残したまま、権限情報を初期化する
-reinstall: generate ## 実機のアプリをデータ・設定を保ったまま削除・再インストールし、権限を未回答に戻す
+reinstall: check-device generate ## 実機のアプリをデータ・設定を保ったまま削除・再インストールする
 	rm -rf $(APPDATA_DIR)
 	mkdir -p $(APPDATA_DIR)
 	$(call DEVICECTL_COPY,from) --source Library --destination $(APPDATA_DIR)/Library
