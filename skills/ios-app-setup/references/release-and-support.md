@@ -52,6 +52,8 @@ components.queryItems = [
 - `UILaunchScreen` に `UIColorName`（Assets のカラー）＋ `UIImageName` を指定し、起動中の無地画面（ダークモードだと真っ黒）を避ける
 - 対応方向を絞るなら `UISupportedInterfaceOrientations`、iPhone専用なら `TARGETED_DEVICE_FAMILY: "1"`
 - App Store Connectのメタデータ（アプリ名30字/サブタイトル30字/プロモ170字/説明4000字/キーワード100字）は `marketing/app-store-metadata.md` のようにリポジトリでドラフト管理する。キーワード欄にアプリ名・サブタイトル内の語を入れても重複インデックスされない
+- **提出の自律実行・判断ルール**は [app-store-connect.md](app-store-connect.md)、**全項目の一覧と決め方**は [app-store-connect-fields.md](app-store-connect-fields.md) を読む
+- **ストア用スクリーンショットの加工**は [ParthJadhav/app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots) を使う（`npx skills add ParthJadhav/app-store-screenshots` でエージェント用スキルを入れ、シミュレータ等の生キャプチャからストア向けスライドを作る）。方針は [app-store-connect.md](app-store-connect.md) の「スクリーンショット」節
 
 ## ローカライズ
 

@@ -3,6 +3,7 @@
 PROJECT      = MyApp.xcodeproj
 SCHEME       = MyApp
 BUNDLE_ID    = com.kmuto.MyApp
+TEAM_ID     ?= LFTR9WH44N
 SIMULATOR   ?= iPhone Air
 DEVICE_ID   ?= 00008140-00126D091A82801C
 DESTINATION  = platform=iOS Simulator,name=$(SIMULATOR)
@@ -10,6 +11,7 @@ XCODE_APP   ?= /Applications/Xcode.app
 export DEVELOPER_DIR = $(XCODE_APP)/Contents/Developer
 
 BUILD_DIR    = build
+ARCHIVE      = $(BUILD_DIR)/$(SCHEME).xcarchive
 APP          = $(BUILD_DIR)/Build/Products/Debug-iphoneos/$(SCHEME).app
 SIM_APP      = $(BUILD_DIR)/Build/Products/Debug-iphonesimulator/$(SCHEME).app
 # make reinstall で退避するアプリのデータコンテナ（SwiftData・UserDefaults等）
@@ -17,7 +19,7 @@ APPDATA_DIR  = $(BUILD_DIR)/appdata
 DEVICECTL_COPY = xcrun devicectl device copy $(1) --device $(DEVICE_ID) \
 	--domain-type appDataContainer --domain-identifier $(BUNDLE_ID)
 
-.PHONY: help setup generate open run reinstall run-sim test clean
+.PHONY: help setup generate open run reinstall run-sim archive upload test clean
 
 help: ## コマンド一覧を表示
 	@grep -E '^[a-z-]+:.*##' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  make %-10s %s\n", $$1, $$2}'
@@ -64,6 +66,29 @@ run-sim: generate ## シミュレータでビルド・インストール・起�
 	open -a Simulator
 	xcrun simctl install booted $(SIM_APP)
 	xcrun simctl launch booted $(BUNDLE_ID)
+
+archive: generate ## Releaseアーカイブを作成
+	xcodebuild -project $(PROJECT) -scheme $(SCHEME) \
+		-configuration Release \
+		-destination 'generic/platform=iOS' \
+		-archivePath $(ARCHIVE) \
+		-allowProvisioningUpdates \
+		archive
+
+upload: ## TestFlightへアップロード（要 有料メンバーシップ + ASC APIキー）
+	@test -n "$(ASC_KEY_PATH)" && test -n "$(ASC_KEY_ID)" && test -n "$(ASC_ISSUER_ID)" || \
+		(echo "ASC_KEY_PATH / ASC_KEY_ID / ASC_ISSUER_ID を指定してください" >&2; exit 1)
+	$(MAKE) archive
+	mkdir -p $(BUILD_DIR)
+	sed 's/TEAM_ID_PLACEHOLDER/$(TEAM_ID)/' ExportOptions.template.plist \
+		> $(BUILD_DIR)/ExportOptions.plist
+	xcodebuild -exportArchive \
+		-archivePath $(ARCHIVE) \
+		-exportOptionsPlist $(BUILD_DIR)/ExportOptions.plist \
+		-allowProvisioningUpdates \
+		-authenticationKeyPath $(ASC_KEY_PATH) \
+		-authenticationKeyID $(ASC_KEY_ID) \
+		-authenticationKeyIssuerID $(ASC_ISSUER_ID)
 
 test: ## コアロジックのみSwiftPMでテスト（Xcode不要。Linuxでも動く）
 	swift test

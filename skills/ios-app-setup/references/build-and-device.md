@@ -8,9 +8,10 @@
 差分レビューが容易になり、pbxprojのコンフリクトがなくなる。
 
 - `.gitignore` に `*.xcodeproj` / `xcuserdata/` / `DerivedData/` / `.build/` / `build/` を追加
-- 定型コマンドは [Makefile テンプレート](../templates/Makefile) をコピーし、`MyApp` と `BUNDLE_ID` を置き換える。実機は `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcrun devicectl list devices` で物理デバイスの ID を確認し、`make run DEVICE_ID=<ID>` のように渡す。複数台ある場合は対象を特定する
-- テンプレートのターゲット: `setup` / `generate` / `open` / `run` / `reinstall` / `run-sim` / `test` / `clean`
-- `open` / `run` / `reinstall` / `run-sim` は `generate` に依存させる。`xcodegen generate` は冪等で速いため毎回実行してよい
+- 定型コマンドは [Makefile テンプレート](../templates/Makefile) と [ExportOptions.template.plist](../templates/ExportOptions.template.plist) をコピーし、`MyApp` と `BUNDLE_ID` を置き換える。実機は `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcrun devicectl list devices` で物理デバイスの ID を確認し、`make run DEVICE_ID=<ID>` のように渡す。複数台ある場合は対象を特定する
+- テンプレートのターゲット: `setup` / `generate` / `open` / `run` / `reinstall` / `run-sim` / `archive` / `upload` / `test` / `clean`
+- `open` / `run` / `reinstall` / `run-sim` / `archive` は `generate` に依存させる。`xcodegen generate` は冪等で速いため毎回実行してよい
+- TestFlight へ上げるときは `make upload ASC_KEY_PATH=... ASC_KEY_ID=... ASC_ISSUER_ID=...`（有料 Developer Program と App Store Connect API キーが必要）。`upload` は `archive` のあと `ExportOptions.template.plist` の `TEAM_ID_PLACEHOLDER` を `TEAM_ID` に置換して `-exportArchive` する。`TEAM_ID` の既定は署名節と同じ個人 Team ID
 - 複数Xcodeがある環境向けに `export DEVELOPER_DIR = $(XCODE_APP)/Contents/Developer` をMakefileで固定
 - **実機で権限ダイアログの再表示を確認する**場合は、削除・再インストールを検討する。権限種別や OS によって状態の保持が異なるため、初期化できたかを実機で確認する。`make reinstall` でデータコンテナ（`Library` / `Documents`）を退避→アンインストール→ビルド＆インストール→復元→起動する。アプリデータ（SwiftData等）と設定（UserDefaults）はコンテナ内なので残り、権限の再表示は復元後に確認する。通知許可はOSがしばらく記憶することがあるので、出ないときは端末を再起動する
 - Xcode Cloud利用時は `ci_scripts/ci_post_clone.sh` でクローン直後に生成:

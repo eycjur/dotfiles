@@ -1,6 +1,6 @@
 ---
 name: ios-app-setup
-description: iOS アプリの初期構成、署名・実機実行、公開準備、サポート・診断機能の追加を支援する。通常の UI 修正には使わない。
+description: iOS アプリの初期構成、署名・実機実行、公開準備、サポート・診断、App Store Connect の全項目入力・提出準備、ストア用スクリーンショット加工を支援する。ストア提出・アップデート・審査落ち対応では、リポジトリから入力値を自律的に決めて metadata を揃える。通常の UI 修正には使わない。
 ---
 # iOS アプリの設定と運用
 
@@ -9,6 +9,8 @@ description: iOS アプリの初期構成、署名・実機実行、公開準備
 必要な内容を含む参照文書だけを読む:
 
 - [ビルド・署名・実機確認](references/build-and-device.md): XcodeGen、Team ID、バージョン番号、実機 ID、再インストール、デバッガ、テスト構成。
-- [公開・サポート・診断](references/release-and-support.md): 更新確認、GitHub Pages、問い合わせ、ログ、Info.plist、ストア提出、ローカライズ。
+- [公開・サポート・診断](references/release-and-support.md): 更新確認、GitHub Pages、問い合わせ、ログ、Info.plist、ストア提出の要点、スクリーンショット加工、ローカライズ。
+- [App Store Connect 入力・提出](references/app-store-connect.md): 自律実行の原則、提出フロー、横断の判断ルール、スクリーンショット。
+- [App Store Connect 項目一覧](references/app-store-connect-fields.md): 左メニュー順の全項目と決め方（値の正本は各アプリの metadata）。
 
 個人の Team ID や公開先は既存設定・今回の対象と一致する場合に使う。過去の不具合への回避策は、同じ条件があるときだけ適用する。

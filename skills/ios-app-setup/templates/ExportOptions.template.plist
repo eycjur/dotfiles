@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- make upload が TEAM_ID_PLACEHOLDER を置換して build/ExportOptions.plist を生成する。
+     destination=upload により、エクスポートと同時にApp Store Connectへ
+     アップロードされる（TestFlightに反映）。
+     Xcode 15.2以前を使う場合は method を app-store に読み替えること。 -->
+<plist version="1.0">
+<dict>
+    <key>method</key>
+    <string>app-store-connect</string>
+    <key>destination</key>
+    <string>upload</string>
+    <key>signingStyle</key>
+    <string>automatic</string>
+    <key>teamID</key>
+    <string>TEAM_ID_PLACEHOLDER</string>
+</dict>
+</plist>
