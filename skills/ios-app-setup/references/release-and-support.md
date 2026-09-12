@@ -29,7 +29,7 @@ components.queryItems = [
 ]
 ```
 
-- 「このアプリについて」画面に置くもの: バージョン＋iOSバージョン表示、アップデート案内、サポート・プライバシーポリシーへのリンク、不具合報告・機能要望ボタン、診断情報の書き出し（ShareLink）、言語変更（`UIApplication.openSettingsURLString` でiOSのアプリ別言語設定へ誘導）
+- 「このアプリについて」画面に置くもの: バージョン＋iOSバージョン表示、アップデート案内、サポート・プライバシーポリシーへのリンク、不具合報告・機能要望ボタン、開発者を知る（https://x.com/eycjur）、診断情報の書き出し（ShareLink）、言語変更（`UIApplication.openSettingsURLString` でiOSのアプリ別言語設定へ誘導）
 
 ## ログ・診断情報
 

@@ -6,6 +6,8 @@ EFFORT=$(echo "$input" | jq -r '.effort.level // empty')
 THINKING=$(echo "$input" | jq -r '.thinking.enabled // false')
 AGENT=$(echo "$input" | jq -r '.agent.name // empty')
 CTX_PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
+CWD=$(echo "$input" | jq -r '.cwd // .workspace.current_dir // empty')
+PROJECT="${CWD##*/}"
 
 if [ -n "$EFFORT" ]; then
     MODEL_STR="${MODEL} (${EFFORT})"
@@ -64,7 +66,9 @@ fi
 if [ ${#RATE_PARTS[@]} -gt 0 ]; then
     RATE_STR="${RATE_PARTS[0]}"
     [ ${#RATE_PARTS[@]} -gt 1 ] && RATE_STR="${RATE_STR}、${RATE_PARTS[1]}"
-    echo "${MODEL_STR} | ${CTX_STR} | ${RATE_STR}"
+    STATUS="${MODEL_STR} | ${CTX_STR} | ${RATE_STR}"
 else
-    echo "${MODEL_STR} | ${CTX_STR}"
+    STATUS="${MODEL_STR} | ${CTX_STR}"
 fi
+[ -n "$PROJECT" ] && STATUS="${STATUS} | ${PROJECT}"
+echo "${STATUS}"
