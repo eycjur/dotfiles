@@ -90,11 +90,11 @@ if [ -n "${ZSH_VERSION:-}" ]; then
     # 過去に移動したことのあるディレクトリを選択
     function change-directory () {
         # 履歴の一覧を取得
-        local list_number_dir="$(cdr -l)"
-        # 履歴番号 ディレクトリ -> ディレクトリ（スペース区切りでスペースを含むパス対応: 2番目以降のフィールド）
-        local list_dir="$(echo "$list_number_dir" | cut -d' ' -f2-)"
+        cdr -r
+        # 絶対パス -> ~省略（スペースを含むパス対応）
+        local list_dir="$(print -rl -- ${(D)reply})"
         # .から始まるディレクトリをパスに含む行を排除
-        local list_dir_filtered="$(echo "$list_dir" | awk '{ if ($1 !~ /[\/~]\./ ){ print  $0 }}')"
+        local list_dir_filtered="$(echo "$list_dir" | awk '{ if ($0 !~ /[\/~]\./ ){ print $0 }}')"
         # fzfを使用してディレクトリを選択
         local selected_dir="$(echo "$list_dir_filtered" | fzf --no-multi --no-sort --query "$(_fzf_query)" --prompt="cdr >")"
 
