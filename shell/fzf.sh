@@ -31,33 +31,6 @@ _fzf_query() {
     fi
 }
 
-# zsh cdr / bash 共通のディレクトリ履歴（~/.cache/chpwd-recent-dirs）
-__recent_dirs_file="${HOME}/.cache/chpwd-recent-dirs"
-
-__recent_dirs_list() {
-    local file="${__recent_dirs_file}"
-    [ -f "$file" ] || return 0
-    sed -e "s/^\$'//" -e "s/'$//" "$file" | awk '{ if ($0 !~ /[\/~]\./ ){ print $0 }}'
-}
-
-__recent_dirs_add() {
-    local dir="${1:-$PWD}"
-    local file="${__recent_dirs_file}"
-    local escaped line tmp
-    mkdir -p "${HOME}/.cache"
-    escaped=${dir//\\/\\\\}
-    escaped=${escaped//\'/\\\'}
-    line="\$'${escaped}'"
-    tmp=$(mktemp "${file}.XXXXXX") || return
-    {
-        printf '%s\n' "$line"
-        if [ -f "$file" ]; then
-            grep -Fvx -- "$line" "$file" || true
-        fi
-    } | head -n 1000 >"$tmp"
-    mv "$tmp" "$file"
-}
-
 # デフォルトのオプション
 export FZF_DEFAULT_OPTS="--cycle --reverse"
 
@@ -142,16 +115,6 @@ elif [ -n "${BASH_VERSION:-}" ]; then
             fi
         }
 
-        change-directory() {
-            local selected_dir
-            selected_dir=$(__recent_dirs_list | fzf --no-multi --no-sort --query "$(_fzf_query)" --prompt="cdr >")
-            if [ -n "$selected_dir" ]; then
-                cd -- "$selected_dir" || return
-                READLINE_LINE=
-                READLINE_POINT=0
-            fi
-        }
-
         # カレント以下のファイルを選んでコマンドラインに挿入（末尾トークンを補完）
         select-file() {
             local selected query prefix before after preview_cmd quoted line
@@ -181,7 +144,6 @@ elif [ -n "${BASH_VERSION:-}" ]; then
         }
 
         bind -x '"\C-r": select-history'
-        bind -x '"\C-f": change-directory'
         bind -x '"\C-t": select-file'
         ;;
     esac

@@ -116,11 +116,9 @@ if [[ -e ~/shell/custom.sh ]]; then
     source ~/shell/custom.sh
 fi
 
-# ディレクトリ移動時の処理
-chpwd() {
-    ll
-    # mkcd など関数内の cd は chpwd_recent_dirs が履歴に残さないことがある
-    if [ "${ZSH_SUBSHELL:-0}" -eq 0 ] && command -v __recent_dirs_add >/dev/null 2>&1; then
-        __recent_dirs_add "$PWD"
-    fi
-}
+# ディレクトリ移動時の処理（履歴は chpwd_recent_dirs。Claude Code では ll がコンテキストを食う）
+if [[ -z ${CLAUDECODE:-} ]]; then
+    chpwd() {
+        ll
+    }
+fi

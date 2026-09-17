@@ -43,6 +43,7 @@ alias ll='ls -lAhF --time-style=long-iso'
 alias tf="terraform"
 alias his="history 1 | grep "
 alias psa="ps aucr"
+# cd -q にすると zsh の chpwd_recent_dirs が履歴に残さない
 mkcd() { mkdir -p "$@" && cd "$1"; }
 groot() { cd "$(git rev-parse --show-toplevel)"; }
 secret-shell() { op run --env-file="$PWD/.env" -- zsh; }

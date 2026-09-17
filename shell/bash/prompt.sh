@@ -85,9 +85,6 @@ __bash_prompt_command() {
     local exit_code=$?
     __bash_prompt_ensure_newline
     if [ "$__LAST_PWD" != "$PWD" ]; then
-        if command -v __recent_dirs_add >/dev/null 2>&1; then
-            __recent_dirs_add "$PWD"
-        fi
         ll
         __LAST_PWD=$PWD
     fi
