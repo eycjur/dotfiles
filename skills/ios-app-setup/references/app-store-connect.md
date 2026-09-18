@@ -3,12 +3,14 @@
 「ストアに出したい」「アップデートを提出したい」「審査に落ちた」ときに使う。
 各項目の定義・決め方は [app-store-connect-fields.md](app-store-connect-fields.md) を正本とする。画面に新しい項目が現れたら、まずそこに追記してから値を決める。
 
+審査の正本は公式の [App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)（[日本語](https://developer.apple.com/jp/app-store/review/guidelines/)）。スキル内の要約は既知の指摘のメモであり、条文の代わりにしない。
+
 ## 自律実行の原則
 
 - ユーザーから追加情報がなくても、リポジトリ（README・コード・既存の `marketing/app-store-metadata.md`・git log）と本スキルの判断ルールだけで、すべての入力値を決め、metadata を最新化し、提出できる状態まで進める
 - ユーザーに確認するのは次だけ。それ以外は決めて報告する
   1. App Store Connect API キー（`ASC_KEY_PATH` / `ASC_KEY_ID` / `ASC_ISSUER_ID`）が環境にないとき
-  2. 審査メモに貼る画面録画のリンク（実機録画はこちらでは作れない）
+  2. 審査メモに貼る画面録画のリンク（実機録画はこちらでは作れない。`UIBackgroundModes` があるならバックグラウンド実演を含む）
   3. 機能の削除や価格変更など、リポジトリから読み取れない方針の変更
 - App Store Connect への入力そのもの（ブラウザ操作）はユーザーが行う。こちらは「画面の項目名 → 入力値」を metadata ファイルに揃え、コピーして貼れる状態にする
 - 文言の正本は各アプリの `marketing/app-store-metadata.md`（なければ同等のドラフトを作成）。本参照は手順と判断、fields 参照は項目定義、metadata は貼る本文
@@ -31,17 +33,20 @@
 4. **metadata の更新**: `marketing/app-store-metadata.md` を [fields](app-store-connect-fields.md) の定義に沿って更新。アップデート時は「このバージョンの最新情報」を必ず書く
 5. **スクリーンショットの要否**: 既存スライドのいずれかの画面に見た目の変更があれば、その画面だけ撮り直して再出力。なければ据え置き
 6. **アップロード**: `make upload ASC_KEY_PATH=... ASC_KEY_ID=... ASC_ISSUER_ID=...`（API キーが必要。キーが無ければユーザーに確認）。`ITSAppUsesNonExemptEncryption: false` 済みなら輸出コンプライアンスの質問は出ない
-7. **提出準備**: metadata の内容を項目名付きで揃え、ビルド選択・審査メモまでコピー可能な状態にする。再提出のときは冒頭に「Update since the last review:」で対応内容だけ書く
-8. **公開後の確認リスト**: アップデート案内、Pages の `develop` → `main`、fields／metadata の変更履歴に提出日・バージョン・審査結果を追記（プロジェクトに履歴節があれば）
+7. **ガイドライン照合（セルフレビュー）**: 提出準備の前に必ず行う。[App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)（[日本語](https://developer.apple.com/jp/app-store/review/guidelines/)）の現行文を読み、今回の差分・metadata・権限画面・`UIBackgroundModes`・スクリーンショットを照合する。スキル内の要約や過去の指摘だけで済ませない。既知の項目は [fields](app-store-connect-fields.md) の「審査で指摘されやすい点」も見る。項目ごとに「該当なし／対応済み／要確認」で報告し、問題があれば直してから次へ進む
+8. **提出準備**: metadata の内容を項目名付きで揃え、ビルド選択・審査メモまでコピー可能な状態にする。再提出のときは冒頭に「Update since the last review:」で指摘ごとの対応とバイナリ変更の有無を書く
+9. **公開後の確認リスト**: アップデート案内、Pages の `develop` → `main`、fields／metadata の変更履歴に提出日・バージョン・審査結果を追記（プロジェクトに履歴節があれば）
 
 ## 判断ルール（横断）
 
 - **文言**: 機能の列挙ではなく、ユーザーが得る価値を書く。対象が明確なら先に言い切る。利用シーンを過度に限定する表現や比喩的な書き出しは使わない。結果の約束は避け、機能で言えることにする
-- **価格表現**: スクリーンショット・見出し・ラベルに「無料」「割引」を入れない（Guideline 2.3.7）。価格に触れるのは概要文だけ
+- **価格表現**: スクリーンショット・見出し・ラベルに「無料」「割引」を入れない（[Guideline 2.3.7](https://developer.apple.com/app-store/review/guidelines/#2.3.7)）。価格に触れるのは概要文だけ
 - **検索語**: 名前・サブタイトルに含まれる語はキーワード欄に入れない。部分一致しない語は効かせたい側（多くはサブタイトル）に置く
 - **プライバシー**: ユーザーデータを外部に送る機能を追加したら「Appのプライバシー」「コンテンツ配信権」「プライバシーポリシー」「審査メモの External services」を全部見直す
 - **アクセシビリティ**: 検証していない機能は申告しない
-- **審査メモ**: 日本語でよい。権限の範囲・サインイン要否・データなしでも開ける画面・外部通信の範囲を必ず書く。プレースホルダ記法 `[ ]` は使わず実際の値を書く
+- **審査メモ**: 日本語でよい。権限の範囲・サインイン要否・データなしでも開ける画面・外部通信の範囲を必ず書く。プレースホルダ記法 `[ ]` は使わず実際の値を書く。イヤホン限定など環境依存の条件は冒頭に条件と再現手順を書く。再提出時は「Update since the last review:」で指摘ごととバイナリ変更の有無
+- **権限の事前説明**: ボタンは「次へ」「続ける」。同意を代行する語は [Guideline 5.1.1(iv)](https://developer.apple.com/app-store/review/guidelines/#5.1.1) で却下される。実装の文言は [release-and-support.md](release-and-support.md)
+- **バックグラウンドモード**: 宣言した値ごとに実演根拠が必要。録画は「機能を起動 → ホーム画面に戻る（またはロック） → 動作が続く」（[Guideline 2.5.4](https://developer.apple.com/app-store/review/guidelines/#2.5.4)）
 - **著作権**: ユーザー指定または既存 metadata の表記に従う。本名や別アカウント名を勝手に使わない
 
 ## スクリーンショット

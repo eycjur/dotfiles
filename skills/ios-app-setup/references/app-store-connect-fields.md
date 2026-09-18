@@ -41,12 +41,12 @@ metadata ファイルの並びは、Connect で最初に開く「バージョン
 |------|--------|
 | サインインが必要 | アカウント機能がなければオフ。追加したらオンにし、デモ用認証情報をメモに書く |
 | 連絡先（氏名・電話・メール） | Connect に登録済みのものを使う。公開されない。前回と同じでよい。こちらでは新規に推測して埋めない |
-| メモ | 日本語でよい。次の7項目構成。プレースホルダ記法は使わず実際の値を書く。再提出時は冒頭に「Update since the last review:」で対応内容とバイナリ変更の有無 |
+| メモ | 日本語でよい。次の7項目構成。プレースホルダ記法は使わず実際の値を書く。環境依存の条件は冒頭に条件と再現手順。再提出時は冒頭に「Update since the last review:」で指摘ごとの対応とバイナリ変更の有無 |
 | 添付ファイル | 録画をリンクでなく添付にしてもよい。任意 |
 
 ### 審査メモの7項目
 
-1. **Screen recording**: 実機の画面録画へのリンク。主要フローを起動から通す。録画できない画面は補足スクショ。リンクはユーザーに確認する
+1. **Screen recording**: 実機の画面録画へのリンク。主要フローを起動から通す。`UIBackgroundModes` を宣言しているなら、機能を起動 → ホーム画面に戻る（またはロック） → 動作が続く、の順で撮る。録画できない画面は補足スクショ。リンクはユーザーに確認する
 2. **Devices and OS used for testing**: 実機の機種名と OS バージョン
 3. **App overview**: 対象ユーザー、無料／有料、オフライン可否、データの保存場所
 4. **Setup and access**: ログイン要否、権限の説明（必須／任意とその範囲）、データなしでも開ける画面の有無
@@ -109,7 +109,11 @@ metadata ファイルの並びは、Connect で最初に開く「バージョン
 
 ## 審査で指摘されやすい点
 
-- **Guideline 2.3.7（Accurate Metadata）**: スクリーンショットに価格への言及（「無料」「Completely free」「割引」など）を入れると却下される。価格に触れたいなら概要文に書く
+公式: [App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)（[日本語](https://developer.apple.com/jp/app-store/review/guidelines/)）。提出前に現行文を読み、下の既知項目と今回の差分を照合する。
+
+- **[Guideline 2.3.7](https://developer.apple.com/app-store/review/guidelines/#2.3.7)（Accurate Metadata）**: スクリーンショットに価格への言及（「無料」「Completely free」「割引」など）を入れると却下される。価格に触れたいなら概要文に書く
+- **[Guideline 5.1.1(iv)](https://developer.apple.com/app-store/review/guidelines/#5.1.1)（Data Collection and Storage）**: 権限の事前説明画面で「許可する」「許可して始める」など同意を代行する語をボタンに置くと却下される。ボタンは「次へ」「続ける」。説明は用途に限定し、「次の画面で項目ごとに選べます」と可否がシステム側にあることを書く。拒否後に使えない機能は設定アプリへの導線を出す
+- **[Guideline 2.5.4](https://developer.apple.com/app-store/review/guidelines/#2.5.4)（Multitasking）**: `UIBackgroundModes` は宣言した値ごとに、審査担当者が実演を確認できる根拠が必要。`audio` はロック中の読み上げにも必要だが（`location` だけでは AVAudioSession をバックグラウンドで有効化できない）、審査では持続的な音声と解釈される。機能を起動 → ホーム画面に戻る（またはロック） → 動作が続く様子を実機で録画し、審査メモに添える。イヤホン限定など環境依存の条件は、審査メモの冒頭に条件と再現手順を書く
 
 ## プロジェクト側への記録（推奨）
 

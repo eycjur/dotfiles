@@ -47,6 +47,8 @@ components.queryItems = [
 
 - `GENERATE_INFOPLIST_FILE: false` にして Info.plist を明示管理（XcodeGenの `info.properties` で上書き）
 - 使用する機能の UsageDescription を必ず書く（例: `NSAlarmKitUsageDescription`）。日本語＋英語対応の場合、ローカライズは `InfoPlist.xcstrings` で行う（アプリ名 `CFBundleDisplayName` もここで対応）
+- 権限の事前説明画面（プライミング）を出す場合、ボタンは「次へ」「続ける」にする。「許可する」「許可して始める」など同意を代行する語は [Guideline 5.1.1(iv)](https://developer.apple.com/app-store/review/guidelines/#5.1.1) で却下される。説明文は用途に限定し、「次の画面で項目ごとに選べます」と可否がシステム側にあることを書く。権限なしで動かない機能は、拒否後に `UIApplication.openSettingsURLString` で設定アプリへ誘導する
+- `UIBackgroundModes` は実際にバックグラウンドで動かす機能だけ宣言する。`audio` はロック中の音声出力にも必要（`location` だけでは AVAudioSession をバックグラウンドで有効化できない）。宣言した値ごとに、審査担当者が実演を確認できる根拠を [app-store-connect.md](app-store-connect.md) に沿って用意する（[Guideline 2.5.4](https://developer.apple.com/app-store/review/guidelines/#2.5.4)）
 - `ITSAppUsesNonExemptEncryption: false` — OS標準の暗号化のみなら、提出ごとの輸出コンプライアンス質問をスキップできる
 - `LSApplicationCategoryType` を設定（例: `public.app-category.utilities`）
 - `UILaunchScreen` に `UIColorName`（Assets のカラー）＋ `UIImageName` を指定し、起動中の無地画面（ダークモードだと真っ黒）を避ける
