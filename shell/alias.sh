@@ -58,8 +58,8 @@ set_alias_if_success "cat" "bat -pP"
 set_alias_if_success "du" "dust"
 set_alias_if_success "df" "duf"
 set_alias_if_success "grep" "rg"
-set_alias_if_success "ls" 'eza -F'
-set_alias_if_success "ll" 'eza -alhH -F=always --group --git --time-style=long-iso --color-scale=age'
+set_alias_if_success "ls" 'eza -F=always'
+set_alias_if_success "ll" 'eza -alhH -F=always --group --git --time-style=long-iso --color-scale=all'
 set_alias_if_success "vim" "nvim"
 set_alias_if_success "vi" "vim"
 set_alias_if_success "diff" "difft"
