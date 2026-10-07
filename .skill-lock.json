@@ -6,9 +6,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/agents365-ai/drawio-skill.git",
       "skillPath": "skills/drawio-skill/SKILL.md",
-      "skillFolderHash": "f57d704ba29689bb2470069dbb2c4f57f9337996",
+      "skillFolderHash": "15f4de95d40dd2889e8b2c2f3499fdcf67cbfff0",
       "installedAt": "2026-05-18T12:26:15Z",
-      "updatedAt": "2026-09-17T16:25:07.326Z"
+      "updatedAt": "2026-10-08T13:28:51.218Z"
     },
     "frontend-design": {
       "source": "anthropics/skills",

@@ -64,6 +64,19 @@ set_alias_if_success "vim" "nvim"
 set_alias_if_success "vi" "vim"
 set_alias_if_success "diff" "difft"
 
+lc() {
+  local target="${1:-.}"
+
+  if [[ -d "$target" ]]; then
+    eza -F=always "$target"
+  elif [[ -f "$target" ]]; then
+    bat -pP "$target"
+  else
+    echo "Not found: $target" >&2
+    return 1
+  fi
+}
+
 # gitコマンドをgit不要にする
 alias add="git add"
 alias br="git br"
