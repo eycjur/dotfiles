@@ -105,6 +105,17 @@ alias sw="git sw"
 alias log="git graph"
 alias gopen='open $(git config --get remote.origin.url)'
 
+# パッケージ更新（formula / cask / mise / Claude Code / Codex / uv）
+# brew upgrade は --cask を付けない。--greedy で :latest と auto_updates の cask も含める。
+# 確認プロンプトが既定なので -y を付ける。
+upgrade() {
+  is_command_exists brew && { brew update && brew upgrade --greedy -y || return; }
+  is_command_exists mise && { mise upgrade --global --bump || return; }
+  is_command_exists claude && { claude update || return; }
+  is_command_exists codex && { codex update || return; }
+  is_command_exists uv && { uv tool upgrade --all && uv python upgrade || return; }
+}
+
 # 掃除系コマンド
 alias dprune='(docker stop $(docker ps -q) || true) && docker system prune --volumes -af && docker volume prune -af'
 alias dcprune='docker compose down --rmi all --volumes --remove-orphans'

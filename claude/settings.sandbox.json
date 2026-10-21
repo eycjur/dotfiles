@@ -61,7 +61,16 @@
     "remember@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "cloudflare@claude-plugins-official": true,
-    "swift-lsp@claude-plugins-official": true
+    "swift-lsp@claude-plugins-official": true,
+    "notion@anthropic-plugin-directory": true
+  },
+  "extraKnownMarketplaces": {
+    "airas": {
+      "source": {
+        "source": "github",
+        "repo": "airas-org/airas"
+      }
+    }
   },
   "outputStyle": "Explanatory",
   "language": "japanese",
