@@ -16,6 +16,11 @@ commit_attribution = ""
 
 notify = ["bash", "-c", "[ -n \"$TTY\" ] && [ -c \"$TTY\" ] && printf '\\a' > \"$TTY\" || true"]
 
+[agents]
+max_concurrent_threads_per_session = 10
+max_depth = 2
+default_subagent_model = "gpt-6.1-terra"
+
 [analytics]
 enabled = false
 

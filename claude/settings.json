@@ -2,7 +2,7 @@
   "env": {
     "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "75",
     "CLAUDE_CODE_SCROLL_SPEED": "3",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "opus",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
     "DISABLE_ERROR_REPORTING": "1",
     "DISABLE_TELEMETRY": "1"
   },
@@ -139,6 +139,13 @@
     "cloudflare@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
     "notion@anthropic-plugin-directory": true
+  },
+  "pluginConfigs": {
+    "agents-md@builtin": {
+      "options": {
+        "instructionFiles": "claude-md-and-agents-md"
+      }
+    }
   },
   "extraKnownMarketplaces": {
     "airas": {
