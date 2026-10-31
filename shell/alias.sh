@@ -1,7 +1,7 @@
 source ~/shell/functions.sh
 
 # コマンドのオプションをデフォルトにする
-alias ls='ls --color'
+alias ls='LC_COLLATE=C ls --color'
 alias rm='rm -v'
 alias cp='cp -v'
 alias mv='mv -v'
@@ -71,13 +71,15 @@ set_alias_if_success "vim" "nvim"
 set_alias_if_success "vi" "vim"
 set_alias_if_success "diff" "difft"
 
+# ls / cat は上のエイリアスが、関数を読むときに展開される。
+# eza があれば eza、なければ ls。bat があれば bat、なければ cat。
 lc() {
   local target="${1:-.}"
 
   if [[ -d "$target" ]]; then
-    eza -F=always "$target"
+    ls "$target"
   elif [[ -f "$target" ]]; then
-    bat -pP "$target"
+    cat "$target"
   else
     echo "Not found: $target" >&2
     return 1
