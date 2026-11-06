@@ -30,7 +30,8 @@
       "Bash(gh pr review:*)",
       "Bash(gh repo delete:*)"
     ],
-    "defaultMode": "bypassPermissions"
+    "defaultMode": "bypassPermissions",
+    "denyInsteadOfPrompting": true
   },
   "hooks": {
     "Stop": [
