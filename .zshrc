@@ -74,6 +74,10 @@ if is_command_exists "hermes"; then
     eval "$(hermes completion zsh)"
 fi
 
+if is_command_exists "agentsb"; then
+    source <(agentsb completion zsh)
+fi
+
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 

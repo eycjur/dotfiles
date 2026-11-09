@@ -73,7 +73,8 @@ fi
 mkdir -p ~/.agents/skills ~/.claude/skills ~/.codex/skills
 
 if command -v jq >/dev/null 2>&1 && command -v npx >/dev/null 2>&1 && npx -y -- skills --help >/dev/null 2>&1; then
-    jq -r '.skills|to_entries[]|"npx skills add \(.value.source) -g -s \(.key) -a codex -a cursor -a claude-code -y"' "${DOT_DIR}/.skill-lock.json" | sh
+    # ローカルは source が絶対パスになるため、ロックからは入れず下の ./skills で入れる
+    jq -r '.skills|to_entries[]|select(.value.sourceType != "local")|"npx skills add \(.value.source) -g -s \(.key) -a codex -a cursor -a claude-code -y"' "${DOT_DIR}/.skill-lock.json" | sh
     # ローカルのskillsを追加する
     npx skills add ./skills -g -s '*' -a codex -a cursor -a claude-code -y
 fi

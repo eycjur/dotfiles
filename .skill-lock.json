@@ -6,9 +6,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/agents365-ai/drawio-skill.git",
       "skillPath": "skills/drawio-skill/SKILL.md",
-      "skillFolderHash": "627d3ce368102a60de0068c22af0494d1a69e12a",
+      "skillFolderHash": "e773fabbf1425631ab08a2c210f8d7e1e83d92a5",
       "installedAt": "2026-05-18T12:26:15Z",
-      "updatedAt": "2026-11-02T13:23:06.905Z"
+      "updatedAt": "2026-11-10T13:35:57.306Z"
     },
     "frontend-design": {
       "source": "anthropics/skills",
@@ -106,33 +106,33 @@
       "source": "/Users/kmuto/dotfiles/skills",
       "sourceType": "local",
       "sourceUrl": "/Users/kmuto/dotfiles/skills",
-      "skillFolderHash": "825548a8e7e32221240363d703354d614271ad115a31925c076fed05578b49cd",
-      "installedAt": "2026-11-02T13:23:07.454Z",
-      "updatedAt": "2026-11-02T13:23:07.454Z"
+      "skillFolderHash": "cc8bd076142e158256f3cb0735a7cc574446aaecd0c0a87b411ccd2b9ee6e4d4",
+      "installedAt": "2026-11-09T16:26:53.118Z",
+      "updatedAt": "2026-11-10T13:35:57.787Z"
     },
     "ios-app-setup": {
       "source": "/Users/kmuto/dotfiles/skills",
       "sourceType": "local",
       "sourceUrl": "/Users/kmuto/dotfiles/skills",
       "skillFolderHash": "4f0f77005a5965d9b779f4c8e4c63811963bf3687bd3110f00ab129b53d1d460",
-      "installedAt": "2026-11-02T13:23:07.459Z",
-      "updatedAt": "2026-11-02T13:23:07.459Z"
+      "installedAt": "2026-11-09T16:26:53.123Z",
+      "updatedAt": "2026-11-10T13:35:57.793Z"
     },
     "notion-page-editing": {
       "source": "/Users/kmuto/dotfiles/skills",
       "sourceType": "local",
       "sourceUrl": "/Users/kmuto/dotfiles/skills",
       "skillFolderHash": "fe25d40acae192c1528b60f90556bffc567e6297491d1d3b26ef1591f0d934a5",
-      "installedAt": "2026-11-02T13:23:07.460Z",
-      "updatedAt": "2026-11-02T13:23:07.460Z"
+      "installedAt": "2026-11-09T16:26:53.124Z",
+      "updatedAt": "2026-11-10T13:35:57.793Z"
     },
     "review-pr": {
       "source": "/Users/kmuto/dotfiles/skills",
       "sourceType": "local",
       "sourceUrl": "/Users/kmuto/dotfiles/skills",
       "skillFolderHash": "a224583b9302cb27a3e33c49891e98ff1783d615770751cbcb973db998101eaf",
-      "installedAt": "2026-11-02T13:23:07.460Z",
-      "updatedAt": "2026-11-02T13:23:07.460Z"
+      "installedAt": "2026-11-09T16:26:53.124Z",
+      "updatedAt": "2026-11-10T13:35:57.793Z"
     }
   },
   "dismissed": {
