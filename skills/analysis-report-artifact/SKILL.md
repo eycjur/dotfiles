@@ -20,6 +20,7 @@ description: 実験・分析・評価の結果を Artifact のレポートにま
 ### タブは上に固定する
 
 - タブの帯は `position: sticky; top: env(safe-area-inset-top, 0px)` で上に固定する。その下に止めたい補助のバー（図の指標の切り替えなど）は、タブの実際の高さを JS で測った `--tabs-h` の分だけ下げて止める（タブが折り返して 2 段になっても重ならない）。
+- 各タブのボタンに安定した id を付ける（`t-result` のように ASCII で、タブを足したり名前を変えても変えない）。選択中のタブは URL のハッシュにその id を書き、読み込み時と `hashchange` で開き直す。リロードしても最初のタブに戻らない。ハッシュが節の id なら、その節を含むタブを開いてからそこへスクロールする。タブをまたぐリンクも、節の id をハッシュに残す。
 
 ```html
 <nav class="tabs" role="tablist" aria-label="ページの切り替え">
@@ -29,15 +30,35 @@ description: 実験・分析・評価の結果を Artifact のレポートにま
 <div class="wrap" id="tab-a" role="tabpanel" aria-labelledby="t-a">…</div>
 <div class="wrap" id="tab-b" role="tabpanel" aria-labelledby="t-b" hidden>…</div>
 <script>
-for (const b of document.querySelectorAll(".tabs button")) {
-  b.addEventListener("click", () => {
-    for (const x of document.querySelectorAll(".tabs button")) {
-      const on = x === b;
-      x.setAttribute("aria-selected", on);
-      document.getElementById(x.getAttribute("aria-controls")).hidden = !on;
-    }
-  });
+const btns = [...document.querySelectorAll(".tabs button")];
+function show(id) {
+  const b = document.getElementById(id);
+  if (!btns.includes(b)) return;
+  for (const x of btns) {
+    const on = x === b;
+    x.setAttribute("aria-selected", on);
+    document.getElementById(x.getAttribute("aria-controls")).hidden = !on;
+  }
 }
+function tabFromHash() {
+  const id = location.hash.slice(1);
+  if (btns.some(b => b.id === id)) return id;
+  const panel = document.getElementById(id)?.closest("[role=tabpanel]");
+  return panel && document.querySelector(`.tabs button[aria-controls="${panel.id}"]`)?.id;
+}
+function openHash() {
+  const id = tabFromHash();
+  if (!id) return;
+  show(id);
+  const raw = location.hash.slice(1);
+  if (raw !== id) document.getElementById(raw)?.scrollIntoView();
+}
+for (const b of btns) b.addEventListener("click", () => {
+  show(b.id);
+  if (location.hash !== "#" + b.id) history.replaceState(null, "", "#" + b.id);
+});
+window.addEventListener("hashchange", openHash);
+openHash();
 (() => {
   const tabs = document.querySelector(".tabs");
   const set = () => document.documentElement.style.setProperty("--tabs-h", tabs.offsetHeight + "px");
@@ -48,8 +69,10 @@ for (const b of document.querySelectorAll(".tabs button")) {
 for (const a of document.querySelectorAll("a[data-tab]")) {
   a.addEventListener("click", e => {
     e.preventDefault();
-    document.getElementById(a.dataset.tab).click();
-    document.querySelector(a.getAttribute("href"))?.scrollIntoView();
+    show(a.dataset.tab);
+    const href = a.getAttribute("href");
+    if (href && location.hash !== href) history.replaceState(null, "", href);
+    document.querySelector(href)?.scrollIntoView();
   });
 }
 </script>

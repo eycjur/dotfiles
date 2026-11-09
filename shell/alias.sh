@@ -130,6 +130,7 @@ alias dprune='(docker stop $(docker ps -q) || true) && docker system prune --vol
 alias dcprune='docker compose down --rmi all --volumes --remove-orphans'
 alias gprune="git fetch && git branch --merged | grep -v 'main' | grep -v 'develop' | grep -v '\*' | xargs git branch -d && git gc"
 alias hprune='herdr workspace list | jq -r ".result.workspaces[].workspace_id" | while read -r id; do herdr workspace close "$id"; done'
+alias tprune='tmux kill-server'
 
 if [ -n "${ZSH_VERSION:-}" ]; then
     # globalのalias (zsh only)
