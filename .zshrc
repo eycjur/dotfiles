@@ -129,5 +129,5 @@ fi
 
 # 起動時に1回。実行中 gpu ジョブの NAME / NODES / TIME
 if command -v squeue >/dev/null 2>&1; then
-    squeue --me -p gpu -t R -o "%.25j %5D %12M"
+    squeue --me -p gpu -t R -o "%.25j %5D %12M" || true
 fi

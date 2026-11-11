@@ -58,6 +58,22 @@ alias clear="clear && printf '\e[3J'"
 alias drmia='docker rmi $(docker images -q)'
 
 alias dotfiles="cd ~/dotfiles"
+
+# どこからでも ~/dotfiles を更新する。fast-forward できないときは何も変えずに止まる。
+# install の成否は見ない。
+dotup() {
+    local repo="${HOME}/dotfiles"
+    if ! git -C "${repo}" pull --ff-only; then
+        echo "pull できなかったので中断しました" >&2
+        return 1
+    fi
+    sh "${repo}/install.sh" || true
+    if [ -n "${ZSH_VERSION:-}" ]; then
+        source "${HOME}/.zshrc"
+    else
+        source "${HOME}/.bashrc"
+    fi
+}
 alias cdw="cd $WORKSPACE_DIR"
 
 # コマンドを上書きする
