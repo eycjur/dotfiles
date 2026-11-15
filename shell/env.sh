@@ -39,3 +39,4 @@ else
     export LC_CTYPE=C
 fi
 export COMPOSE_MENU=0
+export DISABLE_TELEMETRY=1
