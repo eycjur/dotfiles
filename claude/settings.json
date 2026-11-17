@@ -140,13 +140,6 @@
     "swift-lsp@claude-plugins-official": true,
     "notion@anthropic-plugin-directory": true
   },
-  "pluginConfigs": {
-    "agents-md@builtin": {
-      "options": {
-        "instructionFiles": "claude-md-and-agents-md"
-      }
-    }
-  },
   "extraKnownMarketplaces": {
     "airas": {
       "source": {
@@ -218,6 +211,18 @@
     }
   },
   "alwaysThinkingEnabled": true,
+  "pluginConfigs": {
+    "agents-md@builtin": {
+      "options": {
+        "instructionFiles": "claude-md-and-agents-md"
+      }
+    }
+  },
   "tui": "fullscreen",
-  "theme": "dark"
+  "theme": "dark",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
+  }
 }

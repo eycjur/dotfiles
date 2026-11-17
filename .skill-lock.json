@@ -8,7 +8,7 @@
       "skillPath": "skills/drawio-skill/SKILL.md",
       "skillFolderHash": "e773fabbf1425631ab08a2c210f8d7e1e83d92a5",
       "installedAt": "2026-05-18T12:26:15Z",
-      "updatedAt": "2026-11-17T06:43:48.644Z"
+      "updatedAt": "2026-11-17T06:51:51.852Z"
     },
     "frontend-design": {
       "source": "anthropics/skills",
@@ -108,7 +108,7 @@
       "sourceUrl": "/Users/kmuto/dotfiles/skills",
       "skillFolderHash": "cc8bd076142e158256f3cb0735a7cc574446aaecd0c0a87b411ccd2b9ee6e4d4",
       "installedAt": "2026-11-09T16:26:53.118Z",
-      "updatedAt": "2026-11-17T06:43:49.080Z"
+      "updatedAt": "2026-11-17T06:51:52.319Z"
     },
     "ios-app-setup": {
       "source": "/Users/kmuto/dotfiles/skills",
@@ -116,7 +116,7 @@
       "sourceUrl": "/Users/kmuto/dotfiles/skills",
       "skillFolderHash": "4f0f77005a5965d9b779f4c8e4c63811963bf3687bd3110f00ab129b53d1d460",
       "installedAt": "2026-11-09T16:26:53.123Z",
-      "updatedAt": "2026-11-17T06:43:49.085Z"
+      "updatedAt": "2026-11-17T06:51:52.323Z"
     },
     "notion-page-editing": {
       "source": "/Users/kmuto/dotfiles/skills",
@@ -124,7 +124,7 @@
       "sourceUrl": "/Users/kmuto/dotfiles/skills",
       "skillFolderHash": "fe25d40acae192c1528b60f90556bffc567e6297491d1d3b26ef1591f0d934a5",
       "installedAt": "2026-11-09T16:26:53.124Z",
-      "updatedAt": "2026-11-17T06:43:49.085Z"
+      "updatedAt": "2026-11-17T06:51:52.323Z"
     },
     "review-pr": {
       "source": "/Users/kmuto/dotfiles/skills",
@@ -132,7 +132,7 @@
       "sourceUrl": "/Users/kmuto/dotfiles/skills",
       "skillFolderHash": "a224583b9302cb27a3e33c49891e98ff1783d615770751cbcb973db998101eaf",
       "installedAt": "2026-11-09T16:26:53.124Z",
-      "updatedAt": "2026-11-17T06:43:49.085Z"
+      "updatedAt": "2026-11-17T06:51:52.324Z"
     },
     "yomiyasu": {
       "source": "nanaism/yomiyasu",

@@ -40,3 +40,4 @@ else
 fi
 export COMPOSE_MENU=0
 export DISABLE_TELEMETRY=1
+export OP_BIOMETRIC_UNLOCK_ENABLED=true
