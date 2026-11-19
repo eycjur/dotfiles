@@ -27,13 +27,9 @@
       "Read(./**/*.tfstate.*)",
       "Read(./**/*.tfvars)",
       "Read(./**/*.tfvars.json)",
-      "Bash(gh issue create:*)",
       "Bash(gh issue delete:*)",
-      "Bash(gh pr create:*)",
       "Bash(gh pr close:*)",
-      "Bash(gh pr comment:*)",
       "Bash(gh pr merge:*)",
-      "Bash(gh pr review:*)",
       "Bash(gh repo delete:*)"
     ],
     "defaultMode": "bypassPermissions",

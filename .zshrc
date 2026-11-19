@@ -127,7 +127,9 @@ if [[ -z ${CLAUDECODE:-} ]]; then
     }
 fi
 
-# 起動時に1回。実行中 gpu ジョブの NAME / NODES / TIME
+# シェル起動時にGPUジョブの状態・待機理由・GPU枚数を表示
 if command -v squeue >/dev/null 2>&1; then
-    squeue --me -p gpu -t R -o "%.25j %5D %12M" || true
+  squeue --me -p gpu \
+    -O 'Name:26,StateCompact:4,Reason:12,TimeUsed:13,NumNodes:6,tres-alloc:100' |
+    sed -E '1s/TRES_ALLOC/GPUS/; s@[^ ]*gres/gpu=([0-9]+)[^ ]*@\1@; s/[[:blank:]]+$//' || true
 fi

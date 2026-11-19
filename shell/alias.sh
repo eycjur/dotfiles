@@ -1,7 +1,8 @@
 source ~/shell/functions.sh
 
 # コマンドのオプションをデフォルトにする
-alias ls='LC_COLLATE=C ls --color'
+alias ls='LC_COLLATE=C ls -AF --color'
+alias ll='ls -lh --time-style=long-iso'
 alias rm='rm -v'
 alias cp='cp -v'
 alias mv='mv -v'
@@ -38,6 +39,7 @@ alias g="git"
 # alias h="hermes"
 alias h="herdr"
 alias l="limactl"
+alias m="multipass"
 alias s="sbx"
 alias t="tmux"
 alias y="yazi"
@@ -46,7 +48,6 @@ alias pca="pre-commit run --all-files"
 
 set_alias_if_success "dc" "docker-compose"
 set_alias_if_success "dc" "docker compose"
-alias ll='ls -lAhF --time-style=long-iso'
 alias tf="terraform"
 alias his="history 1 | grep "
 alias psa="ps aucr"
@@ -81,7 +82,9 @@ set_alias_if_success "cat" "bat -pP"
 set_alias_if_success "du" "dust"
 set_alias_if_success "df" "duf"
 set_alias_if_success "grep" "rg"
-set_alias_if_success "ls" 'eza -F=always'
+set_alias_if_success "ls" "gls -AF --color"
+set_alias_if_success "ll" "gls -lhAF --time-style=long-iso --color"
+set_alias_if_success "ls" 'eza -aF=always'
 set_alias_if_success "ll" 'eza -alhH -F=always --group --git --time-style=long-iso --color-scale=all'
 set_alias_if_success "vim" "nvim"
 set_alias_if_success "vi" "vim"
