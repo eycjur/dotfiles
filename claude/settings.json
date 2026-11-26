@@ -1,18 +1,171 @@
 {
-  "env": {
-    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "75",
-    "CLAUDE_CODE_SCROLL_SPEED": "3",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
-    "DISABLE_ERROR_REPORTING": "1",
-    "DISABLE_TELEMETRY": "1"
+  "alwaysThinkingEnabled" : true,
+  "attribution" : {
+    "commit" : "",
+    "pr" : "",
+    "sessionUrl" : false
   },
-  "attribution": {
-    "commit": "",
-    "pr": "",
-    "sessionUrl": false
+  "enabledPlugins" : {
+    "chrome-devtools-mcp@claude-plugins-official" : true,
+    "cloudflare@claude-plugins-official" : true,
+    "code-review@claude-plugins-official" : true,
+    "code-simplifier@claude-plugins-official" : true,
+    "frontend-design@claude-plugins-official" : true,
+    "notion@anthropic-plugin-directory" : true,
+    "playground@claude-plugins-official" : true,
+    "pyright-lsp@claude-plugins-official" : true,
+    "remember@claude-plugins-official" : true,
+    "security-guidance@claude-plugins-official" : true,
+    "skill-creator@claude-plugins-official" : true,
+    "swift-lsp@claude-plugins-official" : true,
+    "typescript-lsp@claude-plugins-official" : true
   },
-  "permissions": {
-    "allow": [
+  "env" : {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE" : "75",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC" : "1",
+    "CLAUDE_CODE_SCROLL_SPEED" : "3",
+    "CLAUDE_CODE_SUBAGENT_MODEL" : "sonnet",
+    "DISABLE_ERROR_REPORTING" : "1",
+    "DISABLE_TELEMETRY" : "1"
+  },
+  "extraKnownMarketplaces" : {
+    "airas" : {
+      "source" : {
+        "repo" : "airas-org\/airas",
+        "source" : "github"
+      }
+    }
+  },
+  "hooks" : {
+    "Notification" : [
+      {
+        "hooks" : [
+          {
+            "command" : "\"\/Users\/kmuto\/.config\/iterm2\/it2\" handle-agent-hook",
+            "type" : "command"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest" : [
+      {
+        "hooks" : [
+          {
+            "command" : "\"\/Users\/kmuto\/.config\/iterm2\/it2\" handle-agent-hook",
+            "type" : "command"
+          }
+        ]
+      }
+    ],
+    "PostToolUse" : [
+      {
+        "hooks" : [
+          {
+            "command" : "\"\/Users\/kmuto\/.config\/iterm2\/it2\" handle-agent-hook",
+            "type" : "command"
+          }
+        ]
+      }
+    ],
+    "PreToolUse" : [
+      {
+        "hooks" : [
+          {
+            "command" : "\"\/Users\/kmuto\/.config\/iterm2\/it2\" handle-agent-hook",
+            "type" : "command"
+          }
+        ]
+      }
+    ],
+    "SessionEnd" : [
+      {
+        "hooks" : [
+          {
+            "command" : "\"\/Users\/kmuto\/.config\/iterm2\/it2\" handle-agent-hook",
+            "type" : "command"
+          }
+        ]
+      }
+    ],
+    "SessionStart" : [
+      {
+        "hooks" : [
+          {
+            "command" : "bash '~\/.claude\/hooks\/herdr-agent-state.sh' session || true",
+            "timeout" : 10,
+            "type" : "command"
+          }
+        ],
+        "matcher" : "*"
+      },
+      {
+        "hooks" : [
+          {
+            "command" : "\"\/Users\/kmuto\/.config\/iterm2\/it2\" handle-agent-hook",
+            "type" : "command"
+          }
+        ]
+      }
+    ],
+    "Stop" : [
+      {
+        "hooks" : [
+          {
+            "command" : "[ -n \"$TTY\" ] && [ -c \"$TTY\" ] && printf '\\a' > \"$TTY\" || true",
+            "type" : "command"
+          }
+        ],
+        "matcher" : ""
+      },
+      {
+        "hooks" : [
+          {
+            "command" : "\"\/Users\/kmuto\/.config\/iterm2\/it2\" handle-agent-hook",
+            "type" : "command"
+          }
+        ]
+      }
+    ],
+    "StopFailure" : [
+      {
+        "hooks" : [
+          {
+            "command" : "\"\/Users\/kmuto\/.config\/iterm2\/it2\" handle-agent-hook",
+            "type" : "command"
+          }
+        ]
+      }
+    ],
+    "SubagentStop" : [
+      {
+        "hooks" : [
+          {
+            "command" : "\"\/Users\/kmuto\/.config\/iterm2\/it2\" handle-agent-hook",
+            "type" : "command"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit" : [
+      {
+        "hooks" : [
+          {
+            "command" : "\"\/Users\/kmuto\/.config\/iterm2\/it2\" handle-agent-hook",
+            "type" : "command"
+          }
+        ]
+      }
+    ]
+  },
+  "language" : "japanese",
+  "modelSettings" : {
+    "claude-opus-5-5" : {
+      "effortLevel" : "medium"
+    }
+  },
+  "outputStyle" : "Explanatory",
+  "permissions" : {
+    "allow" : [
       "Bash(make:*)",
       "Bash(mkdir:*)",
       "Bash(mv:*)",
@@ -26,8 +179,8 @@
       "Bash(test:*)",
       "Bash(du:*)",
       "Bash(grep:*)",
-      "Bash(/usr/bin/du:*)",
-      "Bash(/usr/bin/grep:*)",
+      "Bash(\/usr\/bin\/du:*)",
+      "Bash(\/usr\/bin\/grep:*)",
       "Bash(npm install:*)",
       "Bash(npm run:*)",
       "Bash(npm uninstall:*)",
@@ -52,10 +205,10 @@
       "Bash(flutter pub get:*)",
       "Bash(flutter build:*)",
       "Bash(codex exec:*)",
-      "Edit(./src/**)",
-      "Edit(~/.npm/**)",
-      "Edit(~/.cache/**)",
-      "Edit(//tmp/**)",
+      "Edit(.\/src\/**)",
+      "Edit(~\/.npm\/**)",
+      "Edit(~\/.cache\/**)",
+      "Edit(\/\/tmp\/**)",
       "Skill(codex)",
       "WebSearch",
       "WebFetch(domain:github.com)",
@@ -73,153 +226,97 @@
       "mcp__chrome-devtools__wait_for",
       "mcp__chrome-devtools__evaluate_script"
     ],
-    "deny": [
+    "defaultMode" : "acceptEdits",
+    "deny" : [
       "Bash(curl:*)",
       "Bash(wget:*)",
-      "Read(./.env)",
-      "Read(./credentials/**)",
+      "Read(.\/.env)",
+      "Read(.\/credentials\/**)",
       "Read(*credentials*)",
-      "Read(./secrets/**)",
-      "Read(./.dev.vars)",
+      "Read(.\/secrets\/**)",
+      "Read(.\/.dev.vars)",
       "Read(*.pem)",
       "Read(*.key)",
-      "Read(~/.ssh/**)",
-      "Read(~/.aws/**)",
+      "Read(~\/.ssh\/**)",
+      "Read(~\/.aws\/**)",
       "Bash(gh issue delete:*)",
       "Bash(gh pr close:*)",
       "Bash(gh pr merge:*)",
       "Bash(gh pr review:*)",
       "Bash(gh repo delete:*)"
-    ],
-    "defaultMode": "acceptEdits"
-  },
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash '~/.claude/hooks/herdr-agent-state.sh' session || true",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ -n \"$TTY\" ] && [ -c \"$TTY\" ] && printf '\\a' > \"$TTY\" || true"
-          }
-        ]
-      }
     ]
   },
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  },
-  "enabledPlugins": {
-    "pyright-lsp@claude-plugins-official": true,
-    "security-guidance@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "chrome-devtools-mcp@claude-plugins-official": true,
-    "playground@claude-plugins-official": true,
-    "remember@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
-    "cloudflare@claude-plugins-official": true,
-    "swift-lsp@claude-plugins-official": true,
-    "notion@anthropic-plugin-directory": true
-  },
-  "extraKnownMarketplaces": {
-    "airas": {
-      "source": {
-        "source": "github",
-        "repo": "airas-org/airas"
+  "pluginConfigs" : {
+    "agents-md@builtin" : {
+      "options" : {
+        "instructionFiles" : "claude-md-and-agents-md"
       }
     }
   },
-  "outputStyle": "Explanatory",
-  "language": "japanese",
-  "sandbox": {
-    "enabled": true,
-    "failIfUnavailable": false,
-    "autoAllowBashIfSandboxed": true,
-    "allowUnsandboxedCommands": false,
-    "filesystem": {
-      "denyRead": [
-        "./.env",
-        "./credentials/**",
-        "./*credentials*",
-        "./secrets/**",
-        "**/*.pem",
-        "**/*.key",
-        "~/.ssh",
-        "~/.aws"
-      ]
-    },
-    "credentials": {
-      "files": [
+  "sandbox" : {
+    "allowUnsandboxedCommands" : false,
+    "autoAllowBashIfSandboxed" : true,
+    "credentials" : {
+      "envVars" : [
         {
-          "path": "~/.ssh",
-          "mode": "deny"
+          "mode" : "deny",
+          "name" : "GITHUB_TOKEN"
         },
         {
-          "path": "~/.aws/credentials",
-          "mode": "deny"
+          "mode" : "deny",
+          "name" : "OPENAI_API_KEY"
         },
         {
-          "path": "~/.config/gcloud",
-          "mode": "deny"
+          "mode" : "deny",
+          "name" : "GEMINI_API_KEY"
         },
         {
-          "path": "~/.kube/config",
-          "mode": "deny"
+          "mode" : "deny",
+          "name" : "ANTHROPIC_API_KEY"
+        },
+        {
+          "mode" : "deny",
+          "name" : "CLAUDE_CODE_OAUTH_TOKEN"
         }
       ],
-      "envVars": [
+      "files" : [
         {
-          "name": "GITHUB_TOKEN",
-          "mode": "deny"
+          "mode" : "deny",
+          "path" : "~\/.ssh"
         },
         {
-          "name": "OPENAI_API_KEY",
-          "mode": "deny"
+          "mode" : "deny",
+          "path" : "~\/.aws\/credentials"
         },
         {
-          "name": "GEMINI_API_KEY",
-          "mode": "deny"
+          "mode" : "deny",
+          "path" : "~\/.config\/gcloud"
         },
         {
-          "name": "ANTHROPIC_API_KEY",
-          "mode": "deny"
-        },
-        {
-          "name": "CLAUDE_CODE_OAUTH_TOKEN",
-          "mode": "deny"
+          "mode" : "deny",
+          "path" : "~\/.kube\/config"
         }
+      ]
+    },
+    "enabled" : true,
+    "failIfUnavailable" : false,
+    "filesystem" : {
+      "denyRead" : [
+        ".\/.env",
+        ".\/credentials\/**",
+        ".\/*credentials*",
+        ".\/secrets\/**",
+        "**\/*.pem",
+        "**\/*.key",
+        "~\/.ssh",
+        "~\/.aws"
       ]
     }
   },
-  "alwaysThinkingEnabled": true,
-  "pluginConfigs": {
-    "agents-md@builtin": {
-      "options": {
-        "instructionFiles": "claude-md-and-agents-md"
-      }
-    }
+  "statusLine" : {
+    "command" : "~\/.claude\/statusline.sh",
+    "type" : "command"
   },
-  "tui": "fullscreen",
-  "theme": "dark",
-  "modelSettings": {
-    "claude-opus-5-5": {
-      "effortLevel": "medium"
-    }
-  }
+  "theme" : "dark",
+  "tui" : "fullscreen"
 }

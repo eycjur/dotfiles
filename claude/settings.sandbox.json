@@ -1,95 +1,95 @@
 {
-  "env": {
-    "DISABLE_TELEMETRY": "1",
-    "DISABLE_ERROR_REPORTING": "1",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
-    "CLAUDE_CODE_SCROLL_SPEED": "3",
-    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
+  "alwaysThinkingEnabled" : true,
+  "attribution" : {
+    "commit" : "",
+    "pr" : "",
+    "sessionUrl" : false
   },
-  "attribution": {
-    "commit": "",
-    "pr": "",
-    "sessionUrl": false
+  "enabledPlugins" : {
+    "chrome-devtools-mcp@claude-plugins-official" : true,
+    "cloudflare@claude-plugins-official" : true,
+    "code-review@claude-plugins-official" : true,
+    "code-simplifier@claude-plugins-official" : true,
+    "frontend-design@claude-plugins-official" : true,
+    "notion@anthropic-plugin-directory" : true,
+    "playground@claude-plugins-official" : true,
+    "pyright-lsp@claude-plugins-official" : true,
+    "remember@claude-plugins-official" : true,
+    "security-guidance@claude-plugins-official" : true,
+    "skill-creator@claude-plugins-official" : true,
+    "swift-lsp@claude-plugins-official" : true,
+    "typescript-lsp@claude-plugins-official" : true
   },
-  "permissions": {
-    "deny": [
-      "Read(./.env)",
-      "Read(./.env.local)",
-      "Read(./.envrc)",
-      "Read(./**/*secret*)",
-      "Read(./**/*credential*)",
-      "Read(./**/*credential*/**)",
-      "Read(./.dev.vars)",
-      "Read(./*.pem)",
-      "Read(./*.key)",
-      "Read(~/.ssh/**)",
-      "Read(~/.aws/**)",
-      "Read(./**/*.tfstate)",
-      "Read(./**/*.tfstate.*)",
-      "Read(./**/*.tfvars)",
-      "Read(./**/*.tfvars.json)",
+  "env" : {
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC" : "1",
+    "CLAUDE_CODE_SCROLL_SPEED" : "3",
+    "CLAUDE_CODE_SUBAGENT_MODEL" : "sonnet",
+    "DISABLE_ERROR_REPORTING" : "1",
+    "DISABLE_TELEMETRY" : "1"
+  },
+  "extraKnownMarketplaces" : {
+    "airas" : {
+      "source" : {
+        "repo" : "airas-org\/airas",
+        "source" : "github"
+      }
+    }
+  },
+  "hooks" : {
+    "Stop" : [
+      {
+        "hooks" : [
+          {
+            "command" : "[ -n \"$TTY\" ] && [ -c \"$TTY\" ] && printf '\\a' > \"$TTY\" || true",
+            "type" : "command"
+          }
+        ],
+        "matcher" : ""
+      }
+    ]
+  },
+  "language" : "japanese",
+  "outputStyle" : "Explanatory",
+  "permissions" : {
+    "defaultMode" : "bypassPermissions",
+    "deny" : [
+      "Read(.\/.env)",
+      "Read(.\/.env.local)",
+      "Read(.\/.envrc)",
+      "Read(.\/**\/*secret*)",
+      "Read(.\/**\/*credential*)",
+      "Read(.\/**\/*credential*\/**)",
+      "Read(.\/.dev.vars)",
+      "Read(.\/*.pem)",
+      "Read(.\/*.key)",
+      "Read(~\/.ssh\/**)",
+      "Read(~\/.aws\/**)",
+      "Read(.\/**\/*.tfstate)",
+      "Read(.\/**\/*.tfstate.*)",
+      "Read(.\/**\/*.tfvars)",
+      "Read(.\/**\/*.tfvars.json)",
       "Bash(gh issue delete:*)",
       "Bash(gh pr close:*)",
       "Bash(gh pr merge:*)",
       "Bash(gh repo delete:*)"
     ],
-    "defaultMode": "bypassPermissions",
-    "denyInsteadOfPrompting": true
+    "denyInsteadOfPrompting" : true
   },
-  "hooks": {
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[ -n \"$TTY\" ] && [ -c \"$TTY\" ] && printf '\\a' > \"$TTY\" || true"
-          }
-        ]
-      }
-    ]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  },
-  "enabledPlugins": {
-    "pyright-lsp@claude-plugins-official": true,
-    "security-guidance@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "chrome-devtools-mcp@claude-plugins-official": true,
-    "playground@claude-plugins-official": true,
-    "remember@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
-    "cloudflare@claude-plugins-official": true,
-    "swift-lsp@claude-plugins-official": true,
-    "notion@anthropic-plugin-directory": true
-  },
-  "pluginConfigs": {
-    "agents-md@builtin": {
-      "options": {
-        "instructionFiles": "claude-md-and-agents-md"
+  "pluginConfigs" : {
+    "agents-md@builtin" : {
+      "options" : {
+        "instructionFiles" : "claude-md-and-agents-md"
       }
     }
   },
-  "extraKnownMarketplaces": {
-    "airas": {
-      "source": {
-        "source": "github",
-        "repo": "airas-org/airas"
-      }
-    }
+  "sandbox" : {
+    "enabled" : false
   },
-  "outputStyle": "Explanatory",
-  "language": "japanese",
-  "sandbox": {
-    "enabled": false
+  "skipDangerousModePermissionPrompt" : true,
+  "statusLine" : {
+    "command" : "~\/.claude\/statusline.sh",
+    "type" : "command"
   },
-  "alwaysThinkingEnabled": true,
-  "tui": "fullscreen",
-  "skipDangerousModePermissionPrompt": true,
-  "theme": "dark"
+  "theme" : "dark",
+  "tui" : "fullscreen"
 }
