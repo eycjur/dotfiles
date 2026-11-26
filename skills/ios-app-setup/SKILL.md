@@ -11,6 +11,7 @@ description: iOS アプリの初期構成、署名・実機実行、公開準備
 - [ビルド・署名・実機確認](references/build-and-device.md): XcodeGen、Team ID、バージョン番号、実機 ID、再インストール、デバッガ、テスト構成。
 - [公開・サポート・診断](references/release-and-support.md): 更新確認、GitHub Pages、問い合わせ、ログ、Info.plist、権限の事前説明、UIBackgroundModes、ストア提出の要点、スクリーンショット加工、ローカライズ。
 - [App Store Connect 入力・提出](references/app-store-connect.md): 自律実行の原則、提出フロー、提出前のガイドライン照合、横断の判断ルール、スクリーンショット。
-- [App Store Connect 項目一覧](references/app-store-connect-fields.md): 左メニュー順の全項目と決め方（値の正本は各アプリの metadata）。審査で指摘されやすい点。
+- [App Store Connect CLI（asc）](references/asc-cli.md): `asc` による現行値の読み出し、文面反映、録画添付、ビルド紐付け、事前検証と停止点。
+- [App Store Connect 項目一覧](references/app-store-connect-fields.md): 左メニュー順の全項目と決め方。審査で指摘されやすい点。
 
 個人の Team ID や公開先は既存設定・今回の対象と一致する場合に使う。過去の不具合への回避策は、同じ条件があるときだけ適用する。

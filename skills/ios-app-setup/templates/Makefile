@@ -82,7 +82,9 @@ upload: ## TestFlightへアップロード（要 有料メンバーシップ + A
 	mkdir -p $(BUILD_DIR)
 	sed 's/TEAM_ID_PLACEHOLDER/$(TEAM_ID)/' ExportOptions.template.plist \
 		> $(BUILD_DIR)/ExportOptions.plist
-	xcodebuild -exportArchive \
+# IPA作成で /usr/bin/rsync（openrsync）が PATH 上の rsync 3.x（Homebrew等）を
+# 受信側に起動し、-E が通らず "Copy failed" になるため PATH を標準に限定する
+	env PATH=/usr/bin:/bin:/usr/sbin:/sbin xcodebuild -exportArchive \
 		-archivePath $(ARCHIVE) \
 		-exportOptionsPlist $(BUILD_DIR)/ExportOptions.plist \
 		-allowProvisioningUpdates \

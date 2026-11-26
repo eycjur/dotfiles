@@ -12,6 +12,7 @@
 - テンプレートのターゲット: `setup` / `generate` / `open` / `run` / `reinstall` / `run-sim` / `archive` / `upload` / `test` / `clean`
 - `open` / `run` / `reinstall` / `run-sim` / `archive` は `generate` に依存させる。`xcodegen generate` は冪等で速いため毎回実行してよい
 - TestFlight へ上げるときは `make upload ASC_KEY_PATH=... ASC_KEY_ID=... ASC_ISSUER_ID=...`（有料 Developer Program と App Store Connect API キーが必要）。`upload` は `archive` のあと `ExportOptions.template.plist` の `TEAM_ID_PLACEHOLDER` を `TEAM_ID` に置換して `-exportArchive` する。`TEAM_ID` の既定は署名節と同じ個人 Team ID
+  - Homebrew 等の `rsync 3.x` が `PATH` に先にある環境では、`-exportArchive` 内で `/usr/bin/rsync`（openrsync）が受信側として `rsync 3.x` を起動し `-E` が通らず `"Copy failed"` になるため、`xcodebuild -exportArchive` 実行時だけ `env PATH=/usr/bin:/bin:/usr/sbin:/sbin` で標準 `PATH` に限定する
 - 複数Xcodeがある環境向けに `export DEVELOPER_DIR = $(XCODE_APP)/Contents/Developer` をMakefileで固定
 - **実機で権限ダイアログの再表示を確認する**場合は、削除・再インストールを検討する。権限種別や OS によって状態の保持が異なるため、初期化できたかを実機で確認する。`make reinstall` でデータコンテナ（`Library` / `Documents`）を退避→アンインストール→ビルド＆インストール→復元→起動する。アプリデータ（SwiftData等）と設定（UserDefaults）はコンテナ内なので残り、権限の再表示は復元後に確認する。通知許可はOSがしばらく記憶することがあるので、出ないときは端末を再起動する
 - Xcode Cloud利用時は `ci_scripts/ci_post_clone.sh` でクローン直後に生成:
@@ -45,7 +46,7 @@ settings:
 ## バージョン番号の運用
 
 - `CFBundleShortVersionString`（マーケティングバージョン、例 "1.0"）と `CFBundleVersion`（ビルド番号）を分けて管理
-- **App Store Connectへアップロードするたびに `CFBundleVersion` を+1する**（同じ番号は重複エラーで拒否される）
+- **App Store Connectへアップロードするたびに `CFBundleVersion` を+1する**（同じ番号は重複エラーで拒否される）。XcodeGen では `project.yml` の `CURRENT_PROJECT_VERSION` を +1 し、`info.properties` に `CFBundleVersion: $(CURRENT_PROJECT_VERSION)` を定義しておく
 - **extensionのバージョンは本体と完全一致させる**（不一致はApp Store検証で警告）
 - デバッグビルドと公開ビルドを見分けるため、表示用バージョンにビルド種別を埋め込む:
 
