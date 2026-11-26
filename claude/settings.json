@@ -124,6 +124,14 @@
             "type" : "command"
           }
         ]
+      },
+      {
+        "hooks" : [
+          {
+            "prompt" : "Check $ARGUMENTS. Return {\"ok\": true} if stop_hook_active is true, if last_assistant_message is empty, if it consists only of code/commands/paths/identifiers, or if its natural-language explanation is primarily in Japanese (technical terms, code, and quotes in English are fine). Return {\"ok\": false, \"reason\": \"直前の回答を日本語で書き直してください。\"} only if the natural-language prose of last_assistant_message is written primarily in a language other than Japanese.",
+            "type" : "prompt"
+          }
+        ]
       }
     ],
     "StopFailure" : [
