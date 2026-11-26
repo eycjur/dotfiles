@@ -51,3 +51,29 @@ fi
 if [ -f "${HOME}/.ssh/id_ed25519" ]; then
     ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 fi
+
+# .env を1Password Environmentsに移行
+env2op() {
+  local file="${1:-.env}"
+  local name="${file:A:h:t}" key value
+  [[ -f "$file" ]] || return 1
+
+  setopt localoptions pipefail
+  op environment create "$name" || return 1
+
+  while IFS='=' read -r key value || [[ -n "$key" ]]; do
+    [[ -z "$key" || "$key" == \#* ]] && continue
+    printf '%s' "$value" | jq -Rs '{value: .}' |
+      op environment secret create "$key" - \
+        --environment "$name" || return 1
+  done < "$file"
+
+  rm -- "$file"
+}
+
+# 1Passwordから環境変数を読み込んで実行
+oprun() {
+  local id=$(op environment list --format=json |
+    jq -er --arg name "${PWD:t}" '.[] | select(.name == $name) | .id') || return 1
+  op run --environment "$id" -- "${@:-zsh}"
+}

@@ -5,10 +5,11 @@
       "source": "Agents365-ai/drawio-skill",
       "sourceType": "github",
       "sourceUrl": "https://github.com/Agents365-ai/drawio-skill.git",
+      "commit": "a8e83c75ad5385aea9a4e2e5b144947f1153fd17",
       "skillPath": "skills/drawio-skill/SKILL.md",
-      "skillFolderHash": "e773fabbf1425631ab08a2c210f8d7e1e83d92a5",
+      "skillFolderHash": "637a22f407fe6feb53fd3c3f9537f23e445bfe7a",
       "installedAt": "2026-05-18T12:26:15Z",
-      "updatedAt": "2026-11-19T06:22:50.635Z"
+      "updatedAt": "2026-11-25T16:20:10.795Z"
     },
     "frontend-design": {
       "source": "anthropics/skills",
@@ -108,7 +109,7 @@
       "sourceUrl": "/Users/kmuto/dotfiles/skills",
       "skillFolderHash": "87b4d02eff8597a75dd0533b22d1c20ef84c681626e849b159c9064012b6ebd4",
       "installedAt": "2026-11-09T16:26:53.118Z",
-      "updatedAt": "2026-11-19T06:22:51.402Z"
+      "updatedAt": "2026-11-25T16:20:11.314Z"
     },
     "ios-app-setup": {
       "source": "/Users/kmuto/dotfiles/skills",
@@ -116,7 +117,7 @@
       "sourceUrl": "/Users/kmuto/dotfiles/skills",
       "skillFolderHash": "1bf2b5adb8859326578324ff3029be6b4817b4f0052ae94bbb38411ad5ab200a",
       "installedAt": "2026-11-09T16:26:53.123Z",
-      "updatedAt": "2026-11-19T06:22:51.404Z"
+      "updatedAt": "2026-11-25T16:20:11.315Z"
     },
     "notion-page-editing": {
       "source": "/Users/kmuto/dotfiles/skills",
@@ -124,7 +125,7 @@
       "sourceUrl": "/Users/kmuto/dotfiles/skills",
       "skillFolderHash": "32235b9c60fa0cd1118a9a200b87bf67c4923a335425033cf8c559f2bdd1b528",
       "installedAt": "2026-11-09T16:26:53.124Z",
-      "updatedAt": "2026-11-19T06:22:51.404Z"
+      "updatedAt": "2026-11-25T16:20:11.315Z"
     },
     "review-pr": {
       "source": "/Users/kmuto/dotfiles/skills",
@@ -132,7 +133,7 @@
       "sourceUrl": "/Users/kmuto/dotfiles/skills",
       "skillFolderHash": "d15edd921b7f9b6670c40d6abfd255b0b98ac84359f25401aa020162e54d33dd",
       "installedAt": "2026-11-09T16:26:53.124Z",
-      "updatedAt": "2026-11-19T06:22:51.404Z"
+      "updatedAt": "2026-11-25T16:20:11.315Z"
     },
     "yomiyasu": {
       "source": "nanaism/yomiyasu",

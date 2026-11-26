@@ -43,6 +43,7 @@ notification_method = "bel"
 notification_condition = "always"
 status_line = ["model-with-reasoning", "approval-mode", "context-used", "five-hour-limit", "weekly-limit", "task-progress", "current-dir"]
 status_line_use_colors = true
+mouse_scroll_speed = 3.0
 
 [tui.model_availability_nux]
 "gpt-5.6-sol" = 4
