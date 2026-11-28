@@ -151,6 +151,43 @@ alias dcprune='docker compose down --rmi all --volumes --remove-orphans'
 alias gprune="git fetch && git branch --merged | grep -v 'main' | grep -v 'develop' | grep -v '\*' | xargs git branch -d && git gc"
 alias hprune='herdr workspace list | jq -r ".result.workspaces[].workspace_id" | while read -r id; do herdr workspace close "$id"; done'
 alias tprune='tmux kill-server'
+vprune() {
+    unset HISTFILE
+
+    # Docker
+    if command -v docker >/dev/null; then
+        docker builder prune -f
+        docker scout cache prune --sboms -f
+    fi
+
+    # パッケージキャッシュ
+    command -v brew >/dev/null && brew cleanup -s
+    command -v uv   >/dev/null && uv cache clean
+    command -v pip  >/dev/null && pip cache purge
+    command -v pnpm >/dev/null && pnpm store prune
+    command -v yarn >/dev/null && yarn cache clean
+
+    # npm
+    if command -v npm >/dev/null; then
+        npm cache clean --force || {
+            sudo chown -R "$(id -u):$(id -g)" "$HOME/.npm" &&
+            npm cache clean --force
+        }
+    fi
+
+    # VS Code・Cursor
+    rm -rfv -- "$HOME/Library/Application Support/"{Code,Cursor}/User/History
+
+    # シェル・Python
+    rm -fv -- ~/.zsh_history ~/.python_history
+
+    # AIエージェント
+    rm -rfv -- ~/.claude/history.jsonl \
+        ~/.claude/paste-cache \
+        ~/.codex/history.jsonl \
+        ~/.codex/logs_*.sqlite*(N)
+}
+
 
 if [ -n "${ZSH_VERSION:-}" ]; then
     # globalのalias (zsh only)
