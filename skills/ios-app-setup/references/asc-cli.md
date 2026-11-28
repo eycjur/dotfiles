@@ -1,6 +1,6 @@
 # App Store Connect CLI（`asc`）運用
 
-公式 App Store Connect API を `asc` CLI から呼び、文面反映・録画添付・ビルド紐付け・事前検証を行う。
+公式 App Store Connect API を `asc` CLI（[rorkai/App-Store-Connect-CLI](https://github.com/rorkai/App-Store-Connect-CLI) / [ドキュメント](https://docs.asccli.sh)）から呼び、文面反映・録画添付・ビルド紐付け・事前検証を行う。
 
 ## 運用原則
 
@@ -9,9 +9,12 @@
 - **提出直前で止める**: `asc validate` までは進めてよい。提出確定（`submit`）はユーザー確認後に実行する
 - **API 非対応はブラウザ**: Resolution Center への返信、App のプライバシー、規制関連の申告は ASC 画面で操作する
 
-## 認証・確認
+## 導入・認証・確認
+
+API キーは [App Store Connect の統合ページ](https://appstoreconnect.apple.com/access/integrations/api) で発行する。
 
 ```sh
+brew install asc
 asc telemetry disable
 asc auth login --name <name> --key-id <keyId> --issuer-id <issuerId> --private-key <AuthKey.p8>
 # キーチェーンがない環境（sandbox 等）では --bypass-keychain を付ける
