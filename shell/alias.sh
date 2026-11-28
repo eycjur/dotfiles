@@ -70,6 +70,7 @@ dotup() {
     fi
     sh "${repo}/install.sh" || true
     if [ -n "${ZSH_VERSION:-}" ]; then
+        source "${HOME}/.zshenv"
         source "${HOME}/.zshrc"
     else
         source "${HOME}/.bashrc"

@@ -33,6 +33,19 @@ done
 echo "create symbolic link: shell"
 ln -sfn "${DOT_DIR}/shell" ~/shell
 
+# 設定を読み込んで適用する
+set +u
+if [ -n "${ZSH_VERSION:-}" ]; then
+    # shellcheck disable=SC1091
+    source "${HOME}/.zshenv"
+    # shellcheck disable=SC1091
+    source "${HOME}/.zshrc"
+elif [ -f "${HOME}/.bashrc" ]; then
+    # shellcheck disable=SC1091
+    source "${HOME}/.bashrc"
+fi
+set -u
+
 # vim plugin
 source "${DOT_DIR}/shell/vim_plugin.sh"
 
@@ -78,14 +91,3 @@ if command -v jq >/dev/null 2>&1 && command -v npx >/dev/null 2>&1 && npx -y -- 
     # ローカルのskillsを追加する
     npx skills add ./skills -g -s '*' -a codex -a cursor -a claude-code -y
 fi
-
-# 設定を読み込んで適用する
-set +u
-if [ -n "${ZSH_VERSION:-}" ]; then
-    # shellcheck disable=SC1091
-    source "${HOME}/.zshrc"
-elif [ -f "${HOME}/.bashrc" ]; then
-    # shellcheck disable=SC1091
-    source "${HOME}/.bashrc"
-fi
-set -u
